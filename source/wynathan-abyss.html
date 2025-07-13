@@ -283,6 +283,21 @@
 
 		<!-- Table Columns -->
 		<style>
+			.table-root tbody tr
+			{
+				/* position: relative; */
+				counter-increment: rowNumber;
+			}
+
+			/* Row number before Hero Name emblem */
+			/* .table-root tbody tr td:first-child::before {
+				content: counter(rowNumber);
+				padding-top: 3px;
+				padding-left: 3px;
+				padding-right: 0px;
+				padding-bottom: 3px;
+			} */
+
 			.table-header .header-name, 
 				tr.table-result-row > td:nth-of-type(1)
 			{
@@ -648,7 +663,7 @@
 				}
 				
 				/* Force table to not be like tables anymore */
-				table, thead, tbody, th, td, tr 
+				table.table-root, thead, tbody, th, td, tr 
 				{
 					display: block !important;
 				}
@@ -665,19 +680,19 @@
 				}
 
 				/* Hide table headers (but not display: none;, for accessibility) */
-				thead tr
+				table.table-root thead tr
 				{
 					position: absolute !important;
 					top: -9999px !important;
 					left: -9999px !important;
 				}
 
-				tr
+				table.table-root tr
 				{
 					margin: 0 0 20px 0 !important;
 				}
 				
-				td 
+				table.table-root td 
 				{
 					position: relative !important;
 					text-align: start !important;
@@ -697,7 +712,7 @@
 					/* border-bottom: 1px solid #eee !important; */
 				}
 
-				td:before 
+				table.table-root td:before 
 				{
 					/* Now like a table header */
 					text-align: left !important;
@@ -708,33 +723,52 @@
 					width: 150px !important;
 					height: 99% !important;
 					padding-top: 5px !important;
+					padding-left: 0px !important;
+					padding-right: 0px !important;
+					padding-bottom: 0px !important;
 					border-right: 4px solid #544c4a !important;
 					/* white-space: nowrap !important; */
 				}
 
-				td:first-child
+				table.table-root td:first-child
 				{
 					border-top: 4px solid #544c4a !important;
 				}
 
 				/* Label the data */
-				td:nth-of-type(1):before { content: "Name"; }
-				td:nth-of-type(2):before { content: "Stat Emblems"; }
-				td:nth-of-type(3):before { content: "[T] Stat Emblems"; }
-				td:nth-of-type(4):before { content: "Hero Emblems"; }
-				td:nth-of-type(5):before { content: "[T] Hero Emblems"; }
-				td:nth-of-type(6):before { content: "Traits 1"; }
-				td:nth-of-type(7):before { content: "[T] Traits 1"; }
-				td:nth-of-type(8):before { content: "Traits 2"; }
-				td:nth-of-type(9):before { content: "[T] Traits 2"; }
-				td:nth-of-type(10):before { content: "Summon Skill"; }
-				td:nth-of-type(11):before { content: "Element"; }
-				td:nth-of-type(12):before { content: "[T] Summon Skill"; }
-				td:nth-of-type(13):before { content: "[T] Element"; }
-				td:nth-of-type(14):before { content: "Hero Tactic"; }
-				td:nth-of-type(15):before { content: "Targets"; }
-				td:nth-of-type(16):before { content: "[T] Hero Tactic"; }
-				td:nth-of-type(17):before { content: "[T] Targets"; }
+				table.table-root td:nth-of-type(1):before { content: "Name" !important; }
+				table.table-root td:nth-of-type(2):before { content: "Stat Emblems"; }
+				table.table-root td:nth-of-type(3):before { content: "[T] Stat Emblems"; }
+				table.table-root td:nth-of-type(4):before { content: "Hero Emblems"; }
+				table.table-root td:nth-of-type(5):before { content: "[T] Hero Emblems"; }
+				table.table-root td:nth-of-type(6):before { content: "Traits 1"; }
+				table.table-root td:nth-of-type(7):before { content: "[T] Traits 1"; }
+				table.table-root td:nth-of-type(8):before { content: "Traits 2"; }
+				table.table-root td:nth-of-type(9):before { content: "[T] Traits 2"; }
+				table.table-root td:nth-of-type(10):before { content: "Summon Skill"; }
+				table.table-root td:nth-of-type(11):before { content: "Element"; }
+				table.table-root td:nth-of-type(12):before { content: "[T] Summon Skill"; }
+				table.table-root td:nth-of-type(13):before { content: "[T] Element"; }
+				table.table-root td:nth-of-type(14):before { content: "Hero Tactic"; }
+				table.table-root td:nth-of-type(15):before { content: "Targets"; }
+				table.table-root td:nth-of-type(16):before { content: "[T] Hero Tactic"; }
+				table.table-root td:nth-of-type(17):before { content: "[T] Targets"; }
+
+				/* Row number before Hero Name emblem */
+				/* table.table-root tr td:first-child .emblems-container:first-child::before
+				{
+					vertical-align: middle;
+					content: counter(rowNumber);
+					padding-left: 3px;
+					padding-right: 3px;
+				} */
+
+				table.table-root .summon-tactic-name, 
+					table.table-root .summon-tactic-description
+				{
+					padding-left: 6px !important;
+					padding-right: 6px !important;
+				}
 
 				/* .filter-form #filter-personal-emblems .filter-group */
 				.filter-group
