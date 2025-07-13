@@ -552,7 +552,7 @@ class Form
 	{
 		Form.clearFiltersOnly();
 
-		Form.filter();
+		//Form.filter();
 		Transcendence.toggleDisplay();
 	}
 

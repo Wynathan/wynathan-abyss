@@ -72,5 +72,6 @@ class Transcendence
 		}
 
 		Form.toggleEmblemStatsDisplay(options["true"]);
+		Form.filter();
 	}
 }
