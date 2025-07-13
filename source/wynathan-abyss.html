@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Wynathan Abyss</title>
+		
+		<meta charset="utf-8"/>
+		<meta name="author" content="Wynathan at glebov.vo@outlook.com">
+		<meta name="description" content="Warriors Abyss -- An Interactive Spreadsheet">
+
+		<!-- Root -->
+		<style>
+			html
+			{
+				height: 100%;
+			}
+
+			body
+			{
+				position: relative;
+				background-color: #0d133f;
+				width: max-content;
+				min-width: 100%;
+				height: auto !important;
+				min-height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+
+			header
+			{
+				text-align: left;
+				color: #d6d6d6;
+				height: fit-content;
+				margin: 0px;
+				padding-top: 20px;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-bottom: 0px;
+				/* user-select: none; */
+			}
+
+			main
+			{
+				background-color: #0d133f;
+				height: fit-content;
+				margin: 0px;
+				padding-top: 20px;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-bottom: 300px; /* padding-bottom 50 + total height of footer 100 + max height of prompt 150 */
+			}
+
+			footer
+			{
+				position: absolute;
+				bottom: 0px;
+				text-align: center;
+				color: #d6d6d6;
+				background-color: #000821;
+				z-index: 50;
+				height: 80px;
+				width: 100%;
+				margin: 0px;
+				padding-top: 20px;
+				padding-left: 0px;
+				padding-right: 0px;
+				padding-bottom: 0px;
+			}
+		</style>
+
+		<!-- Filter Form -->
+		<style>
+			.filter-form
+			{
+				display: inline-block;
+				/* width: 100%; */
+				max-width: 810px;
+				margin-top: 4px;
+				margin-left: 0px;
+				margin-right: 4px;
+				margin-bottom: 20px;
+				color: #d6d6d6;
+				background-color: #000821;
+				border: 4px solid #544c4a;
+				border-collapse: collapse;
+				border-radius: 8px;
+			}
+
+			.filter-form > div
+			{
+				display: inline-block;
+				/* width: fit-content; */
+				/* width: calc(100% - 8px); */
+				width: 100%;
+			}
+
+			.filter-form .filter-group
+			{
+				display: inline-block;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+				vertical-align: top;
+				margin: auto;
+				padding-top: 4px;
+				padding-left: 4px;
+				padding-right: 0px;
+				padding-bottom: 4px;
+			}
+			
+			.filter-form .filter-group:first-of-type
+			{
+				margin-left: 0px;
+			}
+			
+			.filter-form .filter-group:last-of-type
+			{
+				margin-right: 0px;
+				padding-right: 4px;
+			}
+
+			.filter-form .filter-label
+			{
+				margin-top: 3px;
+				margin-left: 3px;
+				margin-right: 3px;
+				margin-bottom: 0px;
+				padding: 3px;
+				color: #d6d6d6;
+				background-color: #0d375d;
+				border-top: 2px solid #94a9ad;
+				border-left: 2px solid #94a9ad;
+				border-right: 2px solid #94a9ad;
+				border-radius: 8px 8px 0px 0px;
+			}
+
+			/* Stat Emblems */
+			.filter-form #filter-stats-elements .filter-group:first-of-type
+			{
+				width: calc(55% - 8px); /* portion 40% - total padding 4 */
+				max-width: calc(55% - 8px); /* portion 40% - total padding 4 */
+			}
+
+			.filter-form #filter-stats-elements .filter-group:last-of-type
+			{
+				width: calc(45% - 8px); /* portion 60% - total padding 8 */
+				max-width: calc(45% - 8px); /* portion 60% - total padding 8 */
+			}
+
+			/* Personal Emblems */
+			.filter-form #filter-personal-emblems .filter-group:first-of-type
+			{
+				width: calc(40% - 8px); /* portion 40% - total padding 4 */
+				max-width: calc(40% - 8px); /* portion 40% - total padding 4 */
+			}
+
+			.filter-form #filter-personal-emblems .filter-group:last-of-type
+			{
+				width: calc(60% - 8px); /* portion 60% - total padding 8 */
+				max-width: calc(60% - 8px); /* portion 60% - total padding 8 */
+			}
+
+			/* Options */
+			.filter-form #filter-options-group .filter-group:first-of-type
+			{
+				width: calc(25% - 8px); /* portion 40% - total padding 4 */
+				max-width: calc(25% - 8px); /* portion 40% - total padding 4 */
+			}
+
+			.filter-form #filter-options-group .filter-group:last-of-type
+			{
+				width: calc(75% - 8px); /* portion 60% - total padding 8 */
+				max-width: calc(75% - 8px); /* portion 60% - total padding 8 */
+			}
+
+			.filter-form .filter-emblems > .emblem-icon
+			{
+				margin: 3px;
+				padding: 3px;
+			}
+
+			.filter-form .filter-emblems > .emblem-icon.selected
+			{
+				background-color: #d6d6d6;
+				margin: 0px;
+				padding: 0.4px;
+				border: 6px solid #d6d6d6;
+				border-radius: 50%;
+			}
+
+			.filter-form .filter-emblems
+			{
+				margin-top: 0px;
+				margin-left: 3px;
+				margin-right: 3px;
+				margin-bottom: 3px;
+				padding: 3px;
+				color: #d6d6d6;
+				border-top: 2px solid #94a9ad;
+				border-left: 2px solid #94a9ad;
+				border-right: 2px solid #94a9ad;
+				border-bottom: 2px solid #94a9ad;
+				border-radius: 0px 0px 8px 8px;
+			}
+
+			.filter-form #search
+			{
+				text-align: left;
+				color: #0d375d;
+				background-color: #d6d6d6;
+				width: calc(100% - 8.4px); /* total padding 8.4 */
+				margin: 3px;
+				padding: 4.2px;
+				border: 2px solid #94a9ad;
+				border-radius: 8px;
+			}
+
+			.filter-form .filter-item
+			{
+				user-select: none;
+			}
+
+			.filter-form .options-item
+			{
+				user-select: none;
+			}
+		</style>
+
+		<!-- Table Root -->
+		<style>
+			.table-root
+			{
+				width: fit-content;
+				color: #d6d6d6;
+				border-collapse: separate;
+				border-spacing: 0px;
+			}
+
+			.table-root .table-header th
+			{
+				background-color: #0d375d;
+				padding: 2px;
+				border-top: 4px solid #544c4a;
+				border-right: 4px solid #544c4a;
+				border-bottom: 4px solid #544c4a;
+			}
+
+			.table-root .table-header th:first-child
+			{
+				border-top-left-radius: 8px;
+				border-left: 4px solid #544c4a;
+			}
+
+			.table-root .table-header th:last-child
+			{
+				border-top-right-radius: 8px;
+			}
+
+			.table-root tr.table-result-row td
+			{
+				background-color: #000821;
+				border-right: 4px solid #544c4a;
+				border-bottom: 4px solid #544c4a;
+			}
+
+			.table-root tr.table-result-row td:first-child
+			{
+				border-left: 4px solid #544c4a;
+			}
+
+			.table-root tr.table-result-row:last-child td:first-child
+			{
+				border-bottom-left-radius: 8px;
+			}
+
+			.table-root tr.table-result-row:last-child td:last-child
+			{
+				border-bottom-right-radius: 8px;
+			}
+		</style>
+
+		<!-- Table Columns -->
+		<style>
+			.table-header .header-name, 
+				tr.table-result-row > td:nth-of-type(1)
+			{
+				width: 140px;
+				min-width: 140px;
+				max-width: 140px;
+			}
+
+			.table-header .header-stats, 
+				tr.table-result-row > td:nth-of-type(2), 
+				tr.table-result-row > td:nth-of-type(3)
+			{
+				width: 80px;
+				min-width: 80px;
+				max-width: 80px;
+			}
+
+			.table-header .header-emblems, 
+				tr.table-result-row > td:nth-of-type(4), 
+				tr.table-result-row > td:nth-of-type(5)
+			{
+				width: 160px;
+				min-width: 160px;
+				max-width: 160px;
+			}
+
+			.table-header .header-traits-1, .table-header .header-traits-2, 
+				tr.table-result-row > td:nth-of-type(6), 
+				tr.table-result-row > td:nth-of-type(7), 
+				tr.table-result-row > td:nth-of-type(8), 
+				tr.table-result-row > td:nth-of-type(9)
+			{
+				width: 240px;
+				min-width: 240px;
+				max-width: 240px;
+			}
+
+			.table-header .header-skill, 
+				tr.table-result-row > td:nth-of-type(10), 
+				tr.table-result-row > td:nth-of-type(12)
+			{
+				width: 160px;
+				min-width: 160px;
+				max-width: 160px;
+			}
+
+			.table-header .header-skill-element, 
+				tr.table-result-row > td:nth-of-type(11), 
+				tr.table-result-row > td:nth-of-type(13)
+			{
+				width: 50px;
+				min-width: 50px;
+				max-width: 50px;
+			}
+
+			.table-header .header-tactic, 
+				tr.table-result-row > td:nth-of-type(14), 
+				tr.table-result-row > td:nth-of-type(16)
+			{
+				width: 240px;
+				min-width: 240px;
+				max-width: 240px;
+			}
+
+			.table-header .header-tactic-targets, 
+				tr.table-result-row > td:nth-of-type(15), 
+				tr.table-result-row > td:nth-of-type(17)
+			{
+				width: 100px;
+				min-width: 100px;
+				max-width: 100px;
+			}
+		</style>
+
+		<!-- Table Data -->
+		<style>
+			.name
+			{
+				text-align: justify;
+				align-items: justify;
+				justify-content: justify;
+				display: inline-block;
+				width: fit-content;
+				/* width: 100px; */
+				/* min-width: 100px; */
+				/* max-width: 100px; */
+				margin: 2px;
+				padding: 2px;
+				color: #efefef;
+				font-weight: bold;
+			}
+
+			.emblems-container
+			{
+				display: inline-block;
+				width: fit-content;
+				margin: 3px;
+				padding: 3px;
+			}
+
+			.emblem
+			{
+				display: inline-block;
+				width: fit-content;
+				/* max-width: 80%; */
+				vertical-align: middle;
+			}
+
+			.emblem > span
+			{
+				vertical-align: middle;
+			}
+
+			.emblem-text
+			{
+				margin: 3px;
+				padding: 3px;
+				color: #d6d6d6;
+				background-color: #0d375d;
+				border: 2px solid #94a9ad;
+				border-radius: 8px;
+				user-select: none;
+			}
+
+			.emblem-text.selected
+			{
+				color: #0d375d;
+				background-color: #d6d6d6;
+			}
+
+			.emblem-icon
+			{
+				margin: 0px;
+				padding: 1px;
+				user-select: none;
+			}
+
+			.center-content .emblem-icon
+			{
+				margin: 2px;
+			}
+
+			.emblem-canvas
+			{
+				width: max-content;
+			}
+
+			.summon-skill
+			{
+				display: inline-block;
+				width: fit-content;
+				margin: 3px;
+				padding: 3px;
+				color: #d6d6d6;
+				background-color: #301050;
+				border: 2px solid #94a9ad;
+				border-radius: 8px;
+				user-select: none;
+			}
+
+			.summon-tactic-name
+			{
+				text-align: justify;
+				align-items: justify;
+				justify-content: justify;
+				display: block;
+				color: #dddddd;
+				/* font-size: larger; */
+				font-weight: bold;
+				width: fit-content;
+				margin: 2px;
+				padding: 2px;
+			}
+
+			.trait, .summon-tactic-description
+			{
+				text-align: justify;
+				align-items: justify;
+				justify-content: justify;
+				display: inline-block;
+				color: #cccccc;
+				width: fit-content;
+				margin: 2px;
+				padding: 2px;
+			}
+
+			.summon-skill-container
+			{
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+			}
+		</style>
+
+		<!-- Prompt -->
+		<style>
+			#prompt
+			{
+				position: absolute;
+				text-align: center;
+				color: #d6d6d6;
+				background-color: #0d133f;
+				width: fit-content;
+				height: fit-content;
+				border: 4px solid #94a9ad;
+				border-radius: 8px;
+				user-select: none;
+			}
+
+			.prompt-button
+			{
+				display: flex;
+				text-align: left;
+				align-items: center;
+				justify-content: space-between;
+				color: #0d375d;
+				background-color: #d6d6d6;
+				width: auto;
+				height: fit-content;
+				margin: 3px;
+				padding-top: 0px;
+				padding-left: 3px;
+				padding-right: 3px;
+				padding-bottom: 0px;
+				border: 2px solid #94a9ad;
+				border-radius: 8px;
+				user-select: none;
+			}
+
+			.prompt-button span
+			{
+				/* display: inline-block; */
+				white-space: nowrap;
+				vertical-align: middle;
+				padding-right: 3px;
+			}
+		</style>
+
+		<!-- Copyright -->
+		<style>
+			#copyright /* Overlay */
+			{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(128,128,128,0.5);
+			}
+
+			#copyright > div
+			{
+				overflow-y: scroll;
+				position: fixed;
+				color: #0d375d;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 100;
+				max-width: 600px;
+				max-height: 80%;
+				border: 4px solid #94a9ad;
+				border-radius: 8px;
+			}
+
+			#copyright a 
+			{
+				color: #0d375d;
+			}
+
+			#copyright article
+			{
+				text-align: justify;
+				background-color: #d6d6d6;
+				width: fit-content;
+				height: fit-content;
+				padding-top: 20px;
+				padding-left: 40px;
+				padding-right: 40px;
+				padding-bottom: 40px;
+			}
+
+			#copyright-button-open
+			{
+				text-decoration: underline;
+			}
+
+			#copyright #copyright-button-close
+			{
+				float: right;
+				cursor: pointer;
+				user-select: none;
+				font-size: 45px;
+				font-weight: 600;
+				padding-top: 10px;
+				padding-right: 20px;
+			}
+		</style>
+
+		<!-- Generic -->
+		<style>
+			.cursor-pointer
+			{
+				cursor: pointer;
+			}
+
+			.center-content
+			{
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.hidden, .t12-hidden, .display-hidden
+			{
+				display: none;
+			}
+
+			.highlight-text-blue-dark 
+			{
+				color: #67b3ec;
+				/* font-weight: bold; */
+			}
+
+			.highlight-text-blue-bright 
+			{
+				color: #a9f3ec;
+			}
+
+			.highlight-text-red
+			{
+				color: #e77d7d;
+			}
+		</style>
+
+		<!-- Mobile -->
+		<style>
+			/* Credit: https://css-tricks.com/responsive-data-tables/ */
+			@media only screen 
+				and (max-width: 760px), (min-device-width: 768px) 
+				and (max-device-width: 1024px)
+			{
+				#copyright > div
+				{
+					transform: none !important;
+					top: 5%;
+					left: 10%;
+					width: 80% !important;
+					max-width: 80% !important;
+					height: 80% !important;
+					max-height: 80% !important;
+				}
+
+				#copyright .copyright-button-close
+				{
+					/* float: left !important; */
+					padding-top: 5px !important;
+					padding-right: 30px !important;
+				}
+
+				.hidden, .t12-hidden, .display-hidden
+				{
+					display: none !important;
+				}
+				
+				/* Force table to not be like tables anymore */
+				table, thead, tbody, th, td, tr 
+				{
+					display: block !important;
+				}
+
+				body, header, main, footer, .filter-form
+				{
+					display: block !important;
+					max-width: 100% !important;
+				}
+
+				header 
+				{
+					text-align: center !important;
+				}
+
+				/* Hide table headers (but not display: none;, for accessibility) */
+				thead tr
+				{
+					position: absolute !important;
+					top: -9999px !important;
+					left: -9999px !important;
+				}
+
+				tr
+				{
+					margin: 0 0 20px 0 !important;
+				}
+				
+				td 
+				{
+					position: relative !important;
+					text-align: start !important;
+					align-items: start !important;
+					justify-content: start !important;
+					width: calc(100% - 170px) !important; /* total width of td:before 150 + main padding 20 */
+					min-width: calc(100% - 170px) !important;
+					max-width: calc(100% - 170px) !important;
+					min-height: 30px !important;
+					padding-left: 160px !important;
+					margin-right: 20px !important;
+					/* Behave  like a "row" */
+					border-top: 0px solid #544c4a !important;
+					border-left: 4px solid #544c4a !important;
+					border-right: 4px solid #544c4a !important;
+					border-bottom: 4px solid #544c4a !important;
+					/* border-bottom: 1px solid #eee !important; */
+				}
+
+				td:before 
+				{
+					/* Now like a table header */
+					text-align: left !important;
+					position: absolute !important;
+					/* Top/left values mimic padding */
+					top: 0 !important;
+					left: 6px !important;
+					width: 150px !important;
+					height: 99% !important;
+					padding-top: 5px !important;
+					border-right: 4px solid #544c4a !important;
+					/* white-space: nowrap !important; */
+				}
+
+				td:first-child
+				{
+					border-top: 4px solid #544c4a !important;
+				}
+
+				/* Label the data */
+				td:nth-of-type(1):before { content: "Name"; }
+				td:nth-of-type(2):before { content: "Stat Emblems"; }
+				td:nth-of-type(3):before { content: "[T] Stat Emblems"; }
+				td:nth-of-type(4):before { content: "Hero Emblems"; }
+				td:nth-of-type(5):before { content: "[T] Hero Emblems"; }
+				td:nth-of-type(6):before { content: "Traits 1"; }
+				td:nth-of-type(7):before { content: "[T] Traits 1"; }
+				td:nth-of-type(8):before { content: "Traits 2"; }
+				td:nth-of-type(9):before { content: "[T] Traits 2"; }
+				td:nth-of-type(10):before { content: "Summon Skill"; }
+				td:nth-of-type(11):before { content: "Element"; }
+				td:nth-of-type(12):before { content: "[T] Summon Skill"; }
+				td:nth-of-type(13):before { content: "[T] Element"; }
+				td:nth-of-type(14):before { content: "Hero Tactic"; }
+				td:nth-of-type(15):before { content: "Targets"; }
+				td:nth-of-type(16):before { content: "[T] Hero Tactic"; }
+				td:nth-of-type(17):before { content: "[T] Targets"; }
+
+				/* .filter-form #filter-personal-emblems .filter-group */
+				.filter-group
+				{
+					/* max-width: fit-content !important; */
+					width: calc(100% - 8px) !important;
+					max-width: calc(100% - 8px) !important;
+				}
+
+				.filter-form #search
+				{
+					text-align: center !important;
+				}
+
+				.emblems-container
+				{
+					text-align: left !important;
+				}
+			}
+		</style>
+
+		<!-- #region Portable: comment out -->
+		<!-- -->
+		<script src="script/model/emblem.js" defer></script>
+		<script src="script/model/summon-activation-condition.js" defer></script>
+		<script src="script/model/summon-skill.js" defer></script>
+		<script src="script/model/tactic-target.js" defer></script>
+		<script src="script/model/tactic.js" defer></script>
+		<script src="script/model/hero.js" defer></script>
+		<script src="script/routines/data.js" defer></script>
+		<script src="script/routines/icons.js" defer></script>
+		<script src="script/routines/events.js" defer></script>
+		<script src="script/routines/transcendence.js" defer></script>
+		<script src="script/routines/form.js" defer></script>
+		<script src="script/routines/renderer.js" defer></script>
+		<script src="script/routines/prompt.js" defer></script>
+		<script src="script/routines/copyright-prompt.js" defer></script>
+		<script src="script/run.js" defer></script>
+		<!-- -->
+		<!-- #endregion Portable: comment out -->
+	</head>
+
+	<body>
+		<header>
+			<h2>
+				<span class="highlight-text-blue-dark">Warriors: Abyss</span>
+				<span>&mdash; An Interactive Spreadsheet</span>
+			</h2>
+			<h6>
+				<span>Made by</span>
+				<span><a class="highlight-text-blue-dark" href="mailto:glebov.vo@outlook.com?subject=Warriors Abyss -- An Interactive Spreadsheet">Wynathan</a></span><span>.</span>
+				<span>See the</span>
+				<span id="copyright-button-open" class="highlight-text-blue-bright cursor-pointer" data-link="https://spdx.org/licenses/MIT.html">MIT Copyright License here</span><span>.</span>
+			</h6>
+			<h6>
+				<span>Game Version:</span>
+				<span class="highlight-text-blue-bright">Update 4 (v1.4.1, 2025-07-11)</span>
+				<span>&mdash; Ninja Gaiden Characters.</span>
+			</h6>
+		</header>
+		<main>
+			<div id="filter-form" class="filter-form">
+				<div id="filter-stats-elements">
+					<div id="filter-stats" class="filter-group">
+						<div class="filter-label">Stat Emblems</div>
+						<div class="filter-emblems"></div>
+					</div>
+					<div id="filter-elements" class="filter-group">
+						<div class="filter-label">Element Emblems</div>
+						<div class="filter-emblems"></div>
+					</div>
+				</div>
+				<div id="filter-personal-emblems">
+					<div id="filter-factions" class="filter-group">
+						<div class="filter-label">Faction Emblems</div>
+						<div class="filter-emblems"></div>
+					</div>
+					<div id="filter-personal" class="filter-group">
+						<div class="filter-label">Personal Emblems</div>
+						<div class="filter-emblems"></div>
+					</div>
+				</div>
+				<div id="filter-options-group">
+					<div class="filter-group">
+						<div class="filter-label">Search by Hero name</div>
+						<div class="filter-emblems">
+							<input id="search" type="search" maxlength="20" />
+						</div>
+					</div>
+					<div id="options" class="filter-group">
+						<div class="filter-label">Options</div>
+						<div class="filter-emblems"></div>
+					</div>
+				</div>
+				<div>
+					<div id="options-display" class="filter-group">
+						<div class="filter-label">Show/Hide Specific Columns</div>
+						<div class="filter-emblems"></div>
+					</div>
+				</div>
+			</div>
+
+			<table id="table-root" class="table-root">
+				<thead class="table-header">
+					<tr>
+						<th class="header-name">Hero Name</th>
+						<th class="header-stats t12-target" data-transcendent="false">Stat Emblems</th>
+						<th class="header-stats t12-target" data-transcendent="true">[T] Stat Emblems</th>
+						<th class="header-emblems t12-target" data-transcendent="false">Hero Emblems</th>
+						<th class="header-emblems t12-target" data-transcendent="true">[T] Hero Emblems</th>
+						<th class="header-traits-1 t12-target" data-transcendent="false">Traits 1</th>
+						<th class="header-traits-1 t12-target" data-transcendent="true">[T] Traits 1</th>
+						<th class="header-traits-2 t12-target" data-transcendent="false">Traits 2</th>
+						<th class="header-traits-2 t12-target" data-transcendent="true">[T] Traits 2</th>
+						<th class="header-skill t12-target" data-transcendent="false">Summon Skill</th>
+						<th class="header-skill-element t12-target" data-transcendent="false">El.</th>
+						<th class="header-skill t12-target" data-transcendent="true">[T] Summon Skill</th>
+						<th class="header-skill-element t12-target" data-transcendent="true">[T] El.</th>
+						<th class="header-tactic t12-target" data-transcendent="false">Hero Tactic</th>
+						<th class="header-tactic-targets t12-target" data-transcendent="false">Targets</th>
+						<th class="header-tactic t12-target" data-transcendent="true">[T] Hero Tactic</th>
+						<th class="header-tactic-targets t12-target" data-transcendent="true">[T] Targets</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="prompt" class="hidden">
+				<div id="prompt-who-is" class="prompt-button cursor-pointer">
+					<span>Who is </span>
+					<div id="prompt-who-is-emblem" class="prompt-emblem"></div>
+				</div>
+				<div id="prompt-who-buffs" class="prompt-button cursor-pointer">
+					<span>Who buffs </span>
+					<div id="prompt-who-buffs-emblem" class="prompt-emblem"></div>
+				</div>
+				<div id="prompt-whose-skill-is-element" class="prompt-button cursor-pointer">
+					<span>Whose Skill is </span>
+					<div id="prompt-whose-skill-is-element-emblem" class="prompt-emblem"></div>
+				</div>
+			</div>
+
+			<div id="copyright" class="hidden">
+				<div>
+					<span id="copyright-button-close">&times;</span>
+					<article>
+						<h1>The MIT License (MIT)</h1>
+
+						<p>Copyright © 2025 Wynathan at &lt;<span><a href="mailto:glebov.vo@outlook.com?subject=Warriors Abyss -- An Interactive Spreadsheet">glebov.vo@outlook.com</a></span><span>.</span>&gt;</p>
+
+						<p>
+							Permission is hereby granted, free of charge, to any person obtaining a copy 
+							of this software and associated documentation files (the " Software"), to 
+							deal in the Software without restriction, including without limitation the 
+							rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
+							sell copies of the Software, and to permit persons to whom the Software is 
+							furnished to do so, subject to the following conditions:
+						</p>
+
+						<p>
+							The above copyright notice and this permission notice (including the next 
+							paragraph) shall be included in all copies or substantial portions of the 
+							Software.
+						</p>
+
+						<p>
+							THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+							IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+							FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+							THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+							LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+							OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+							THE SOFTWARE.
+						</p>
+					</article>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<h3>
+				<span class="cursor-pointer">Wynathan, 2025</span>
+			</h3>
+		</footer>
+	</body>
+
+	<!-- #region Portable: embed scripts -->
+	<!-- script/model/emblem.js -->
+	<script>
+
+	</script>
+
+	<!-- script/model/summon-activation-condition.js -->
+	<script>
+
+	</script>
+
+	<!-- script/model/summon-skill.js -->
+	<script>
+
+	</script>
+
+	<!-- script/model/tactic-target.js -->
+	<script>
+
+	</script>
+
+	<!-- script/model/tactic.js -->
+	<script>
+
+	</script>
+
+	<!-- script/model/hero.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/data.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/icons.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/events.js -->
+	<script>
+
+	</script>
+	
+	<!-- script/routines/transcendence.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/form.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/renderer.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/prompt.js -->
+	<script>
+
+	</script>
+
+	<!-- script/routines/copyright-prompt.js -->
+	<script>
+
+	</script>
+
+	<!-- script/run.js -->
+	<script>
+
+	</script>
+	<!-- #endregion Portable: embed scripts -->	
+</html>

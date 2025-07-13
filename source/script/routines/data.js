@@ -1,0 +1,3417 @@
+
+class Data
+{
+	/** @type {Object.<string, Hero>} */
+	static Heroes = { };
+	/** @type {Object.<string, boolean>} */
+	static SummonSkills = { };
+
+	static initialise()
+	{
+		for (let i = 0; i < Data.#heroes.length; i++) 
+		{
+			const hero = Data.#heroes[i];
+			Data.Heroes[hero.name] = hero;
+			Data.SummonSkills[hero.summonSkill.name] = true;
+			Data.SummonSkills[hero.summonSkillTranscended.name] = true;
+		}
+	}
+
+	/**
+	 * 
+	 * @returns {Object.<string, Hero>}
+	 */
+	static copy()
+	{
+		return Data.copyFrom(Data.Heroes);
+	}
+
+	/**
+	 * 
+	 * @param {Object.<string, Hero>} data 
+	 * @returns {Object.<string, Hero>}
+	 */
+	static copyFrom(data)
+	{
+		/** @type {Object.<string, Hero>} */
+		let result = { };
+
+		for (let heroKey in data)
+			result[heroKey] = data[heroKey];
+
+		return result;
+	}
+
+
+	
+	static #heroes = 
+	[
+		// #region Cao Wei
+
+		// #region Cao Cao
+		new Hero(
+			"Cao Cao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Charm", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Ruler", "Talent", "Commander"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Wei] Emblem.",
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 7% for every [Wei] Emblem.",
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+			],
+			[ // Trait 2
+				"Increases Defence by 5% for every [Wei] Emblem.",
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Defence by 7% for every [Wei] Emblem.",
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Absorption", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Conditions
+					new SummonActivationCondition("Xun Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Guo Jia", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Cao Cao's Might", // Tactic Name
+				"Increase Attack by 70% for heroes with the [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Cao Cao's Might", // Tactic Name
+				"Increase Attack and Defence by 70% for heroes with the [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Cao Pi
+		new Hero(
+			"Cao Pi", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Ruler", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Assemble Gauge charge by 10% for every [Wei] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Wei] Emblem.",
+				"Increases Attack by 5% for every [Ice] Emblem.",
+			],
+			[ // Trait 2
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+				"Increases your Tears of Blood by 500 at the start of battle in each phase.",
+			],
+			[ // Trait 2 Transcended
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+				"Increases your total [Ice] Emblems by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Explosive Bullet", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhen Ji", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Ingenious Commands", // Tactic Name
+				"Increases Attack for the [Ice] attribute by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Ingenious Commands", // Tactic Name
+				"Increases Attack for the [Ice] attribute by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhen Ji
+		new Hero(
+			"Zhen Ji", // Name
+			"Zhenji", // Name In-Game
+			["Lady Zhen Ji", "Lady Zhenji"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Yuan Shao Army", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 10% for every [Grace] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 10% for every [Grace] Emblem.",
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2
+				"Increases your total [Charm] Emblems by 50%.",
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases your total [Charm] Emblems by 50%.",
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Explosive Bullet", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Captivating Performance", // Tactic Name
+				"Increases Attack by 50% during Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Captivating Performance", // Tactic Name
+				"Increases Attack by 50% during Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Cao Ren
+		new Hero(
+			"Cao Ren", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Commander", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 5% for every [Wei] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack and Defence by 6% for every [Wei] Emblem.",
+				"Increases Defence by 100% for 20 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2
+				"Increases your total [Strength] Emblems by 50%.",
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Increases your total [Strength] Emblems by 50%.",
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Iron Wall", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Unrelenting Blade", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Unrelenting Blade", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Xiahou Dun
+		new Hero(
+			"Xiahou Dun", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Commander"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Wei] Emblem.",
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound of enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Wei] Emblem.",
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound of enemies.",
+			],
+			[ // Trait 2
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Slay] Wound on enemies.",
+				"Increases Attack Speed by 10% for 20 seconds when you are knocked into the air by an enemy attack.",
+			],
+			[ // Trait 2 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Slay] Wound on enemies.",
+				"Increases Attack Speed by 10% for 20 seconds when you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Cleaving Blade", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"One-Eyed Legend", // Tactic Name
+				"Increases Attack by 100% for heroes with the [Wei] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"One-Eyed Legend", // Tactic Name
+				"Increases Attack by 120% for heroes with the [Wei] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Xiahou Yuan
+		new Hero(
+			"Xiahou Yuan", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Master Archer"], // Personal Emblems
+			["Wei", "Brave General", "Master Archer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Replenishes 3% of your Health when you defeat 1 Sin Spewer enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Replenishes 3% of your Health when you defeat 1 Sin Spewer enemies.",
+				"Increases Attack by 30% towards Level Boss enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+				"Increases Attack by 50% towards Sin Spewer enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+				"Increases Attack by 300% towards Sin Spewer enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"April Showers", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Thundering Arrows of Miaocai", // Tactic Name
+				"Causes and explosion that damages nearby enemies when you attack enemies with [Ice] Freeze.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer)
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Master Archer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Thundering Arrows of Miaocai", // Tactic Name
+				"Causes and explosion that damages nearby enemies when you attack enemies with [Ice] Freeze.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer)
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Master Archer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Xun Yu
+		new Hero(
+			"Xun Yu", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Strategist"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.",
+				"Increases your total [Ice] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+				"Icreases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Makes it more likely for heroes with [Wei] Emblems to appear at Crystal Saplings.",
+				"Icreases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Talented Advisor", // Tactic Name
+				"Sets Status Infliction to 100% for heroes with [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Talented Advisor", // Tactic Name
+				"Sets Status Infliction to 100% and raises attribute Attack by 20% for heroes with [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Guo Jia
+		new Hero(
+			"Guo Jia", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Wisdom"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Strategist"], // Personal Emblems
+			["Wei", "Strategist", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Charges Musou Gauge and Assemble Gauge by 20% when you acquire Peaches.",
+			],
+			[ // Trait 1 Transcended
+				"Charges Musou Gauge and Assemble Gauge by 20% when you acquire Peaches.",
+				"Shortens summoning cooldown for all heroes by 20% when Health is above 80%.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.",
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.",
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Inspired Formation (Attack)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Xun Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Virtuous Speed", // Tactic Name
+				"Shortens summoning cooldown by 20% for heroes with [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Virtuous Speed", // Tactic Name
+				"Shortens summoning cooldown by 30% and increases attribute Attack by 30% for heroes with [Wei] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Jia Xu
+		new Hero(
+			"Jia Xu", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Dong Zhuo Army", "Strategist", "Xiliang"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack Speed by 10% for 10 seconds when you one-hit kill an enemy.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack Speed by 10% for 10 seconds when you one-hit kill an enemy.",
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.",
+			],
+			[ // Trait 2
+				"Makes Danger Zones appear more.",
+				"Increases the amount of Tears of Blood acquired by 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases your total [Wisdom] Emblems by 50%.",
+				"Increases the amount of Tears of Blood acquired by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Meteor Strike", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Feint and Ambush", // Tactic Name
+				"Doubles the chance of a [Slay] attribute attack one-hit killing an enemy.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Feint and Ambush", // Tactic Name
+				"Doubles the chance of a [Slay] attribute attack one-hit killing an enemy.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 4),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Dian Wei
+		new Hero(
+			"Dian Wei", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Might", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 200% when Health is below 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Defence by 300% when Health is below 50%.",
+				"Increases Attack by 70% for 20 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2
+				"Increases Attack by 100% while Health is below 50%.",
+				"Bestowns you with invulnerability for 3 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 100% while Health is below 50%.",
+				"Bestowns you with invulnerability for 3 seconds when you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Xu Chu", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Old Elai Returned", // Tactic Name
+				"Increases Attack by 3% for every Strength Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Old Elai Returned", // Tactic Name
+				"Increases Attack by 4% for every [Strength] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Xu Chu
+		new Hero(
+			"Xu Chu", // Name
+			"Xu Zhu", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Might", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases your total [Strength] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases your total [Strength] Emblems by 50%.",
+				"Increases Attack by 3% for every [Strength] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Might] Emblem.",
+				"Increases your maximum Health by 10% for every 5 levels (max 100%).",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 15% for every [Might] Emblem.",
+				"Increases your maximum Health by 10% for every 5 levels (max 100%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Sweeping Cyclone", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Dian Wei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Strength of the Tiger", // Tactic Name
+				"Increases Attack for Summoning Skill [Sweeping Cyclone] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Sweeping Cyclone"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Strength of the Tiger", // Tactic Name
+				"Increases Attack for Summoning Skill [Sweeping Cyclone] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Sweeping Cyclone"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+		),
+		// #endregion
+		// #region Yue Jin
+		new Hero(
+			"Yue Jin", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Speed"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Five Wei Elite"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack Speed by 10% for 15 seconds after every 1000 consecutive hits.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack Speed by 10% for 30 seconds after every 1000 consecutive hits.", 
+				"Replenishes Health by 10% at the start of battle in each phase.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.", 
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Ice] Freeze on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 10% for every [Wei] Emblem.", 
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Ice] Freeze on enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Soaring Blade", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Lateral Thinker", // Tactic Name
+				"Increases Attack of [Ice] attribute attacks against enemy barriers by 30%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Lateral Thinker", // Tactic Name
+				"Increases Attack of [Ice] attribute attacks against enemy barriers by 50%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Xu Huang
+		new Hero(
+			"Xu Huang", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Five Wei Elite"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 20% while Health is above 80%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% while Health is above 80%.", 
+				"Replenishes Health by 1% after every 50 enemies defeated.",
+			],
+			[ // Trait 2
+				"Increases Attack and Defence by 50% for 10 seconds when you acquire a Peach.", 
+				"Increases Attack Speed by 5% for 10 seconds after evading.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack and Defence by 50% for 45 seconds when you acquire a Peach.", 
+				"Increases Attack Speed by 10% for 10 seconds after evading.",
+			],
+			new SummonSkill( // Summon Skill
+				"Amplifying Orb", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhang He", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Long Path to Glory", // Tactic Name
+				"When you inflict [Slay] Wound on enemies, inflicts [Slay] Wound on nearby enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 6),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Long Path to Glory", // Tactic Name
+				"When you inflict [Slay] Wound on enemies, inflicts [Slay] Wound on nearby enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang Liao
+		new Hero(
+			"Zhang Liao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Bolt"], // Stat Emblems
+			["Skill", "Speed", "Bolt"], // Stat Emblems Transcended
+			["Wei", "Lü Bu Army", "Dong Zhuo Army", "Brave General", "Five Wei Elite"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Brave General] Emblem.", 
+				"Increases Attack by 50% for 10 seconds after every 100 enemies defeated.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 6% for every [Brave General] Emblem.",
+				"Increases Attack by 50% for 20 seconds after every 100 enemies defeated.",
+			],
+			[ // Trait 2
+				"Deals extra [Bolt] damage to enemies who have been knocked into the air.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Deals extra [Bolt] damage to enemies who have been knocked into the air.", 
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sweeping Cyclone", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Liao has arrived!", // Tactic Name
+				"Increases Attack by 40% for heroes with the [Brave General] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Liao has arrived!", // Tactic Name
+				"Increases Attack by 60% for heroes with the [Brave General] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang He
+		new Hero(
+			"Zhang He", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Yuan Shao Army", "Brave General", "Five Wei Elite", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Grace] Emblem.", 
+				"Replenishes 20% of your Health when you level up.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 9% for every [Grace] Emblem.", 
+				"Replenishes 20% of your Health when you level up.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 50% for 30 seconds after every 1000 consecutive hits.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Swift Strike", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Yuan Shao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Spectacular Contest of the Five Elites", // Tactic Name
+				"Summons other heroes who have the [Five Wei Elite] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Five Wei Elite"),
+					// new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Five Wei Elite", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Spectacular Contest of the Five Elites", // Tactic Name
+				"Summons other heroes who have the [Five Wei Elite] or [Grace] Emblems when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Five Wei Elite"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Grace"),
+					// new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Five Wei Elite", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Wang Yi
+		new Hero(
+			"Wang Yi", // Name
+			null, // Name In-Game
+			["Lady Wang Yi"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Flower of War", "Xiliang"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Slightly charges Assemble Gauge when you inflict [Ice] Freeze on enemies.", 
+			],
+			[ // Trait 1 Transcended
+				"Slightly charges Assemble Gauge when you inflict [Ice] Freeze on enemies.", 
+				"Increases Attack for Charge Attacks by 5% every time you clear a phase (max 100%).",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.", 
+				"Charges Musou Gauge by 1% when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.", 
+				"Charges Musou Gauge by 3% when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Burst of Flowers", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Nine Brilliant Strategies", // Tactic Name
+				"Increases Attack for Summoning Skill [Burst of Flowers] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Burst of Flowers"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Nine Brilliant Strategies", // Tactic Name
+				"Increases Attack for Summoning Skill [Burst of Flowers] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Burst of Flowers"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Cao Wei
+
+		// #region Sun Wu
+
+		// #region Sun Jian
+		new Hero(
+			"Sun Jian", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Strength"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Brave General", "Ruler", "Jiangdong Hero"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Wu] Emblem.", 
+				"Increases Attack by 50% towards enemies with [Flame] Burn.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Wu] Emblem.", 
+				"Increases Attack by 50% towards enemies with [Flame] Burn.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Wu] Emblem.", 
+				"Charges Assemble Gauge by 20% when you take hits from enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 10% for every [Wu] Emblem.", 
+				"Charges Assemble Gauge by 20% when you take hits from enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Penetrating Blade", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Tiger of Jiangdong", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you attack enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Tiger of Jiangdong", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you attack enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Sun Ce
+		new Hero(
+			"Sun Ce", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Brave General", "Ruler", "Jiangdong Hero", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Wu] Emblem.", 
+				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 9% for every [Wu] Emblem.", 
+				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 90%.",
+			],
+			[ // Trait 2
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Bolt] Shock on enemies.", 
+				"Increases Attack by 3% when you move to the next phase without being hit by an enemy attack (max 50%).",
+			],
+			[ // Trait 2 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Bolt] Shock on enemies.", 
+				"Increases Attack by 3% when you move to the next phase without being hit by an enemy attack (max 100%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Da Qiao", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Young Conqueror of Jiangdong", // Tactic Name
+				"Increases Attack by 100% for heroes with the [Wu] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Young Conqueror of Jiangdong", // Tactic Name
+				"Increases Attack by 120% for heroes with the [Wu] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Da Qiao
+		new Hero(
+			"Da Qiao", // Name
+			"Daqiao", // Name In-Game
+			["Lady Da Qiao", "Lady Daqiao"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm"], // Stat Emblems
+			["Charm", "Bolt"], // Stat Emblems Transcended
+			["Wu", "Flower of War", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 5% for every [Grace] Emblem.", 
+				"Increases Attack by 50% towards Archer enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Defence by 7% for every [Grace] Emblem.", 
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Wu] Emblem.", 
+				"Charges Assemble Gauge by 1% when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 7% for every [Wu] Emblem.", 
+				"Charges Assemble Gauge by 3% when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Inspired Formation (Defence)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Large Flower of the Two Qiaos", // Tactic Name
+				"Increases Attack by 100% for [Sun Ce].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Sun Ce"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Xiao Qiao", SummonActivationCondition.TypeHero),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Large Flower of the Two Qiaos", // Tactic Name
+				"Increases Attack by 120% for [Sun Ce].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Sun Ce"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Xiao Qiao", SummonActivationCondition.TypeHero),
+				]
+			)
+		),
+		// #endregion
+		// #region Sun Quan
+		new Hero(
+			"Sun Quan", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Charm", "Flame"], // Stat Emblems
+			["Strength", "Charm", "Flame"], // Stat Emblems Transcended
+			["Wu", "Ruler", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 5% for every [Wu] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 6% for every [Wu] Emblem.", 
+				"Shortens summoning cooldown by 20% for heroes with [Wu] Emblem.",
+			],
+			[ // Trait 2
+				"Makes it more likely for heroes with [Wu] Emblem to appear at Crystal Saplings.", 
+				"Slightly charges Assemble Gauge when you acquire EXP.",
+			],
+			[ // Trait 2 Transcended
+				"Makes it more likely for heroes with [Wu] Emblem to appear at Crystal Saplings.", 
+				"Slightly charges Assemble Gauge when you acquire EXP.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Jian", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 8),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Sun Wu's Command", // Tactic Name
+				"Increases Attack by 40% for heroes with the [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 7),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Sun Wu's Command", // Tactic Name
+				"Shortens summoning cooldown by 20% and increases Attack by 50% for heroes with the [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 7),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Sun Shangxiang
+		new Hero(
+			"Sun Shangxiang", // Name
+			null, // Name In-Game
+			["Lady Sun Shangxiang", "SSX"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Skill", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Master Archer", "Flower of War"], // Personal Emblems
+			["Wu", "Shu", "Master Archer", "Flower of War", "Torchbearer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Assemble Gauge charge by 10% for every [Wu] Emblem.", 
+				"Slightly charges Assemble Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Wu] Emblem.", 
+				"Slightly charges Assemble Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.", 
+				"Charges Musou Gauge by 1% when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.", 
+				"Charges Musou Gauge by 3% when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"April Showers", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Bow Bearing Princess", // Tactic Name
+				"Gives you Tears of Blood when you attack enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			null
+		),
+		// #endregion
+		// #region Zhou Yu
+		new Hero(
+			"Zhou Yu", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Charm", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Strategist", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Wu] Emblem.", 
+				"Bestows Normal Attacks with the [Flame] attribute while Health is below 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Wu] Emblem.", 
+				"Bestows Normal Attacks with the [Flame] attribute while Health is below 90%.",
+			],
+			[ // Trait 2
+				"Slightly charges Musou Gauge when you inflict [Flame] Burn on enemies.", 
+				"Increases Attack by 30% towards Level Boss enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Musou Gauge when you inflict [Flame] Burn on enemies.", 
+				"Increases Attack by 30% towards Level Boss enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Focus", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Strategy of Divine Flames", // Tactic Name
+				"When you inflict [Flame] Burn, causes an explosion that inflicts enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Huang Gai", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Strategy of Divine Flames", // Tactic Name
+				"When you inflict [Flame] Burn, causes an explosion that inflicts enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Huang Gai", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 8),
+				]
+			)
+		),
+		// #endregion
+		// #region Xiao Qiao
+		new Hero(
+			"Xiao Qiao", // Name
+			"Xiaoqiao", // Name In-Game
+			["Lady Xiao Qiao", "Lady Xiaoqiao"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm"], // Stat Emblems
+			["Charm", "Flame"], // Stat Emblems Transcended
+			["Wu", "Flower of War", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Grace] Emblem.", 
+				"Increases Attack by 50% towards Archer enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 7% for every [Grace] Emblem.", 
+				"Increases Attack by 50% towards enemies with [Flame] Burn.",
+			],
+			[ // Trait 2
+				"Increases Defence by 5% for every [Wu] Emblem.", 
+				"Replenishes 1% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Defence by 7% for every [Wu] Emblem.", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Homing Blades", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Little Flower of the Two Qiaos", // Tactic Name
+				"Increases Attack by 100% for [Zhou Yu].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Zhou Yu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Da Qiao", SummonActivationCondition.TypeHero),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Little Flower of the Two Qiaos", // Tactic Name
+				"Increases Attack by 120% for [Zhou Yu].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Zhou Yu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Da Qiao", SummonActivationCondition.TypeHero),
+				]
+			)
+		),
+		// #endregion
+		// #region Lu Su
+		new Hero(
+			"Lu Su", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Wisdom"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Makes it more likely for heroes with [Wu] Emblems to appear at Crystal Saplings.", 
+			],
+			[ // Trait 1 Transcended
+				"Makes it more likely for heroes with [Wu] Emblems to appear at Crystal Saplings.", 
+				"Increases Attack by 50% during Assemble.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 10% for every [Wu] Emblem.", 
+				"Increases the amount of Tears of Blood acquired by 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Wu] Emblem.", 
+				"Increases the amount of Tears of Blood acquired by 100%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Oppressive Formation (Attack)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Dividing the Land", // Tactic Name
+				"Increases Attack by 3% for every [Wisdom] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Dividing the Land", // Tactic Name
+				"Increases Attack by 4% for every [Wisdom] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Lü Meng
+		new Hero(
+			"Lü Meng", // Name
+			"Lu Meng", // Name In-Game
+			["Lv Meng"], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% towards Level Boss enemies.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 30% towards Level Boss enemies.", 
+				"Increases your maximum Health by 10% every 5 levels (max 100%).",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 10% for every [Wu] Emblem.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 15% for every [Wu] Emblem.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sword Dance", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Lu Xun", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Refined Strategies", // Tactic Name
+				"Shortens summoning cooldown by 20% for heroes with [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Refined Strategies", // Tactic Name
+				"Shortens summoning cooldown by 30% and increases Attack by 20% for heroes with [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Lu Xun
+		new Hero(
+			"Lu Xun", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Flame"], // Stat Emblems
+			["Strength", "Wisdom", "Flame"], // Stat Emblems Transcended
+			["Wu", "Strategist", "Commander"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 5% for every [Wu] Emblem.", 
+				"Slightly charges Musou Gauge when you inflict [Flame] Burn on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases your total [Flame] Emblems by 50%.", 
+				"Slightly charges Musou Gauge when you inflict [Flame] Burn on enemies.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Wu] Emblem.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 15% for every [Wu] Emblem.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Rapid-Fire Cannon", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 2),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Flames of Wisdom and Courage", // Tactic Name
+				"Sets Status Infliction to 100% for heroes with [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Flames of Wisdom and Courage", // Tactic Name
+				"Sets Status Infliction to 100% for heroes with [Wu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Huang Gai
+		new Hero(
+			"Huang Gai", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Might", "Jiangdong Hero"], // Personal Emblems
+			["Wu", "Brave General", "Might", "Jiangdong Hero"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 8% for every [Wu] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Wu] Emblem.", 
+				"Increases Defence by 100% for 20 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.", 
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.", 
+				"Increases Attack by 70% for 20 seconds when you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Amplifying Orb", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Jian", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Desperate Measures", // Tactic Name
+				"Changes the Status Inflictionfor Summoning Skill [Amplifying Orb] to 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Amplifying Orb"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Desperate Measures Policy", // Tactic Name
+				"Summons other heroes who have the [Jiangdong Hero] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Jiangdong Hero"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Jiangdong Hero", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Taishi Ci
+		new Hero(
+			"Taishi Ci", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Brave General", "Master Archer", "Jiangdong Hero"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Bestows Normal Attacks with the [Wind] attribute while Health is below 50%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack and Defence by 3% for every [Brave General] Emblem.", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2
+				"Increases Attack by 7% for every [Jiangdong Hero] Emblem.", 
+				"Charges Musou Gauge by 1% when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 18% for every [Jiangdong Hero] Emblem.", 
+				"Charges Musou Gauge by 3% when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tornado Blade", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Twin Rods of Fidelity", // Tactic Name
+				"Increases Attack for Summoning Skill [Tornado Blade] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Tornado Blade"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Twin Rods of Fidelity", // Tactic Name
+				"Increases Attack for Summoning Skill [Tornado Blade] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Tornado Blade"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhou Tai
+		new Hero(
+			"Zhou Tai", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Jiangdong Hero", "King's Shield"], // Personal Emblems
+			["Wu", "Brave General", "Jiangdong Hero", "King's Shield"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack Speed by 10% for 10 seconds when you one-hit kill an enemy.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack Speed by 10% for 10 seconds when you one-hit kill an enemy.", 
+				"Increases your total [Slay] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.", 
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Swift Strike", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Impenetrable Blade", // Tactic Name
+				"Increases Attack by 3% for every [Strength] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Impenetrable Blade", // Tactic Name
+				"Increases Attack by 4% for every [Strength] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Gan Ning
+		new Hero(
+			"Gan Ning", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Brave General", "Jiangdong Hero"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Cuts 1 second from summoning cooldown timer when you inflict [Slay] Wound on enemies.", 
+				"Increases Attack by 50% for 20 seconds when you level up.",
+			],
+			[ // Trait 1 Transcended
+				"Cuts 1 second from summoning cooldown timer when you inflict [Slay] Wound on enemies.", 
+				"Increases Attack by 3% for every [Slay] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 3% for every [Speed] Emblem.", 
+				"Causes an explosion that damages nearby enemies when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 4% for every [Speed] Emblem.", 
+				"Increases your total [Slay] Emblems by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Soaring Blade", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Lü Meng", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Gan Ning of the Bells", // Tactic Name
+				"Increases Attack for the [Slay] attribute by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Jiangdong Hero", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Gan Ning of the Bells", // Tactic Name
+				"Increases Attack for the [Slay] attribute by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Jiangdong Hero", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Ling Tong
+		new Hero(
+			"Ling Tong", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Jiangdong Hero"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Flame] Burn on enemies.", 
+			],
+			[ // Trait 1 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Flame] Burn on enemies.", 
+				"Increases Attack by 18% for every [Jiangdong Hero] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack and Defence by 50% for 5 seconds when you acquire Karma Embers.", 
+				"Adds 50% of your Speed to your Attack.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack and Defence by 50% for 15 seconds when you acquire Karma Embers.", 
+				"When you inflict [Flame] Burn, causes an explosion that inflicts enemies with [Flame] Burn.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Mist", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Fearless in the Face of Death", // Tactic Name
+				"Slightly charges Musou Gauge when you attack enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					// The game does not show it buffing the Player, even though it should
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Fearless in the Face of Death", // Tactic Name
+				"Moderately charges Musou Gauge when you attack enemies with [Flame] Burn.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					// The game does not show it buffing the Player, even though it should
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Sun Wu
+
+		// #region Shu-Han
+
+		// #region Liu Bei
+		new Hero(
+			"Liu Bei", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Charm", "Charm"], // Stat Emblems
+			["Charm", "Charm", "Bolt"], // Stat Emblems Transcended
+			["Shu", "Ruler"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Makes it more likely for heroes with [Shu] Emblems to appear a Crystal Saplings.", 
+				"Increases the number of heroes at Crystal Saplings by 1.",
+			],
+			[ // Trait 1 Transcended
+				"Makes it more likely for heroes with [Shu] Emblems to appear a Crystal Saplings.", 
+				"Increases the number of heroes at Crystal Saplings by 1.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Shu] Emblem.", 
+				"At the start of each phase, replenishes your Health to 50% if Health is below 20%",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 8% for every [Shu] Emblem.", 
+				"At the start of each phase, replenishes your Health to 50% if Health is below 40%",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Focus", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Oath of the Peach Garden", // Tactic Name
+				"Increases Attack by 100% for [Liu Bei], [Guan Yu], and [Zhang Fei].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Liu Bei"),
+					new TacticTarget(TacticTarget.TypeHero, "Guan Yu"),
+					new TacticTarget(TacticTarget.TypeHero, "Zhang Fei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Oath of the Peach Garden", // Tactic Name
+				"Increases Attack by 120% for [Liu Bei], [Guan Yu], and [Zhang Fei].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Liu Bei"),
+					new TacticTarget(TacticTarget.TypeHero, "Guan Yu"),
+					new TacticTarget(TacticTarget.TypeHero, "Zhang Fei"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
+				]
+			)
+		),
+		// #endregion
+		// #region Guan Yu
+		new Hero(
+			"Guan Yu", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Strength", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Brave General", "Five Shu Tigers", "Might"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Brave General] Emblem.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 6% for every [Brave General] Emblem.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			[ // Trait 2
+				"Increases Attack for summoned heroes by 30%.", 
+				"Bestows Normal Attacks with the [Flame] attribute while Health is below 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack for summoned heroes by 30%.", 
+				"Applies the [Flame] attribute to Normal Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Cleaving Blade", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Unity of Five Tigers", // Tactic Name
+				"Summons other heroes who have the [Five Shu Tigers] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Five Shu Tigers"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Five Shu Tigers", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			null
+		),
+		// #endregion
+		// #region Guan Ping
+		new Hero(
+			"Guan Ping", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Bestows Normal Attacks with the [Slay] attribute while Health is below 50%.", 
+			],
+			[ // Trait 1 Transcended
+				"Applies the [Slay] attribute to Normal Attacks.", 
+				"Increases Attack by 7% for every [Torchbearer] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Shu] Emblem.", 
+				"Increases Attack by 30% for 5 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 15% for every [Shu] Emblem.", 
+				"Increases Attack by 50% for 15 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tornado Blade", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Guan Yinping", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Horse-Felling Strike", // Tactic Name
+				"Increases Attack of [Slay] attribute attacks against enemy barriers by 30%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Horse-Felling Strike", // Tactic Name
+				"Increases Attack of [Slay] attribute attacks against enemy barriers by 50%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Guan Yinping
+		new Hero(
+			"Guan Yinping", // Name
+			null, // Name In-Game
+			["Lady Guan Yinping"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Vigour", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Flower of War", "Might", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Makes it more likely for heroes with [Shu] Emblems to appear at Crystal Saplings.", 
+			],
+			[ // Trait 1 Transcended
+				"Makes it more likely for heroes with [Shu] Emblems to appear at Crystal Saplings.", 
+				"Increases hero rerolls at Crystal Saplings by 8.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Might] Emblem.", 
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 15% for every [Might] Emblem.", 
+				"Increases Attack by 70% for 30 seconds after every 1000 consecutive hits.",
+			],
+			new SummonSkill( // Summon Skill
+				"Explosive Bullet", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Tiger Cub's Awakening", // Tactic Name
+				"Increases Attack for Summoning Skill [Explosive Bullet] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Explosive Bullet"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Tiger Cub's Awakening", // Tactic Name
+				"Increases Attack for Summoning Skill [Explosive Bullet] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Explosive Bullet"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang Fei
+		new Hero(
+			"Zhang Fei", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Vigour", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Brave General", "Five Shu Tigers", "Might"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Might] Emblem.", 
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 15% for every [Might] Emblem.", 
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sweeping Cyclone", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Match for 10.000 Foes", // Tactic Name
+				"Increases Attack by 100% towards enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					// TODO: have to check
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Match for 10.000 Foes", // Tactic Name
+				"Increases Attack by 120% towards enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					// TODO: have to check
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang Xingcai
+		new Hero(
+			"Zhang Xingcai", // Name
+			"Xingcai", // Name In-Game
+			["Lady Zhang Xingcai"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Skill", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Flower of War", "Torchbearer", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Defence by 5% for every [Shu] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Defence by 7% for every [Shu] Emblem.", 
+				"Increases your total [Strength] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 20% while Health is above 80%.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 20% for every [King's Shield] Emblem.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Focus", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Watchful Stars", // Tactic Name
+				"Increases Defence by 5% for every [Shu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Watchful Stars", // Tactic Name
+				"Increases Defence by 7% for every [Shu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhuge Liang
+		new Hero(
+			"Zhuge Liang", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Wisdom", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Strategist", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Assemble Gauge charge by 10% for every [Shu] Emblem.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Shu] Emblem.", 
+				"Increases your total [Wisdom] Emblems by 70%.",
+			],
+			[ // Trait 2
+				"Negates all Status Ailments inflicted on the hero.", 
+				"Increases Attack and Defence by 50% if you have the \"Four-Wheeled Chariot\" Treasure.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack for the all attributes by 30%.", 
+				"Increases Attack and Defence by 80% if you have the \"Four-Wheeled Chariot\" Treasure.",
+			],
+			new SummonSkill( // Summon Skill
+				"Meteor Strike", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Warfare of the Sleeping Dragon", // Tactic Name
+				// Tactic Description
+				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Huang Yueying", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Warfare of the Sleeping Dragon", // Tactic Name
+				// Tactic Description
+				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Huang Yueying", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			)
+		),
+		// #endregion
+		// #region Huang Yueying
+		new Hero(
+			"Huang Yueying", // Name
+			"Yueying", // Name In-Game
+			["Lady Huang Yueying"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Ice"], // Stat Emblems
+			["Wisdom", "Ice"], // Stat Emblems Transcended
+			["Shu", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases hero rerolls at Crystal Saplings by 15.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases hero rerolls at Crystal Saplings by 15.", 
+				"Bestows you with 1 Crystal Bead from the start.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Shu] Emblem.", 
+				"Slightly charges Musou Gauge when you acquire EXP.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 7% for every [Shu] Emblem.", 
+				"Shortens summoning cooldown by 20% for heroes with [Shu] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Penetrating Blade", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Roaring Tiger Chariot", // Tactic Name
+				"Shortens summoning cooldown by 20% for heroes with [Shu] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Roaring Tiger Chariot", // Tactic Name
+				// Tactic Description
+				"Shortens summoning cooldown by 30% and increases Attack by 20% for heroes with [Shu] Emblem.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Pang Tong
+		new Hero(
+			"Pang Tong", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Strategist"], // Personal Emblems
+			["Shu", "Strategist", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 10% for every [Shu] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 10% for every [Shu] Emblem.", 
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2
+				"At the start of each phase, replenishes your Health tp 50% if Health is below 20%.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"At the start of each phase, replenishes your Health tp 50% if Health is below 40%.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Oppressive Formation (Defence)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Young Strategist's Scheme", // Tactic Name
+				"Increases Attack by 100% for heroes with the [Shu] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Young Strategist's Scheme", // Tactic Name
+				"Increases Attack by 120% for heroes with the [Shu] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Xu Shu
+		new Hero(
+			"Xu Shu", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Shu", "Strategist"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+				"Increases Attack by & for every [Strategist] Emblem.",
+			],
+			[ // Trait 2
+				"Makes it more likely for heroes with [Shu] Emblems to appear at Crystal Saplings.", 
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Makes it more likely for heroes with [Shu] Emblems to appear at Crystal Saplings.", 
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Homing Blades", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Pang Tong", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Visionary Strategist", // Tactic Name
+				"Increases Attack by 30% for heroes with the [Strategist] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Strategist"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Visionary Strategist", // Tactic Name
+				// Tactic Description
+				"Increases Attack by 40% for heroes with [Shu], [Brave General], or [Strategist] Emblems.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Strategist"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Fa Zheng
+		new Hero(
+			"Fa Zheng", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wind"], // Stat Emblems
+			["Wisdom", "Wind"], // Stat Emblems Transcended
+			["Shu", "Strategist"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.", 
+				"Increases Attack for Charge Attacks by 5% every time you clear a phase (max 100%).",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Shu] Emblem.", 
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 7% for every [Shu] Emblem.", 
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Amplifying Orb", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Kindness Repaid, Wrongs Avenged", // Tactic Name
+				"Slightly charges Assemble Gauge when you attack enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Kindness Repaid, Wrongs Avenged", // Tactic Name
+				"Moderately charges Assemble Gauge when you attack enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhao Yun
+		new Hero(
+			"Zhao Yun", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Bolt"], // Stat Emblems
+			["Vigour", "Skill", "Bolt"], // Stat Emblems Transcended
+			["Shu", "Brave General", "Five Shu Tigers"], // Personal Emblems
+			["Shu", "Brave General", "Five Shu Tigers", "King's Shield"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Shu] Emblem.", 
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Bolt] Shock on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Shu] Emblem.", 
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Bolt] Shock on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+				"Increases Musou Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+				"Increases your total [Bolt] Emblems by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Soaring Blade", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Indomitable Spirit", // Tactic Name
+				"Increases Attack for Summoning Skill [Soaring Blade] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Soaring Blade"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Indomitable Spirit", // Tactic Name
+				"Increases Attack for Summoning Skill [Soaring Blade] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Soaring Blade"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Huang Zhong
+		new Hero(
+			"Huang Zhong", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Strength"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Master Archer", "Five Shu Tigers"], // Personal Emblems
+			["Shu", "Brave General", "Master Archer", "Five Shu Tigers"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Charges Musou Gauge and Assemble Gauge by 50% when you level up.", 
+				"Increases Attack by 50% towards Archer enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Charges Musou Gauge and Assemble Gauge by 50% when you level up.", 
+				"Increases Attack by 15% for every [Master Archer] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Shu] Emblem.", 
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 15% for every [Shu] Emblem.", 
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"April Showers", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wei Yan", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Divine Marksman", // Tactic Name
+				"Increases Attack for Summoning Skill [April Showers] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "April Showers"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Master Archer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Divine Marksman", // Tactic Name
+				"Increases Attack for Summoning Skill [April Showers] by 140%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "April Showers"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Master Archer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Ma Chao
+		new Hero(
+			"Ma Chao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Brave General", "Five Shu Tigers", "Xiliang"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 30% in Danger Zones.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 40% in Danger Zones.", 
+				"Increases Attack by 3% for every [Wind] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards Sin Spewer enemies.", 
+				"Makes Danger Zones appear more.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 300% towards Sin Spewer enemies.", 
+				"Increases your total [Wind] Emblems by 50%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Swift Strike", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Ma Chao the Splendid", // Tactic Name
+				"Increases Attack for the [Wind] attribute by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Ma Chao the Splendid", // Tactic Name
+				"Increases Attack for the [Wind] attribute by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Wei Yan
+		new Hero(
+			"Wei Yan", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Slay", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Brave General"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 70% for 30 seconds after every 1000 consecutive hits.", 
+				"Increases Attack by 50% for 10 seconds when you acquire Tears of Blood.",
+			],
+			[ // Trait 2
+				"Slightly charges Assemble Gauge when you inflict [Slay] Wound on enemies.", 
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Assemble Gauge when you inflict [Slay] Wound on enemies.", 
+				"Increases Attack by 70% for 20 seconds when you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sweeping Cyclone", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhao Yun", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Defiant Blade", // Tactic Name
+				"Increases Attack by 50% for 10 seconds when you acquire Tears of Blood.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Defiant Blade", // Tactic Name
+				"Increases Attack by 50% for 20 seconds when you acquire Tears of Blood.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Jiang Wei
+		new Hero(
+			"Jiang Wei", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Strength"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shu", "Brave General", "Talent", "Xiliang", "Commander"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% for 20 seconds when you level up.", 
+				"Replenishes 20% of your Health when you level up.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, Assemble Gauge charge by 50% for 20 seconds when you level up.", 
+				"Replenishes 40% of your Health when you level up.",
+			],
+			[ // Trait 2
+				"Slightly charges Musou Gauge when you inflict [Bolt] Shock on enemies.", 
+				"Doubles Formation slot bonus effects.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Musou Gauge when you inflict [Bolt] Shock on enemies.", 
+				"Triples Formation slot bonus effects.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sword Dance", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhao Yun", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Child Prodigy", // Tactic Name
+				"Shortens summoning cooldown by 50% for heroes with Summoning Skill [Sword Dance].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Sword Dance"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Child Prodigy", // Tactic Name
+				"Shortens summoning cooldown by 70% for heroes with Summoning Skill [Sword Dance].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Sword Dance"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Shu-Han
+
+		// #region Sima Jin
+
+		// #region Sima Yi
+		new Hero(
+			"Sima Yi", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Wisdom", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Jin", "Strategist", "Commander"], // Personal Emblems
+			["Wei", "Jin", "Ruler", "Strategist", "Commander"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases your total [Wisdom] Emblems by 50%.", 
+				"Slightly charges Musou Gauge when you inflict [Ice] Freeze on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases your total [Wisdom] Emblems by 70%.", 
+				"Slightly charges Musou Gauge when you inflict [Ice] Freeze on enemies.",
+			],
+			[ // Trait 2
+				"Shortens summoning cooldown for all heroes by 50% when Health is below 50%.", 
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+			],
+			[ // Trait 2 Transcended
+				"Shortens summoning cooldown for all heroes by 50% when Health is below 80%.", 
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+			],
+			new SummonSkill( // Summon Skill
+				"Rapid-Fire Cannon", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			new SummonSkill( // Summon Skill Transcended
+				"Iron Wall", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			new Tactic( // Tactic
+				"Face of a Wolf", // Tactic Name
+				"When you inflict any status ailment, inflicts [Ice] Freeze on nearby enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bold"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Face of a Wolf", // Tactic Name
+				"When you inflict any status ailment, inflicts [Ice] Freeze on nearby enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 8),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang Chunhua
+		new Hero(
+			"Zhang Chunhua", // Name
+			null, // Name In-Game
+			["Lady Zhang Chunhua"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Jin", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the amount of Health restored by Peaches by 50%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the amount of Health restored by Peaches by 50%.", 
+				"Increases your Health recovery rate by 30%.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 10% for every [Talent] Emblem.", 
+				"Replenishes Health by 1% after every 50 enemies defeated.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Talent] Emblem.", 
+				"Replenishes Health by 2% after every 50 enemies defeated.",
+			],
+			new SummonSkill( // Summon Skill
+				"Inspired Formation (Attack)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Meat Buns of Love", // Tactic Name
+				"Replenishes Health by 20% at the start of battle in each phase.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Meat Buns of Love", // Tactic Name
+				"Replenishes Health by 25% at the start of battle in each phase.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Sima Shi
+		new Hero(
+			"Sima Shi", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Jin", "Talent", "Commander", "Torchbearer"], // Personal Emblems
+			["Wei", "Jin", "Talent", "Commander", "Torchbearer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.", 
+				"Increases Defence by 15% for every [Jin] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 15% for every [Jin] Emblem.", 
+				"Increases Attack by 10% for every [Commander] Emblem.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 15% for every [Jin] Emblem.", 
+				"Increases Attack by 15% for every [Commander] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Amplifying Orb", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Zhang Chunhua", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Calm Commander", // Tactic Name
+				"Increases Attack by 40% for heroes with the [Jin] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Calm Commander", // Tactic Name
+				"Increases Attack by 40% for heroes with the [Jin] or [Torchbearer] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Sima Zhao
+		new Hero(
+			"Sima Zhao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Charm"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Jin", "Talent", "Commander", "Torchbearer"], // Personal Emblems
+			["Wei", "Jin", "Talent", "Commander", "Torchbearer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Shortens summoning cooldown for all heroes by 20% when Health is above 80%.", 
+				"Increases Attack by 50% towards Sin Spewer enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Shortens summoning cooldown for all heroes by 20% when Health is above 80%.", 
+				"Increases Attack by 300% towards Sin Spewer enemies.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 15% for every [Jin] Emblem.", 
+				"Increases Attack by 3% for every [Speed] Emblem.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 15% for every [Jin] Emblem.", 
+				"Increases Attack by 4% for every [Speed] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Meteor Strike", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wang Yuanji", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Wild Strategies", // Tactic Name
+				"Summons other heroes who have the [Jin] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Wild Strategies", // Tactic Name
+				// Tactic Description
+				"Summons other heroes who have the [Jin] or [Torchbearer] Emblems when this hero is summoned.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Wang Yuanji
+		new Hero(
+			"Wang Yuanji", // Name
+			null, // Name In-Game
+			["Lady Wang Yuanji"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Jin", "Talent"], // Personal Emblems
+			["Wei", "Jin", "Grace", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Assemble Gauge charge by 20% while Health is above 80%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Assemble Gauge charge by 15% for every [Jin] Emblem.", 
+				"Shortens summoning cooldown by 20% for heroes with [Talent] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Jin] Emblem.", 
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 17% for every [Jin] Emblem.", 
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Homing Blades", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Zhao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Perceptive Princess Ming", // Tactic Name
+				"Increases Attack by 30% for heroes with the [Talent] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Perceptive Princess Ming", // Tactic Name
+				// Tactic Description
+				"Shortens summoning cooldown by 20% and increases Attack by 30% for heroes with the [Talent] Emblem.",
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhong Hui
+		new Hero(
+			"Zhong Hui", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Strength"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Jin", "Talent"], // Personal Emblems
+			["Wei", "Jin", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 3% when you move on to the next phase without being hit by an enemy attack (max 50%).", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 3% when you move on to the next phase without being hit by an enemy attack (max 100%).", 
+				"Increases selectable portals by 1 when you clear a phase without taking damage from enemies.",
+			],
+			[ // Trait 2
+				"Slightly charges Musou Gauge when you acquire EXP.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Musou Gauge when you acquire EXP.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Penetrating Blade", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Sima Zhao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Jiang Wei", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Talented Genius", // Tactic Name
+				"Sets Status Infliction to 100% for heroes with [Talent] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Talented Genius", // Tactic Name
+				"Sets Status Infliction to 100% for heroes with [Talent] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Sima Jin
+	];
+
+	// Lv Bu's summon skill is Bolt
+
+	static #mock = 
+	[
+		// #region ???
+		new Hero(
+			"Placeholder", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Placeholder"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Placeholder"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Placeholder", 
+				"Placeholder",
+			],
+			[ // Trait 1 Transcended
+				"Placeholder", 
+				"Placeholder",
+			],
+			[ // Trait 2
+				"Placeholder", 
+				"Placeholder",
+			],
+			[ // Trait 2 Transcended
+				"Placeholder", 
+				"Placeholder",
+			],
+			new SummonSkill( // Summon Skill
+				"Placeholder", // Summon Skill Name
+				"Placeholder", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Placeholder", SummonActivationCondition.TypeHero, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Placeholder", // Tactic Name
+				"Placeholder", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Placeholder"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Placeholder", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Placeholder", // Tactic Name
+				"Placeholder", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Placeholder"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Placeholder", SummonActivationCondition.TypePersonalEmblem, 10),
+				]
+			)
+		),
+		// #endregion
+	];
+}

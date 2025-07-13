@@ -1,0 +1,179 @@
+class Emblem
+{
+	//#region Defines
+	static StatVigour = "Vigour";
+	static StatSkill = "Skill";
+	static StatStrength = "Strength";
+	static StatSpeed = "Speed";
+	static StatWisdom = "Wisdom";
+	static StatCharm = "Charm";
+
+	static ElementFlame = "Flame";
+	static ElementIce = "Ice";
+	static ElementWind = "Wind";
+	static ElementBolt = "Bolt";
+	static ElementSlay = "Slay";
+
+	static FactionWei = "Wei";
+	static FactionWu = "Wu";
+	static FactionShu = "Shu";
+	static FactionJin = "Jin";
+	static FactionLvBu = "Lü Bu Army";
+	static FactionDongZhuo = "Dong Zhuo Army";
+	static FactionYuanShao = "Yuan Shao Army";
+
+	static TypeAbility = 1;
+	static TypeStat = Emblem.TypeAbility;
+
+	static TypeAttribute = 2;
+	static TypeElement = Emblem.TypeAttribute;
+
+	static TypePersonal = 3;
+	static TypeFaction = 4;
+	//#endregion Defines
+
+	/**
+	 * 
+	 * @param {string} name name of the Emblem.
+	 * @returns {number} type of the Emblem.
+	 */
+	static getType(name)
+	{
+		switch (name)
+		{
+			case Emblem.StatVigour:
+			case Emblem.StatSkill:
+			case Emblem.StatStrength:
+			case Emblem.StatSpeed:
+			case Emblem.StatWisdom:
+			case Emblem.StatCharm:
+				return Emblem.TypeStat;
+			case Emblem.ElementFlame:
+			case Emblem.ElementIce:
+			case Emblem.ElementWind:
+			case Emblem.ElementBolt:
+			case Emblem.ElementSlay:
+				return Emblem.TypeElement;
+			case Emblem.FactionWei:
+			case Emblem.FactionWu:
+			case Emblem.FactionShu:
+			case Emblem.FactionJin:
+			case Emblem.FactionLvBu:
+			case Emblem.FactionDongZhuo:
+			case Emblem.FactionYuanShao:
+			// TODO
+				return Emblem.TypeFaction;
+			default:
+				return Emblem.TypePersonal;
+		}
+	}
+
+	/**
+	 * 
+	 * @param {string} name name of the Emblem.
+	 * @returns {number} sorting order of the Emblem.
+	 */
+	static getSortOrder(name)
+	{
+		switch (name)
+		{
+			case Emblem.StatVigour:
+				return 1;
+			case Emblem.StatSkill:
+				return 2;
+			case Emblem.StatStrength:
+				return 3;
+			case Emblem.StatSpeed:
+				return 4;
+			case Emblem.StatWisdom:
+				return 5;
+			case Emblem.StatCharm:
+				return 6;
+			
+			case Emblem.ElementFlame:
+				return 10;
+			case Emblem.ElementIce:
+				return 11;
+			case Emblem.ElementWind:
+				return 12;
+			case Emblem.ElementBolt:
+				return 13;
+			case Emblem.ElementSlay:
+				return 14;
+			
+			case Emblem.FactionWei:
+				return 20;
+			case Emblem.FactionWu:
+				return 21;
+			case Emblem.FactionShu:
+				return 22;
+			case Emblem.FactionJin:
+				return 23;
+			case Emblem.FactionLvBu:
+				return 24;
+			case Emblem.FactionDongZhuo:
+				return 25;
+			case Emblem.FactionYuanShao:
+				return 26;
+			
+			// TODO
+
+			default:
+				return 100;
+		}
+	}
+
+	/** @type {string} */
+	name;
+	/** @type {number} */
+	type;
+	/** @type {number} */
+	amount;
+	/** @type {number} */
+	sortOrder;
+
+	/**
+	 * 
+	 * @param {string} name name of the Emblem.
+	 * @param {number=} type type of the Emblem; if not provided, will determine by `name`.
+	 */
+	constructor(name, type)
+	{
+		this.name = name;
+
+		if (type)
+			this.type = type;
+		else
+			this.type = Emblem.getType(name);
+
+		this.amount = 1;
+
+		this.sortOrder = Emblem.getSortOrder(this.name);
+	}
+
+	isStat()
+	{
+		return this.type === Emblem.TypeStat;
+	}
+
+	isElement()
+	{
+		return this.type === Emblem.TypeElement;
+	}
+
+	isStatOrElement()
+	{
+		return this.isStat() || this.isElement();
+	}
+
+	isPersonal()
+	{
+		return this.type === Emblem.TypePersonal
+			|| this.isFaction();
+	}
+
+	isFaction()
+	{
+		return this.type === Emblem.TypeFaction;
+	}
+}
