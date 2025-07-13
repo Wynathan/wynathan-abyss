@@ -283,20 +283,21 @@
 
 		<!-- Table Columns -->
 		<style>
-			.table-root tbody tr
+			.table-root tbody tr.show-counter
 			{
 				/* position: relative; */
 				counter-increment: rowNumber;
 			}
 
 			/* Row number before Hero Name emblem */
-			/* .table-root tbody tr td:first-child::before {
+			.table-root tbody tr.show-counter td:first-child::before 
+			{
 				content: counter(rowNumber);
 				padding-top: 3px;
 				padding-left: 3px;
 				padding-right: 0px;
 				padding-bottom: 3px;
-			} */
+			}
 
 			.table-header .header-name, 
 				tr.table-result-row > td:nth-of-type(1)
@@ -755,15 +756,16 @@
 				table.table-root td:nth-of-type(17):before { content: "[T] Targets"; }
 
 				/* Row number before Hero Name emblem */
-				/* table.table-root tr td:first-child .emblems-container:first-child::before
+				table.table-root tr.show-counter td:first-child .emblems-container:first-child::before
 				{
 					vertical-align: middle;
 					content: counter(rowNumber);
 					padding-left: 3px;
 					padding-right: 3px;
-				} */
+				}
 
-				table.table-root .summon-tactic-name, 
+				table.table-root .trait,
+					table.table-root .summon-tactic-name, 
 					table.table-root .summon-tactic-description
 				{
 					padding-left: 6px !important;
@@ -876,22 +878,22 @@
 				<thead class="table-header">
 					<tr>
 						<th class="header-name">Hero Name</th>
-						<th class="header-stats t12-target" data-transcendent="false">Stat Emblems</th>
-						<th class="header-stats t12-target" data-transcendent="true">[T] Stat Emblems</th>
-						<th class="header-emblems t12-target" data-transcendent="false">Hero Emblems</th>
-						<th class="header-emblems t12-target" data-transcendent="true">[T] Hero Emblems</th>
-						<th class="header-traits-1 t12-target" data-transcendent="false">Traits 1</th>
-						<th class="header-traits-1 t12-target" data-transcendent="true">[T] Traits 1</th>
-						<th class="header-traits-2 t12-target" data-transcendent="false">Traits 2</th>
-						<th class="header-traits-2 t12-target" data-transcendent="true">[T] Traits 2</th>
-						<th class="header-skill t12-target" data-transcendent="false">Summon Skill</th>
-						<th class="header-skill-element t12-target" data-transcendent="false">El.</th>
-						<th class="header-skill t12-target" data-transcendent="true">[T] Summon Skill</th>
-						<th class="header-skill-element t12-target" data-transcendent="true">[T] El.</th>
-						<th class="header-tactic t12-target" data-transcendent="false">Hero Tactic</th>
-						<th class="header-tactic-targets t12-target" data-transcendent="false">Targets</th>
-						<th class="header-tactic t12-target" data-transcendent="true">[T] Hero Tactic</th>
-						<th class="header-tactic-targets t12-target" data-transcendent="true">[T] Targets</th>
+						<th class="header-stats t12-target" data-t12="false">Stat Emblems</th>
+						<th class="header-stats t12-target" data-t12="true">[T] Stat Emblems</th>
+						<th class="header-emblems t12-target" data-t12="false">Hero Emblems</th>
+						<th class="header-emblems t12-target" data-t12="true">[T] Hero Emblems</th>
+						<th class="header-traits-1 t12-target" data-t12="false">Traits 1</th>
+						<th class="header-traits-1 t12-target" data-t12="true">[T] Traits 1</th>
+						<th class="header-traits-2 t12-target" data-t12="false">Traits 2</th>
+						<th class="header-traits-2 t12-target" data-t12="true">[T] Traits 2</th>
+						<th class="header-skill t12-target" data-t12="false">Summon Skill</th>
+						<th class="header-skill-element t12-target" data-t12="false">El.</th>
+						<th class="header-skill t12-target" data-t12="true">[T] Summon Skill</th>
+						<th class="header-skill-element t12-target" data-t12="true">[T] El.</th>
+						<th class="header-tactic t12-target" data-t12="false">Hero Tactic</th>
+						<th class="header-tactic-targets t12-target" data-t12="false">Targets</th>
+						<th class="header-tactic t12-target" data-t12="true">[T] Hero Tactic</th>
+						<th class="header-tactic-targets t12-target" data-t12="true">[T] Targets</th>
 					</tr>
 				</thead>
 			</table>

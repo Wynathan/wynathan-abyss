@@ -23,6 +23,7 @@ class Renderer
 
 	static CursorPointerClassName = "cursor-pointer";
 	static CenterContentClassName = "center-content";
+	static ShowCounterClassName = "show-counter";
 
 	static EmblemIconWidth = 57;
 	static EmblemIconHeight = 57;
@@ -597,7 +598,7 @@ class Renderer
 		Transcendence.setTranscendenceData(traitColumn, isTranscendent);
 		
 		const div = window.document.createElement("div");
-		div.classList.add(Renderer.TraitClassName);
+		//div.classList.add(Renderer.TraitClassName);
 
 		for (let i = 0; i < traits.length; i++)
 		{

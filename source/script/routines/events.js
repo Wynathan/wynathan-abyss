@@ -1,5 +1,7 @@
 class Events
 {
+	static #lastResetTimeoutId = -1;
+
 	/**
 	 * 
 	 * @param {HTMLElement} element 
@@ -43,22 +45,39 @@ class Events
 	/**
 	 * 
 	 * @param {HTMLElement} target 
+	 * @param {boolean=} forceValue
 	 * @returns {boolean}
 	 */
-	static #toggleSelected(target)
+	static #toggleSelected(target, forceValue)
 	{
 		const selectedClassName = Form.SelectedClassName;
 		let isSelected = false;
 
-		if (target.classList.contains(selectedClassName))
+		if (typeof forceValue === "boolean")
 		{
-			isSelected = false;
-			target.classList.remove(selectedClassName);
+			if (forceValue)
+			{
+				isSelected = true;
+				target.classList.add(selectedClassName);
+			}
+			else
+			{
+				isSelected = false;
+				target.classList.remove(selectedClassName);
+			}
 		}
 		else
 		{
-			isSelected = true;
-			target.classList.add(selectedClassName);
+			if (target.classList.contains(selectedClassName))
+			{
+				isSelected = false;
+				target.classList.remove(selectedClassName);
+			}
+			else
+			{
+				isSelected = true;
+				target.classList.add(selectedClassName);
+			}
 		}
 
 		return isSelected;
@@ -91,18 +110,36 @@ class Events
 		if (Prompt.isPrompt(target))
 			return;
 
-		if (target.classList.contains(Form.ResetFiltersClassName))
+		if (target.id === Form.ResetFiltersId)
 		{
+			Events.#toggleSelected(target, true)
 			Form.clear();
+
+			window.clearTimeout(Events.#lastResetTimeoutId);
+			Events.#lastResetTimeoutId = window.setTimeout(Events.#toggleSelected, 300, target, false);
 			return;
 		}
-
-		Events.#toggleSelected(target);
 		
-		if (target.id === Form.UseInGameNamesId)
+		const isSelected = Events.#toggleSelected(target);
+		
+		if (target.id === Form.DisplayInGameNamesId)
 		{
-			const isSelected = Form.isUseInGameNamesSelected();
 			Renderer.toggleHeroInGameNames(isSelected);
+		}
+		else if (target.id === Form.DisplayRowNumbersId)
+		{
+			const table = Renderer.getTableBody();
+			const rows = table.querySelectorAll("tr");
+
+			for (let i = 0; i < rows.length; i++)
+			{
+				const row = rows[i];
+
+				if (isSelected)
+					row.classList.add(Renderer.ShowCounterClassName);
+				else
+					row.classList.remove(Renderer.ShowCounterClassName);
+			}
 		}
 		else
 		{

@@ -1,4 +1,3 @@
-
 class Data
 {
 	/** @type {Object.<string, Hero>} */

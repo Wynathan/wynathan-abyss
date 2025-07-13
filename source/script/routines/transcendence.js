@@ -2,7 +2,7 @@ class Transcendence
 {
 	static TargetClassName = "t12-target"
 	static HiddenClassName = "t12-hidden";
-	static DataKey = "transcendent";
+	static DataKey = "t12";
 	static Options =
 	{
 		["Use Transcended"]: true,
@@ -39,7 +39,7 @@ class Transcendence
 
 	static getOptions()
 	{
-		const formContainer = window.document.getElementById(Form.FilterFormId);
+		const formContainer = Form.getFilterFormContainer();
 		const optionsContainer = formContainer.querySelector("div#options");
 		const elements = optionsContainer.querySelectorAll("div." + Transcendence.TargetClassName);
 		return elements;
@@ -70,5 +70,7 @@ class Transcendence
 			else
 				target.classList.add(Transcendence.HiddenClassName);
 		}
+
+		Form.toggleEmblemStatsDisplay(options["true"]);
 	}
 }

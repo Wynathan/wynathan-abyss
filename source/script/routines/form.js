@@ -9,10 +9,15 @@ class Form
 	static FilterItemClassName = "filter-item";
 	static OptionsItemClassName = "options-item";
 	static SelectedClassName = "selected";
-	static UseInGameNamesId = "use-in-game-names";
-	static ResetFiltersClassName = "reset-filters";
+	static DisplayInGameNamesId = "display-in-game-names";
+	static DisplayRowNumbersId = "display-row-numbers";
+	static ResetFiltersId = "reset-filters";
 
-	static #getFilterFormContainer()
+	static HasStatsDataKey = "hasstats";
+	static StatsDataKey = "stats";
+	static StatsT12DataKey = "statst12";
+
+	static getFilterFormContainer()
 	{
 		const formContainer = window.document.getElementById(Form.FilterFormId);
 		return formContainer;
@@ -24,7 +29,7 @@ class Form
 	 */
 	static #getSearchBox()
 	{
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 		const searchBox = formContainer.querySelector("input#" + Form.SearchId);
 		return searchBox;
 	}
@@ -40,7 +45,7 @@ class Form
 	 */
 	static #getCheckTranscendenceOptions()
 	{
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 		const optionsContainer = formContainer.querySelector("div#options div." + Form.EmblemsContainerClassName);
 
 		const optionTr = optionsContainer.querySelector("div[data-" + Transcendence.DataKey + "='true']");
@@ -131,7 +136,7 @@ class Form
 	 */
 	static #getDataWithFormFilters()
 	{
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 
 		const containerClassName = Form.EmblemsContainerClassName;
 
@@ -202,8 +207,8 @@ class Form
 
 	static isUseInGameNamesSelected()
 	{
-		const container = Form.#getFilterFormContainer();
-		const option = container.querySelector("#" + Form.UseInGameNamesId);
+		const container = Form.getFilterFormContainer();
+		const option = container.querySelector("#" + Form.DisplayInGameNamesId);
 		return option.classList.contains(Form.SelectedClassName);
 	}
 
@@ -504,7 +509,7 @@ class Form
 		const searchBox = Form.#getSearchBox();
 		searchBox.value = "";
 
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 
 		const containerClassName = Form.EmblemsContainerClassName;
 
@@ -512,7 +517,7 @@ class Form
 		const elementsContainer = formContainer.querySelector("div#filter-elements div." + containerClassName);
 		const factionsContainer = formContainer.querySelector("div#filter-factions div." + containerClassName);
 		const personalContainer = formContainer.querySelector("div#filter-personal div." + containerClassName);
-		const optionsContainer = formContainer.querySelector("div#options div." + containerClassName);
+		// const optionsContainer = formContainer.querySelector("div#options div." + containerClassName);
 
 		/**
 		 * 
@@ -557,7 +562,7 @@ class Form
 	 */
 	static toggleFilterByKey(filterKey)
 	{
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 		
 		const className = Renderer.EmblemClassName;
 		const dataKey = Renderer.EmblemNameDataKey;
@@ -566,13 +571,41 @@ class Form
 		const emblemFilterElement = formContainer.querySelector(query);
 		emblemFilterElement.click();
 	}
+
+	/**
+	 * 
+	 * @param {boolean} isTranscendent 
+	 */
+	static toggleEmblemStatsDisplay(isTranscendent)
+	{
+		const form = Form.getFilterFormContainer();
+		const statEmblems = form.querySelectorAll("div[data-" + Form.HasStatsDataKey + "='true']");
+
+		const regex = / x\d+$/g;
+		for (let i = 0; i < statEmblems.length; i++)
+		{
+			/** @type {HTMLDivElement} */
+			const emblem = statEmblems[i];
+			let text = emblem.innerText;
+			if (regex.test(text))
+				text = text.replace(regex, "");
+
+			let value = "";
+			if (isTranscendent)
+				value = emblem.dataset[Form.StatsT12DataKey];
+			else
+				value = emblem.dataset[Form.StatsDataKey];
+
+			emblem.innerText = text + " x" + value;
+		}
+	}
 	
 	static render()
 	{
 		const searchBox = Form.#getSearchBox();
 		searchBox.addEventListener("input", Events.searchBoxOnInput);
 
-		const formContainer = Form.#getFilterFormContainer();
+		const formContainer = Form.getFilterFormContainer();
 		
 		/** @type {Object.<number, string>} */
 		const stats = { };
@@ -643,15 +676,41 @@ class Form
 			}
 		}
 
+		/** @type {Object.<string, Emblem>} */
+		const emblemStats = { };
+		/** @type {Object.<string, Emblem>} */
+		const emblemT12Stats = { };
+
+		/**
+		 * 
+		 * @param {Object.<string, Emblem>} map 
+		 * @param {Emblem} emblem 
+		 */
+		const trackEmblem = function(map, emblem)
+		{
+			if (!map[emblem.name])
+				map[emblem.name] = new Emblem(emblem.name, emblem.type);
+			else
+				map[emblem.name].amount += 1;
+		};
+
 		for (let heroName in Data.Heroes)
 		{
 			const hero = Data.Heroes[heroName];
 
-			for (let emblem in hero.emblems)
-				groupEmblem(hero.emblems[emblem]);
+			for (let emblemName in hero.emblems)
+			{
+				const emblem = hero.emblems[emblemName];
+				groupEmblem(emblem);
+				trackEmblem(emblemStats, emblem);
+			}
 
-			for (let emblem in hero.emblemsTranscended)
-				groupEmblem(hero.emblemsTranscended[emblem]);
+			for (let emblemName in hero.emblemsTranscended)
+			{
+				const emblem = hero.emblemsTranscended[emblemName];
+				groupEmblem(emblem);
+				trackEmblem(emblemT12Stats, emblem);
+			}
 
 			groupSummonSkill(hero.summonSkill, hero.summonSkillTranscended);
 		}
@@ -674,6 +733,30 @@ class Form
 			const emblem = Renderer.createEmblemElement(emblemName, scale);
 			emblem.dataset[Form.EmblemDataKey] = emblemName;
 			emblem.classList.add(Form.FilterItemClassName);
+
+			let hasStats = false;
+			if (emblemStats[emblemName])
+			{
+				const stats = emblemStats[emblemName];
+				if (stats.isPersonal())
+				{
+					emblem.dataset[Form.StatsDataKey] = stats.amount;
+					hasStats = true;
+				}
+			}
+
+			if (emblemT12Stats[emblemName])
+			{
+				const stats = emblemT12Stats[emblemName];
+				if (stats.isPersonal())
+				{
+					emblem.dataset[Form.StatsT12DataKey] = stats.amount;
+					hasStats = true;
+				}
+			}
+
+			if (hasStats)
+				emblem.dataset[Form.HasStatsDataKey] = true;
 
 			emblem.addEventListener("click", Events.filterOnClick);
 			parent.appendChild(emblem);
@@ -722,15 +805,21 @@ class Form
 			optionsContainer.appendChild(emblem);
 		}
 
-		const useInGameNames = Renderer.createEmblemElement("Display In-Game Names");
-		useInGameNames.id = Form.UseInGameNamesId;
-		useInGameNames.classList.add(Form.OptionsItemClassName);
-		useInGameNames.addEventListener("click", Events.optionsOnClick);
-		optionsContainer.appendChild(useInGameNames);
+		const displayInGameNames = Renderer.createEmblemElement("Display In-Game Names");
+		displayInGameNames.id = Form.DisplayInGameNamesId;
+		displayInGameNames.classList.add(Form.OptionsItemClassName);
+		displayInGameNames.addEventListener("click", Events.optionsOnClick);
+		optionsContainer.appendChild(displayInGameNames);
+
+		const displayRowNumber = Renderer.createEmblemElement("Display Row Numbers");
+		displayRowNumber.id = Form.DisplayRowNumbersId;
+		displayRowNumber.classList.add(Form.OptionsItemClassName);
+		displayRowNumber.addEventListener("click", Events.optionsOnClick);
+		optionsContainer.appendChild(displayRowNumber);
 
 		const clear = Renderer.createEmblemElement("Reset Filters");
+		clear.id = Form.ResetFiltersId;
 		clear.classList.add(Form.OptionsItemClassName);
-		clear.classList.add(Form.ResetFiltersClassName);
 		clear.addEventListener("click", Events.optionsOnClick);
 		optionsContainer.appendChild(clear);
 		// #endregion Options
