@@ -280,16 +280,16 @@ class Form
 					{
 						if (target.emblem.isElement())
 						{
-							if (checkTr && targetHero.summonSkill.element)
+							if (checkTr && targetHero.summonSkillTranscended.element)
 							{
-								const summonSkill = targetHero.summonSkill;
+								const summonSkill = targetHero.summonSkillTranscended;
 								if (target.emblem.name === summonSkill.element.name)
 									return true;
 							}
 
-							if (checkNonTr && targetHero.summonSkillTranscended.element)
+							if (checkNonTr && targetHero.summonSkill.element)
 							{
-								const summonSkill = targetHero.summonSkillTranscended;
+								const summonSkill = targetHero.summonSkill;
 								if (target.emblem.name === summonSkill.element.name)
 									return true;
 							}
@@ -310,17 +310,14 @@ class Form
 
 			for (let currentHeroName in data)
 			{
-				// if (heroName === currentHeroName)
-				// 	continue;
-
 				const hero = data[currentHeroName];
 
 				let hasAsTarget = false;
 
-				if (!hasAsTarget && checkTr && checkTargets(hero.tactic.targets))
+				if (!hasAsTarget && checkTr && checkTargets(hero.tacticTranscended.targets))
 					hasAsTarget = true;
 
-				if (!hasAsTarget && checkNonTr && checkTargets(hero.tacticTranscended.targets))
+				if (!hasAsTarget && checkNonTr && checkTargets(hero.tactic.targets))
 					hasAsTarget = true;
 
 				if (hasAsTarget)
