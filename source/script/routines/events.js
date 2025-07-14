@@ -123,7 +123,11 @@ class Events
 		
 		const isSelected = Events.#toggleSelected(target);
 		
-		if (target.id === Form.DisplayInGameNamesId)
+		if (target.id === Form.UseInGameOrderId)
+		{
+			Renderer.toggleHeroInGameOrder(isSelected);
+		}
+		else if (target.id === Form.DisplayInGameNamesId)
 		{
 			Renderer.toggleHeroInGameNames(isSelected);
 		}

@@ -326,6 +326,44 @@ class Renderer
 	 * 
 	 * @param {boolean} visible 
 	 */
+	static toggleHeroInGameOrder(useInGameOrder)
+	{
+		const table = Renderer.getTableBody();
+		const rows = table.querySelectorAll("tr");
+		/** @type {Object.<string, HTMLTableRowElement>} */
+		const mapHeroNameToRow = { };
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+			const heroName = row.dataset[Renderer.HeroNameDataKey];
+			
+			mapHeroNameToRow[heroName] = row;
+		}
+
+		if (useInGameOrder)
+		{
+			for (let i = 0; i < Data.HeroesInGameOrder.length; i++)
+			{
+				const heroName = Data.HeroesInGameOrder[i];
+				const row = mapHeroNameToRow[heroName];
+				table.appendChild(row);
+			}
+		}
+		else
+		{
+			for (let heroName in Data.Heroes)
+			{
+				const row = mapHeroNameToRow[heroName];
+				table.appendChild(row);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param {boolean} visible 
+	 */
 	static toggleHeroInGameNames(visible)
 	{
 		const table = Renderer.getTableBody();

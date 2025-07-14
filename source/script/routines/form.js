@@ -11,6 +11,7 @@ class Form
 	static OptionsItemClassName = "options-item";
 	static SelectedClassName = "selected";
 	static DisplayInGameNamesId = "display-in-game-names";
+	static UseInGameOrderId = "use-in-game-order";
 	static DisplayRowNumbersId = "display-row-numbers";
 	static ResetFiltersId = "reset-filters";
 
@@ -858,6 +859,12 @@ class Form
 			emblem.dataset[Transcendence.DataKey] = Transcendence.Options[option];
 			optionsContainer.appendChild(emblem);
 		}
+
+		const useInGameOrder = Renderer.createEmblemElement("Use In-Game Order");
+		useInGameOrder.id = Form.UseInGameOrderId;
+		useInGameOrder.classList.add(Form.OptionsItemClassName);
+		useInGameOrder.addEventListener("click", Events.optionsOnClick);
+		optionsContainer.appendChild(useInGameOrder);
 
 		const displayInGameNames = Renderer.createEmblemElement("Display In-Game Names");
 		displayInGameNames.id = Form.DisplayInGameNamesId;
