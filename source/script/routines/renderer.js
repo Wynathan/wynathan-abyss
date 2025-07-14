@@ -143,6 +143,7 @@ class Renderer
 		["Doubles"]: "highlight-text-blue-dark",
 		["Triples"]: "highlight-text-blue-dark",
 		["available for use"]: "highlight-text-blue-dark",
+		["(g|G)uarantees"]: "highlight-text-blue-dark",
 		["more frequently"]: "highlight-text-blue-dark",
 		["(((s|S)lightly )|((m|M)oderately ))?(c|C)harges"]: "highlight-text-blue-dark",
 	}

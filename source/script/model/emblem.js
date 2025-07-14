@@ -35,6 +35,11 @@ class Emblem
 	static FactionHojo = "Hojo";
 	static FactionImagawa = "Imagawa";
 	static FactionAzai = "Azai";
+	static FactionMori = "Mori";
+	static FactionShimazu = "Shimazu";
+	static FactionTachibana = "Tachibana";
+	static FactionChosokabe = "Chosokabe";
+	static FactionDate = "Date";
 
 	static FactionIndependent = "Independent";
 	// #endregion Factions
@@ -93,7 +98,11 @@ class Emblem
 			case Emblem.FactionHojo:
 			case Emblem.FactionImagawa:
 			case Emblem.FactionAzai:
-			// TODO
+			case Emblem.FactionMori:
+			case Emblem.FactionShimazu:
+			case Emblem.FactionTachibana:
+			case Emblem.FactionChosokabe:
+			case Emblem.FactionDate:
 				return Emblem.TypeFaction;
 			// #endregion Factions
 			
@@ -175,6 +184,16 @@ class Emblem
 				return 37;
 			case Emblem.FactionAzai:
 				return 38;
+			case Emblem.FactionMori:
+				return 39;
+			case Emblem.FactionShimazu:
+				return 40;
+			case Emblem.FactionTachibana:
+				return 41;
+			case Emblem.FactionChosokabe:
+				return 42;
+			case Emblem.FactionDate:
+				return 43;
 			
 			case Emblem.FactionIndependent:
 				return 50;

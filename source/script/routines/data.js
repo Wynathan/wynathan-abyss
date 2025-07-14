@@ -3032,7 +3032,7 @@ class Data
 				"Replenishes 20% of your Health when you level up.",
 			],
 			[ // Trait 1 Transcended
-				"Increases Attack, Defence, Musou Gauge charge, Assemble Gauge charge by 50% for 20 seconds when you level up.", 
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 50% for 20 seconds when you level up.", 
 				"Replenishes 40% of your Health when you level up.",
 			],
 			[ // Trait 2
@@ -3475,7 +3475,7 @@ class Data
 
 		// #endregion Sima Jin
 
-		// #region Other DW
+		// #region Other Dynasty Warriors
 
 		// #region Lü Bu
 		new Hero(
@@ -4038,7 +4038,7 @@ class Data
 		),
 		// #endregion
 
-		// #endregion Other DW
+		// #endregion Other Dynasty Warriors
 
 		// #region Oda
 
@@ -6319,6 +6319,795 @@ class Data
 		// #endregion
 
 		// #endregion Uesugi / Takeda
+
+		// #region Other Samurai Warriors
+
+		// #region Imagawa Yoshimoto
+		new Hero(
+			"Imagawa Yoshimoto", // Name
+			"Yoshimoto Imagawa", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Charm", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Imagawa", "Daimyo", "Grace"], // Personal Emblems
+			["Imagawa", "Master Archer", "Daimyo", "Grace"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Slightly charges Assemble Gauge when you inflict [Wind] Disorient on enemies.", 
+				"Increases your total [Charm] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Moderately charges Assemble Gauge when you inflict [Wind] Disorient on enemies.", 
+				"Increases your total [Charm] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Replenishes Health by 5% after every 1000 consecutive hits.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Replenishes Health by 5% after every 1000 consecutive hits.", 
+				"Increases Attack by 60% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Homing Blades", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Imagawa", SummonActivationCondition.TypePersonalEmblem, 2),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Best Archer in Tokaido", // Tactic Name
+				"Summons other heroes who have [Daimyo] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Daimyo"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Best Archer in Tokaido", // Tactic Name
+				"Summons other heroes who have [Daimyo] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Daimyo"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Azai Nagamasa
+		new Hero(
+			"Azai Nagamasa", // Name
+			"Nagamasa Azai", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Azai", "Brave General", "Daimyo", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Ice] Freeze on enemies.", 
+			],
+			[ // Trait 1 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Ice] Freeze on enemies.", 
+				"Increases your total [Ice] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Azai] Emblem.", 
+				"Increases Attack Speed by 5% for 10 seconds after evading.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 20% for every [Azai] Emblem.", 
+				"Increases Attack Speed by 10% for 10 seconds after evading.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sword Dance", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Brave Spearman of Kohoku", // Tactic Name
+				"Slightly charges Musou Gauge when you attack enemies with [Ice] Freeze.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Brave Spearman of Kohoku", // Tactic Name
+				"Moderately charges Musou Gauge when you attack enemies with [Ice] Freeze.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Mori Monotari
+		new Hero(
+			"Mori Monotari", // Name
+			"Monotari Mori", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Charm"], // Stat Emblems
+			["Wisdom", "Charm", "Slay"], // Stat Emblems Transcended
+			["Mori", "Master Archer", "Daimyo", "Talent", "Western Region"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Slightly charges Assemble Gauge when you acquire EXP.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Slightly charges Assemble Gauge when you acquire EXP.", 
+				"Increases your total [Wisdom] Emblems by 70%.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 20% while Health is above 80%.", 
+				"Doubles Formation slot bonus effects.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 30% for every [Mori] Emblem.", 
+				"Doubles Formation slot bonus effects.",
+			],
+			new SummonSkill( // Summon Skill
+				"April Showers", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"One Million People, One Heart", // Tactic Name
+				"Increases Attack by 5% for every [Charm] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			null
+		),
+		// #endregion
+		// #region Kobayakawa Takakage
+		new Hero(
+			"Kobayakawa Takakage", // Name
+			"Takakage Kobayakawa", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Toyotomi", "Mori", "Strategist", "Western Region", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% for 20 seconds when you level up.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 50% for 20 seconds when you level up.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Assemble Gauge charge by 20% while Health is above 80%.", 
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Assemble Gauge charge by 20% for every [Western Region] Emblem.", 
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Oppressive Formation (Defence)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Mori Monotari", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Arrow of Wisdom", // Tactic Name
+				"Increases Attack by 3% for every [Wisdom] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Arrow of Wisdom", // Tactic Name
+				"Increases Attack by 4% for every [Wisdom] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Shimazu Yoshihiro
+		new Hero(
+			"Shimazu Yoshihiro", // Name
+			"Yoshihiro Shimazu", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Vigour"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shimazu", "Brave General", "Daimyo", "Master Gunner", "Western Region"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 30% in Danger Zones.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 40% in Danger Zones.", 
+				"Increases Attack by 5% for every [Brave General] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Replenishes Health by 1% after every 50 enemies defeated.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Replenishes Health by 1% after every 50 enemies defeated.",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Demon Shimazu", // Tactic Name
+				"Increases Attack by 100% for heroes with [Western Region] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Western Region"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Demon Shimazu", // Tactic Name
+				"Increases Attack by 120% for heroes with [Western Region] or [Might] Emblems when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Western Region"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Shimazu Toyohisa
+		new Hero(
+			"Shimazu Toyohisa", // Name
+			"Toyohisa Shimazu", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Shimazu", "Brave General", "Master Gunner", "Western Region", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 20% in Danger Zones.", 
+				"Bestows Normal Attacks with the [Flame] attribute while Health is above 80%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 80% in Danger Zones.", 
+				"Applies the [Flame] attribute to Normal Attacks.",
+			],
+			[ // Trait 2
+				"Increases Attack by 30% towards Level Boss enemies.", 
+				"Increases Attack Speed by 10% for 10 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 40% towards Level Boss enemies.", 
+				"Increases Attack Speed by 10% for 10 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sweeping Cyclone", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Shimazu Yoshihiro", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Sacrificial Gambit", // Tactic Name
+				"Increases Attack by 100% for heroes with [Master Gunner] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Sacrificial Gambit", // Tactic Name
+				"Increases Attack by 120% for heroes with [Master Gunner] or [King's Shield] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
+					new TacticTarget(TacticTarget.TypeEmblem, "King's Shield"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Tachibana Ginchiyo
+		new Hero(
+			"Tachibana Ginchiyo", // Name
+			"Ginchiyo Tachibana", // Name In-Game
+			["Lady Tachibana Ginchiyo"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Speed", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Tachibana", "Flower of War", "Western Region", "Torchbearer"], // Personal Emblems
+			["Tachibana", "Brave General", "Flower of War", "Western Region", "Torchbearer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 30% for every [Tachibana] Emblem.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 40% for every [Tachibana] Emblem.", 
+				"Increases your total [Bolt] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+				"Increases Attack by 3% for every [Bolt] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Homing Blades", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Tachibana Muneshige", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Sword of Lightning", // Tactic Name
+				"Increases Attack for the [Bolt] Attribute by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Sword of Lightning", // Tactic Name
+				"Increases Attack for the [Bolt] Attribute by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Tachibana Muneshige
+		new Hero(
+			"Tachibana Muneshige", // Name
+			"Muneshige Tachibana", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Tachibana", "Brave General", "Master Archer", "Flower of War", "Western Region"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 10% for every [Western Region] Emblem.", 
+				"Increases Assemble Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 15% for every [Western Region] Emblem.", 
+				"Increases Assemble Gauge charge by 50% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 2
+				"Replenishes 20% of your Health when you level up.", 
+				"Increases Attack by 30% for 15 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 2 Transcended
+				"Replenishes 20% of your Health when you level up.", 
+				"Increases Attack by 50% for 15 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			new SummonSkill( // Summon Skill
+				"Rapid-Fire Cannon", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Tachibana Ginchiyo", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Bravest Warrior of Chinzei", // Tactic Name
+				"Increases Attack by 50% for heroes with [Western Region] or [Strength] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Western Region"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Strength"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Bravest Warrior of Chinzei", // Tactic Name
+				"Increases Attack by 60% for heroes with [Western Region] or [Strength] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Western Region"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Strength"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Chosokabe Motochika
+		new Hero(
+			"Chosokabe Motochika", // Name
+			"Motochika Chosokabe", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Chosokabe", "Daimyo", "Western Region"], // Personal Emblems
+			["Toyotomi", "Chosokabe", "Brave General", "Daimyo", "Western Region"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.", 
+				"Increases your total [Skill] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 80% each time you are revived (max 300%).", 
+				"Increases your total [Skill] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Revives you when your Health reaches 0, up to 1 times.", 
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.",
+			],
+			[ // Trait 2 Transcended
+				"Revives you when your Health reaches 0, up to 1 times.", 
+				"Increases Attack by 70% for 30 seconds after every 1000 consecutive hits.",
+			],
+			new SummonSkill( // Summon Skill
+				"Penetrating Blade", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Music of the Young Demon", // Tactic Name
+				"Increases Attack by 100% during Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Music of the Young Demon", // Tactic Name
+				"Increases Attack by 100% during Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Date Masamune
+		new Hero(
+			"Date Masamune", // Name
+			"Masamune Date", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Tokugawa", "Date", "Daimyo", "Talent", "Master Gunner"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.", 
+			],
+			[ // Trait 1 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.", 
+				"Increases your total [Wind] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Bestows Normal Attacks with the [Wind] attribute while Health is below 50%.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Bestows Normal Attacks with the [Wind] attribute while Health is below 90%.", 
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 2),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"One-Eyed Dragon", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you attack enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"One-Eyed Dragon", // Tactic Name
+				"Causes an explosion that damages nearby enemies when you attack enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Saika Magoichi
+		new Hero(
+			"Saika Magoichi", // Name
+			"Magoichi Saika", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Skill"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Toyotomi", "Independent", "Brave General", "Master Gunner"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% towards Level Boss enemies.", 
+				"Increases Attack Speed by 5% for 5 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 30% towards Level Boss enemies.", 
+				"Increases Attack Speed by 10% for 15 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Flame] Burn.", 
+				"Increases Attack by 3% when you move on to the next phase without being hit by an enemy attack (max 50%).",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Flame] Burn.", 
+				"Increases Attack by 3% when you move on to the next phase without being hit by an enemy attack (max 100%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Three-Legged Crow", // Tactic Name
+				"Increases Attack by 40% for heroes with [Master Gunner] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Three-Legged Crow", // Tactic Name
+				"Increases Attack by 50% for heroes with [Master Gunner] or [Independent] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Independent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 6),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Okuni
+		new Hero(
+			"Okuni", // Name
+			null, // Name In-Game
+			["Lady Okuni"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Wind"], // Stat Emblems
+			["Charm", "Wind"], // Stat Emblems Transcended
+			["Independent", "Grace", "Might", "Western Region"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+				"Increases Attack by 10% for every [Independent] Emblem.",
+			],
+			[ // Trait 2
+				"Cuts 1 second from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Cuts 2 seconds from the summoning cooldown timer when you inflict [Wind] Disorient on enemies.", 
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Disarming Wave", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Maeda Keiji", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Kabuki Dance", // Tactic Name
+				"Replenishes 20% of your Health when you activate Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Kabuki Dance", // Tactic Name
+				"Replenishes 30% of your Health when you activate Assemble.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Ishikawa Goemon
+		new Hero(
+			"Ishikawa Goemon", // Name
+			"Goemon Ishikawa", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour"], // Stat Emblems
+			["Vigour", "Speed"], // Stat Emblems Transcended
+			["Independent", "Shinobi"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the amount of Tears of Blood acquired by 50%.", 
+				"Adds 10% to the amount of maximum Health raised using Peach Trees.",
+			],
+			[ // Trait 1 Transcended
+				"Increases the amount of Tears of Blood acquired by 100%.", 
+				"Adds 10% to the amount of maximum Health raised using Peach Trees.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 100%).", 
+				"Increases Attack Speed by 5% for 10 seconds after evading.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 150%).", 
+				"Increases Attack Speed by 10% for 10 seconds after evading.",
+			],
+			new SummonSkill( // Summon Skill
+				"Burst of Flowers", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Okuni", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"World's Greatest Thief", // Tactic Name
+				"Guarantees that enemies defeated with Musou Attacks will drop Tears of Blood.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			null
+		),
+		// #endregion
+
+		// #endregion Other Samurai Warriors
 	];
 
 	static #mock = 
