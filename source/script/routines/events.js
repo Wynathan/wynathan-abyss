@@ -113,7 +113,7 @@ class Events
 		if (target.id === Form.ResetFiltersId)
 		{
 			Events.#toggleSelected(target, true)
-			Form.clear();
+			Form.resetFilters();
 
 			window.clearTimeout(Events.#lastResetTimeoutId);
 			Events.#lastResetTimeoutId = window.setTimeout(Events.#toggleSelected, 300, target, false);
@@ -128,18 +128,7 @@ class Events
 		}
 		else if (target.id === Form.DisplayRowNumbersId)
 		{
-			const table = Renderer.getTableBody();
-			const rows = table.querySelectorAll("tr");
-
-			for (let i = 0; i < rows.length; i++)
-			{
-				const row = rows[i];
-
-				if (isSelected)
-					row.classList.add(Renderer.ShowCounterClassName);
-				else
-					row.classList.remove(Renderer.ShowCounterClassName);
-			}
+			Renderer.toggleRowNumbers(isSelected);
 		}
 		else
 		{
@@ -281,7 +270,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const heroName = Renderer.getEmblemName(emblemElement);
 
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.setSearchBoxValueSilent(heroName);
 		Form.filterByHeroName(heroName);
 	}
@@ -301,7 +290,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const heroName = Renderer.getEmblemName(emblemElement);
 
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.filterByTargetHero(heroName);
 	}
 
@@ -320,7 +309,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const summonSkillName = Renderer.getEmblemName(emblemElement);
 
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.filterBySummonSkill(summonSkillName);
 	}
 
@@ -336,7 +325,7 @@ class Events
 		if (!Prompt.isPrompt(target))
 			return;
 		
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.filterByTargetPlayer();
 	}
 
@@ -355,7 +344,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
 
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.toggleFilterByKey(emblemName);
 	}
 
@@ -374,7 +363,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
 		
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.filterByTargetEmblem(emblemName);
 	}
 
@@ -393,7 +382,7 @@ class Events
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
 		
-		Form.clearFiltersOnly();
+		Form.resetFilters();
 		Form.filterBySummonSkillElement(emblemName);
 	}
 }

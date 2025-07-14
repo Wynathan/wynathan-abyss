@@ -75,7 +75,8 @@ class Renderer
 		["(s|S)ummons other heroes"]: "highlight-text-blue-bright",
 		["this hero is summoned"]: "highlight-text-blue-bright",
 		["all heroes"]: "highlight-text-blue-bright",
-		["allied hero"]: "highlight-text-blue-bright",
+		["allied hero(es)?"]: "highlight-text-blue-bright",
+		["summoned heroes"]: "highlight-text-blue-bright",
 		["\\d+ consecutive hits"]: "highlight-text-blue-bright",
 		["\\d+ enemies defeated"]: "highlight-text-blue-bright",
 		["(without being )?hit by an enemy( attack)?"]: "highlight-text-blue-bright",
@@ -338,6 +339,26 @@ class Renderer
 				else
 					emblem.innerText = hero.name;
 			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param {boolean} visible 
+	 */
+	static toggleRowNumbers(visible)
+	{
+		const table = Renderer.getTableBody();
+		const rows = table.querySelectorAll("tr");
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+
+			if (visible)
+				row.classList.add(Renderer.ShowCounterClassName);
+			else
+				row.classList.remove(Renderer.ShowCounterClassName);
 		}
 	}
 

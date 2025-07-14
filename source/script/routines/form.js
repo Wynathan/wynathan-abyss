@@ -2,6 +2,7 @@ class Form
 {
 	static FilterFormId = "filter-form";
 	static SearchId = "search";
+	static OptionsContainerId = "options";
 	static DisplayOptionsContainerId = "options-display";
 
 	static EmblemsContainerClassName = "filter-emblems";
@@ -209,6 +210,13 @@ class Form
 	{
 		const container = Form.getFilterFormContainer();
 		const option = container.querySelector("#" + Form.DisplayInGameNamesId);
+		return option.classList.contains(Form.SelectedClassName);
+	}
+
+	static isDisplayRowNumbersSelected()
+	{
+		const container = Form.getFilterFormContainer();
+		const option = container.querySelector("#" + Form.DisplayRowNumbersId);
 		return option.classList.contains(Form.SelectedClassName);
 	}
 
@@ -504,7 +512,79 @@ class Form
 		Renderer.hideHeroesExcept(result);
 	}
 
-	static clearFiltersOnly()
+	static resetOptions()
+	{
+		const containerClassName = Form.EmblemsContainerClassName;
+		
+		const formContainer = Form.getFilterFormContainer();
+
+		const optionsRoot = formContainer.querySelector("div#" + Form.OptionsContainerId);
+		const optionsContainer = optionsRoot.querySelector("div." + containerClassName);
+		const options = optionsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
+
+		const displayOptionsRoot = formContainer.querySelector("div#" + Form.DisplayOptionsContainerId);
+		const displayOptionsContainer = displayOptionsRoot.querySelector("div." + containerClassName);
+		const displayOptions = displayOptionsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
+
+		let defaults = [];
+		if (UserConfig && UserConfig.Defaults && UserConfig.Defaults.constructor === Array)
+			defaults = UserConfig.Defaults;
+		else
+			console.warn("UserConfig.Defaults is not defined or invalid. Make sure it is an Array of boolean.");
+
+		let enableTr = true;
+		let enableNonTr = false;
+
+		if (defaults.length >= 1)
+			enableTr = defaults[0];
+		if (defaults.length >= 2)
+			enableNonTr = defaults[1];
+		
+		if (!enableTr && !enableNonTr)
+			enableNonTr = true;
+
+		defaults[0] = enableTr;
+		defaults[1] = enableNonTr;
+
+		console.log(defaults.length);
+		console.log(options.length);
+		console.log(displayOptions.length);
+
+		const targetDefaultOptionsLength = options.length - 1;
+		const targetDefaultsLength = targetDefaultOptionsLength + displayOptions.length;
+
+		for (let i = defaults.length; i < targetDefaultOptionsLength; i++)
+			defaults[i] = false;
+
+		for (let i = defaults.length; i < targetDefaultsLength; i++)
+			defaults[i] = true;
+
+		let defaultsIndex = 0;
+
+		/**
+		 * 
+		 * @param {HTMLElement} element 
+		 */
+		const setDefaultSelection = function(element)
+		{
+			const value = defaults.length > defaultsIndex && defaults[defaultsIndex];
+			const isSelected = element.classList.contains(Form.SelectedClassName);
+			if (value !== isSelected)
+				element.click();
+
+			defaultsIndex++;
+		}
+
+		for (let i = 0; i < options.length - 1; i++)
+			setDefaultSelection(options[i])
+
+		for (let i = 0; i < displayOptions.length; i++)
+			setDefaultSelection(displayOptions[i]);
+
+		//Transcendence.toggleDisplay();
+	}
+
+	static resetFilters()
 	{
 		const searchBox = Form.#getSearchBox();
 		searchBox.value = "";
@@ -517,7 +597,6 @@ class Form
 		const elementsContainer = formContainer.querySelector("div#filter-elements div." + containerClassName);
 		const factionsContainer = formContainer.querySelector("div#filter-factions div." + containerClassName);
 		const personalContainer = formContainer.querySelector("div#filter-personal div." + containerClassName);
-		// const optionsContainer = formContainer.querySelector("div#options div." + containerClassName);
 
 		/**
 		 * 
@@ -546,14 +625,6 @@ class Form
 		resetContainer(elementsContainer);
 		resetContainer(factionsContainer);
 		resetContainer(personalContainer);
-	}
-
-	static clear()
-	{
-		Form.clearFiltersOnly();
-
-		//Form.filter();
-		Transcendence.toggleDisplay();
 	}
 
 	/**
@@ -721,7 +792,9 @@ class Form
 		const elementsContainer = formContainer.querySelector("div#filter-elements div." + containerClassName);
 		const factionsContainer = formContainer.querySelector("div#filter-factions div." + containerClassName);
 		const personalContainer = formContainer.querySelector("div#filter-personal div." + containerClassName);
-		const optionsContainer = formContainer.querySelector("div#options div." + containerClassName);
+
+		const optionsRoot = formContainer.querySelector("div#" + Form.OptionsContainerId);
+		const optionsContainer = optionsRoot.querySelector("div." + containerClassName);
 		
 		/**
 		 * 
@@ -782,18 +855,11 @@ class Form
 		}
 
 		// #region Options
-		let firstOption = true;
 		for (let option in Transcendence.Options)
 		{
 			const emblem = Renderer.createEmblemElement(option);
 			emblem.classList.add(Form.OptionsItemClassName);
 			emblem.classList.add(Transcendence.TargetClassName);
-			
-			if (firstOption)
-			{
-				emblem.classList.add(Form.SelectedClassName);
-				firstOption = false;
-			}
 
 			emblem.addEventListener("click", Events.optionsOnClick);
 			emblem.dataset[Transcendence.DataKey] = Transcendence.Options[option];

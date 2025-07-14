@@ -8,7 +8,8 @@ function runOnLoad()
 	Form.render();
 	Renderer.render();
 	
-	Form.clear();
+	Form.resetOptions();
+	Form.resetFilters();
 };
 
 window.document.addEventListener('DOMContentLoaded', runOnLoad, false);
