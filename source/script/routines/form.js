@@ -444,10 +444,10 @@ class Form
 
 				let hasAsTarget = false;
 
-				if (!hasAsTarget && checkTr && checkTargets(hero.tactic.targets))
+				if (!hasAsTarget && checkTr && checkTargets(hero.tacticTranscended.targets))
 					hasAsTarget = true;
 
-				if (!hasAsTarget && checkNonTr && checkTargets(hero.tacticTranscended.targets))
+				if (!hasAsTarget && checkNonTr && checkTargets(hero.tactic.targets))
 					hasAsTarget = true;
 
 				if (hasAsTarget)
