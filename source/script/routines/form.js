@@ -284,19 +284,12 @@ class Form
 					{
 						if (target.emblem.isElement())
 						{
-							if (checkTr && targetHero.summonSkillTranscended.element)
-							{
-								const summonSkill = targetHero.summonSkillTranscended;
-								if (target.emblem.name === summonSkill.element.name)
-									return true;
-							}
+							const emblemName = target.emblem.name;
+							if (checkTr && targetHero.summonSkillTranscended.hasElement(emblemName))
+								return true;
 
-							if (checkNonTr && targetHero.summonSkill.element)
-							{
-								const summonSkill = targetHero.summonSkill;
-								if (target.emblem.name === summonSkill.element.name)
-									return true;
-							}
+							if (checkNonTr && targetHero.summonSkill.hasElement(emblemName))
+								return true;
 						}
 						else
 						{
@@ -486,26 +479,16 @@ class Form
 			const checkTr = transcendenceOptions.checkTr;
 			const checkNonTr = transcendenceOptions.checkNonTr;
 
-			/**
-			 * 
-			 * @param {SummonSkill} summonSkill 
-			 */
-			const checkSummonSkill = function(summonSkill)
-			{
-				const emblem = summonSkill.element;
-				return emblem && emblem.isElement() && emblem.name === emblemName;
-			}
-
 			for (let heroName in data)
 			{
 				const hero = data[heroName];
 
 				let hasAsTarget = false;
 
-				if (!hasAsTarget && checkTr && checkSummonSkill(hero.summonSkillTranscended))
+				if (!hasAsTarget && checkTr && hero.summonSkillTranscended.hasElement(emblemName))
 					hasAsTarget = true;
 
-				if (!hasAsTarget && checkNonTr && checkSummonSkill(hero.summonSkill))
+				if (!hasAsTarget && checkNonTr && hero.summonSkill.hasElement(emblemName))
 					hasAsTarget = true;
 
 				if (hasAsTarget)

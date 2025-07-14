@@ -778,12 +778,19 @@ class Renderer
 		const summonSkillElementContainer = window.document.createElement("div");
 		summonSkillElementContainer.classList.add(Renderer.EmblemsContainerClassName);
 
-		if (summonSkill.element)
-			summonSkillElementContainer.appendChild(Renderer.createEmblemElement(summonSkill.element.name));
+		if (summonSkill.hasAnyElements())
+		{
+			for (let i = 0; i < summonSkill.elements.length; i++)
+			{
+				const elementEmblem = summonSkill.elements[i];
+				const elementEmblemElement = Renderer.createEmblemElement(elementEmblem.name);
+				summonSkillElementContainer.appendChild(elementEmblemElement);
+			}
+		}
 
 		summonSkillElementColumn.appendChild(summonSkillElementContainer);
 
-		return { summonSkill: summonSkillColumn, element: summonSkillElementColumn };
+		return { summonSkill: summonSkillColumn, elements: summonSkillElementColumn };
 	}
 
 	/**
@@ -880,11 +887,11 @@ class Renderer
 
 		const skill = Renderer.#generateSkillColumns(hero.summonSkill, false);
 		row.appendChild(skill.summonSkill);
-		row.appendChild(skill.element);
+		row.appendChild(skill.elements);
 
 		const skillTr = Renderer.#generateSkillColumns(hero.summonSkillTranscended, true);
 		row.appendChild(skillTr.summonSkill);
-		row.appendChild(skillTr.element);
+		row.appendChild(skillTr.elements);
 
 		const tactic = Renderer.#generateTacticColumns(hero.tactic, false);
 		row.appendChild(tactic.tactic);

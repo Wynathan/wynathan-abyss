@@ -2,8 +2,8 @@ class SummonSkill
 {
 	/** @type {string} */
 	name;
-	/** @type {Emblem=} */
-	element;
+	/** @type {Emblem[]=} */
+	elements;
 	/** @type {SummonActivationCondition[]} */
 	upgradeConditions = [];
 	/** @type {boolean} */
@@ -16,7 +16,7 @@ class SummonSkill
 	/**
 	 * 
 	 * @param {string} name 
-	 * @param {string=} element 
+	 * @param {(string|string[]|null)} elements 
 	 * @param {SummonActivationCondition[]} upgradeConditions 
 	 * @param {boolean=} isImprovedByAmount 
 	 * @param {boolean=} isImprovedByRange 
@@ -24,7 +24,7 @@ class SummonSkill
 	 */
 	constructor(
 		name, 
-		element, 
+		elements, 
 		upgradeConditions,
 		isImprovedByAmount,
 		isImprovedByRange,
@@ -32,9 +32,24 @@ class SummonSkill
 	)
 	{
 		this.name = name;
-		
-		if (element)
-			this.element = new Emblem(element);
+		this.elements = [];
+
+		if (elements)
+		{
+			if (typeof elements === "object" && elements.constructor === Array)
+			{
+				for (let i = 0; i < elements.length; i++)
+				{
+					const emblem = new Emblem(elements[i]);
+					this.elements.push(emblem);
+				}
+			}
+			else
+			{
+				const emblem = new Emblem(elements);
+				this.elements.push(emblem);
+			}
+		}
 
 		if (upgradeConditions)
 			this.upgradeConditions = upgradeConditions;
@@ -42,5 +57,33 @@ class SummonSkill
 		this.isImprovedByAmount = Boolean(isImprovedByAmount);
 		this.isImprovedByRange = Boolean(isImprovedByRange);
 		this.isImprovedByDuration = Boolean(isImprovedByDuration);
+	}
+
+	/**
+	 * @returns {boolean}
+	 */
+	hasAnyElements()
+	{
+		return this.elements && this.elements.length > 0;
+	}
+
+	/**
+	 * 
+	 * @param {string} elementName 
+	 * @returns {boolean}
+	 */
+	hasElement(elementName)
+	{
+		if (!this.elements)
+			return false;
+
+		for (let i = 0; i < this.elements.length; i++)
+		{
+			const element = this.elements[i];
+			if (elementName === element.name)
+				return true;
+		}
+
+		return false;
 	}
 }
