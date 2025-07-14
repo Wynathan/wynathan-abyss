@@ -199,9 +199,48 @@ class Emblem
 				return 50;
 			// #endregion Factions
 			
-			// TODO
 			// #region Personal Emblems
-
+			// Keep it alphabetical for now.
+			case "Brave General":
+				return 100;
+			case "Commander":
+				return 101;
+			case "Daimyo":
+				return 102;
+			case "Five Shu Tigers":
+				return 103;
+			case "Five Wei Elite":
+				return 104;
+			case "Flower of War":
+				return 105;
+			case "Grace":
+				return 106;
+			case "Jiangdong Hero":
+				return 107;
+			case "King's Shield":
+				return 108;
+			case "Master Archer":
+				return 109;
+			case "Master Gunner":
+				return 110;
+			case "Might":
+				return 111;
+			case "Ruler":
+				return 112;
+			case "Shinobi":
+				return 113;
+			case "Strategist":
+				return 114;
+			case "Talent":
+				return 115;
+			case "Three Heroes":
+				return 116;
+			case "Torchbearer":
+				return 117;
+			case "Western Region":
+				return 118;
+			case "Xiliang":
+				return 119;
 			// #endregion Personal Emblems
 
 			default:
