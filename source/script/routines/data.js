@@ -2365,8 +2365,7 @@ class Data
 			null, // Summon Skill Transcended
 			new Tactic( // Tactic
 				"Warfare of the Sleeping Dragon", // Tactic Name
-				// Tactic Description
-				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.",
+				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 				],
@@ -2378,8 +2377,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Warfare of the Sleeping Dragon", // Tactic Name
-				// Tactic Description
-				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.",
+				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 				],
@@ -2440,8 +2438,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Roaring Tiger Chariot", // Tactic Name
-				// Tactic Description
-				"Shortens summoning cooldown by 30% and increases Attack by 20% for heroes with [Shu] Emblem.",
+				"Shortens summoning cooldown by 30% and increases Attack by 20% for heroes with [Shu] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 				],
@@ -2563,8 +2560,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Visionary Strategist", // Tactic Name
-				// Tactic Description
-				"Increases Attack by 40% for heroes with [Shu], [Brave General], or [Strategist] Emblems.",
+				"Increases Attack by 40% for heroes with [Shu], [Brave General], or [Strategist] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
@@ -3209,8 +3205,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Wild Strategies", // Tactic Name
-				// Tactic Description
-				"Summons other heroes who have the [Jin] or [Torchbearer] Emblems when this hero is summoned.",
+				"Summons other heroes who have the [Jin] or [Torchbearer] Emblems when this hero is summoned.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
@@ -3272,8 +3267,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Perceptive Princess Ming", // Tactic Name
-				// Tactic Description
-				"Shortens summoning cooldown by 20% and increases Attack by 30% for heroes with the [Talent] Emblem.",
+				"Shortens summoning cooldown by 20% and increases Attack by 30% for heroes with the [Talent] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
 				],
@@ -3347,9 +3341,570 @@ class Data
 		// #endregion
 
 		// #endregion Sima Jin
-	];
 
-	// Lv Bu's summon skill is Bolt
+		// #region Other DW
+
+		// #region Lü Bu
+		new Hero(
+			"Lü Bu", // Name
+			"Lu Bu", // Name In-Game
+			["Lv Bu"], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Vigour", "Skill", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Lü Bu Army", "Dong Zhuo Army", "Brave General", "Master Archer", "Might"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Makes defeated enemies explode, dealing damage to nearby enemies.", 
+				"Slightly charges Musou Gauge when you inflict [Bolt] Shock on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Makes defeated enemies explode, dealing damage to nearby enemies.", 
+				"Slightly charges Musou Gauge when you inflict [Bolt] Shock on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Lü Bu Army] Emblem.", 
+				"Increases Attack and Defence by 50% if you have the \"Red Hare\" Treasure.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 30% for every [Lü Bu Army] Emblem.", 
+				"Increases Attack and Defence by 80% if you have the \"Red Hare\" Treasure.",
+			],
+			new SummonSkill( // Summon Skill
+				"War God's Cry", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Diaochan", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Peerless Lü Bu", // Tactic Name
+				"Increases the amount of extra [Bolt] damage by 200%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Peerless Lü Bu", // Tactic Name
+				"Increases the amount of extra [Bolt] damage by 300%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Diaochan
+		new Hero(
+			"Diaochan", // Name
+			null, // Name In-Game
+			["Lady Diaochan"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm"], // Stat Emblems
+			["Charm", "Bolt"], // Stat Emblems Transcended
+			["Lü Bu Army", "Dong Zhuo Army", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases your total [Charm] Emblems by 50%.", 
+				"Increases Attack by 10% for every [Dong Zhuo Army] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases your total [Charm] Emblems by 70%.", 
+				"Increases Attack by 18% for every [Dong Zhuo Army] Emblem.",
+			],
+			[ // Trait 2
+				"Replenishes Health by 1% after every 50 enemies defeated.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Replenishes Health by 1% after every 50 enemies defeated.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Inspired Formation (Speed)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Devious Dance", // Tactic Name
+				"Increases Attack by 100% for [Lü Bu].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Lü Bu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Dong Zhuo", SummonActivationCondition.TypeHero),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Devious Dance", // Tactic Name
+				"Increases Attack by 120% for [Lü Bu].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Lü Bu"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Dong Zhuo", SummonActivationCondition.TypeHero),
+				]
+			)
+		),
+		// #endregion
+		// #region Lü Lingqi
+		new Hero(
+			"Lü Lingqi", // Name
+			"Lu Lingqi", // Name In-Game
+			["Lady Lü Lingqi", "Lady Lv Lingqi", "Lady Lu Lingqi"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Speed", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Lü Bu Army", "Dong Zhuo Army", "Flower of War"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack Speed by 5% for 10 seconds after evading.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack Speed by 10% for 10 seconds after evading.", 
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2
+				"Increases Attack by 10% for every [Lü Bu Army] Emblem.", 
+				"Increases Attack and Defence by 50% for 10 seconds when you acquire a Peach.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 20% for every [Lü Bu Army] Emblem.", 
+				"Increases Attack and Defence by 50% for 45 seconds when you acquire a Peach.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Valiant Shield Maiden", // Tactic Name
+				"Increases Attack by 100% for heroes with the [Lü Bu Army] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Lü Bu Army"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Valiant Shield Maiden", // Tactic Name
+				"Increases Attack by 120% for heroes with the [Lü Bu Army] or [Dong Zhuo Army] Emblems when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Lü Bu Army"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Dong Zhuo Army"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Chen Gong
+		new Hero(
+			"Chen Gong", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wisdom", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Lü Bu Army", "Strategist"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Makes it more likely for heroes with [Brave General] Emblems to appear at Crystal Saplings.", 
+			],
+			[ // Trait 1 Transcended
+				"Makes it more likely for heroes with [Brave General] Emblems to appear at Crystal Saplings.", 
+				"Increases the Assemble duration by 50%.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 20% for every [Lü Bu Army] Emblem.", 
+				"Increases Musou Gauge charge by 20% while Health is above 80%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 20% for every [Lü Bu Army] Emblem.", 
+				"Increases Musou Gauge charge by 7% for every [Brave General] Emblem.", 
+			],
+			new SummonSkill( // Summon Skill
+				"Oppressive Formation (Attack)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Pincer Strategy", // Tactic Name
+				"Summons other heroes who have the [Lü Bu Army] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Lü Bu Army"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Lü Bu Army", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Pincer Strategy", // Tactic Name
+				"Summons other heroes who have the [Lü Bu Army] or [Brave General] Emblems when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Lü Bu Army"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 13),
+				]
+			)
+		),
+		// #endregion
+		// #region Dong Zhuo
+		new Hero(
+			"Dong Zhuo", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Dong Zhuo Army", "Ruler", "Xiliang"], // Personal Emblems
+			["Dong Zhuo Army", "Brave General", "Ruler", "Might", "Xiliang"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the amount of Tears of Blood acquired by 100%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the amount of Tears of Blood acquired by 100%.",
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2
+				"Increases Attack by 30% for 5 seconds when you interrupt an enemy's telegraphed attack.", 
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 100%).",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% for 15 seconds when you interrupt an enemy's telegraphed attack.", 
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 100%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Meteor Strike", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Tyrant's Bombardment", // Tactic Name
+				"Increases Attack of [Flame] attribute attacks against enemy barriers by 30%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Dong Zhuo Army", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Tyrant's Bombardment", // Tactic Name
+				"Increases Attack of [Flame] attribute attacks against enemy barriers by 50%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Yuan Shao
+		new Hero(
+			"Yuan Shao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Charm", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Yuan Shao Army", "Ruler", "Grace", "Commander"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 10% for every [Grace] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 10% for every [Grace] Emblem.", 
+				"Increases Attack and Defence by 3% for each allied hero (max 150%).",
+			],
+			[ // Trait 2
+				"Slightly charges Assemble Gauge when you inflict [Bolt] Shock on enemies.", 
+				"Increases the amount of Tears of Blood acquired by 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Assemble Gauge when you inflict [Bolt] Shock on enemies.", 
+				"Increases the amount of Tears of Blood acquired by 100%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Nobleman's March", // Tactic Name
+				"Gives you Tears of Blood when you attack enemies with [Bolt] Shock.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Yuan Shao Army", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Nobleman's Commands", // Tactic Name
+				"Summons other heroes who have the [Yuan Shao Army] or [Ruler] Emblems when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Yuan Shao Army"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ruler"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Yuan Shao Army", SummonActivationCondition.TypePersonalEmblem, 2),
+					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhang Jiao
+		new Hero(
+			"Zhang Jiao", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Charm", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Yellow Turbans", "Independent", "Ruler", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Triggers Memories of the Dead more frequently.", 
+			],
+			[ // Trait 1 Transcended
+				"Triggers Memories of the Dead more frequently.", 
+				"Bestows you with 3 Crystal Beads from the start.",
+			],
+			[ // Trait 2
+				"Bestows Normal Attacks with the [Flame] attribute while Health is above 80%.", 
+				"Replenishes 1% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Applies the [Flame] attribute to Normal Attacks.", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Disarming Wave", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 8),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Yellow Heaven Arises", // Tactic Name
+				"Charges the Assemble Gauge by 20% at the start of each phase.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Yellow Heaven Arises", // Tactic Name
+				"Charges the Assemble Gauge by 50% at the start of each phase.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Meng Huo
+		new Hero(
+			"Meng Huo", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Ruler", "Might"], // Personal Emblems
+			["Shu", "Independent", "Ruler", "Might"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Revives you when your Health reaches 0, up to 1 times.", 
+			],
+			[ // Trait 1 Transcended
+				"Revives you when your Health reaches 0, up to 1 times.", 
+				"Increases Attack by 80% each time you are revived (max 300%).",
+			],
+			[ // Trait 2
+				"Adds 10% to the amount of maximum Health raised using Peach Trees.", 
+				"Increases Attack an Defence by 50% for 10 seconds when you acquire a Peach.",
+			],
+			[ // Trait 2 Transcended
+				"Adds 10% to the amount of maximum Health raised using Peach Trees.", 
+				"Increases Attack an Defence by 50% for 45 seconds when you acquire a Peach.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tornado Blade", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Appeal from the King of Nanzhong", // Tactic Name
+				"Increases Attack by 100% for [Meng Huo] and [Zhurong].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Meng Huo"),
+					new TacticTarget(TacticTarget.TypeHero, "Zhurong"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhurong", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Appeal from the King of Nanzhong", // Tactic Name
+				"Increases Attack by 120% for [Meng Huo] and [Zhurong].", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeHero, "Meng Huo"),
+					new TacticTarget(TacticTarget.TypeHero, "Zhurong"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Zhurong", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Zhurong
+		new Hero(
+			"Zhurong", // Name
+			null, // Name In-Game
+			["Lady Zhurong"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Speed", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Brave General"], // Personal Emblems
+			["Shu", "Independent", "Brave General", "Flower of War"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% for 20 seconds when you are hit by an enemy.", 
+				"Increases your total [Speed] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with Burn.", 
+				"Increases Attack Speed by 5% for 5 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with Burn.", 
+				"Increases Attack Speed by 10% for 15 seconds when you interrupt an enemy's telegraphed attack.",
+			],
+			new SummonSkill( // Summon Skill
+				"Dazzling Bullets", // Summon Skill Name
+				"Flame", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Meng Huo", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Descendant of the Fire God", // Tactic Name
+				"Increases Attack for Summoning Skill [Dazzling Bullets] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Dazzling Bullets"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Descendant of the Fire God", // Tactic Name
+				"Increases Attack for Summoning Skill [Dazzling Bullets] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Dazzling Bullets"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Other DW
+	];
 
 	static #mock = 
 	[

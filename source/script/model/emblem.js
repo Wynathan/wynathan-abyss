@@ -21,6 +21,8 @@ class Emblem
 	static FactionLvBu = "Lü Bu Army";
 	static FactionDongZhuo = "Dong Zhuo Army";
 	static FactionYuanShao = "Yuan Shao Army";
+	static FactionYellowTurbans = "Yellow Turbans";
+	static FactionIndependent = "Independent";
 
 	static TypeAbility = 1;
 	static TypeStat = Emblem.TypeAbility;
@@ -61,6 +63,8 @@ class Emblem
 			case Emblem.FactionLvBu:
 			case Emblem.FactionDongZhuo:
 			case Emblem.FactionYuanShao:
+			case Emblem.FactionYellowTurbans:
+			case Emblem.FactionIndependent:
 			// TODO
 				return Emblem.TypeFaction;
 			default:
@@ -115,6 +119,10 @@ class Emblem
 				return 25;
 			case Emblem.FactionYuanShao:
 				return 26;
+			case Emblem.FactionYellowTurbans:
+				return 27;
+			case Emblem.FactionIndependent:
+				return 28;
 			
 			// TODO
 

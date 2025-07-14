@@ -40,7 +40,7 @@ class Renderer
 	/** @type {Object.<RegExp, string>} */
 	static MapRegexPatternToSpanClassName = 
 	{
-		["\\[(\\w+(\\s+\\w+)*)\\]"]: Renderer.MapRegexPatternToSpanClassName_EmbeddedEmblem,
+		["\\[((\\w|ü)+(\\s+(\\w|ü)+)*)\\]"]: Renderer.MapRegexPatternToSpanClassName_EmbeddedEmblem,
 
 		["appear more"]: "highlight-text-red",
 		["Status Ailment(s)?"]: "highlight-text-red",
@@ -58,6 +58,7 @@ class Renderer
 		["Health is below \\d+%"]: "highlight-text-blue-bright",
 		["(?<!\\>)(maximum )?Health(( restored)|( recovery rate))?(?!(\\<|s))"]: "highlight-text-blue-bright",
 		["(r|R)eplenishes"]: "highlight-text-blue-bright",
+		["(r|R)evive(s|d)"]: "highlight-text-blue-bright",
 		["Musou Gauge"]: "highlight-text-blue-bright",
 		["Assemble( Gauge)?"]: "highlight-text-blue-bright",
 		["(all )?attribute(s)?"]: "highlight-text-blue-bright",
@@ -71,9 +72,10 @@ class Renderer
 		["Formation slot bonus"]: "highlight-text-blue-bright",
 		["Summoning Skill"]: "highlight-text-blue-bright",
 		["summoning cooldown"]: "highlight-text-blue-bright",
-		["(s|S)ummons"]: "highlight-text-blue-bright",
-		["summoned"]: "highlight-text-blue-bright",
+		["(s|S)ummons other heroes"]: "highlight-text-blue-bright",
+		["this hero is summoned"]: "highlight-text-blue-bright",
 		["all heroes"]: "highlight-text-blue-bright",
+		["allied hero"]: "highlight-text-blue-bright",
 		["\\d+ consecutive hits"]: "highlight-text-blue-bright",
 		["\\d+ enemies defeated"]: "highlight-text-blue-bright",
 		["(without being )?hit by an enemy( attack)?"]: "highlight-text-blue-bright",
@@ -84,6 +86,7 @@ class Renderer
 		["knocked into the air"]: "highlight-text-blue-bright",
 		["telegraphed attack"]: "highlight-text-blue-bright",
 		["barrier(s)?"]: "highlight-text-blue-bright",
+		["explode"]: "highlight-text-blue-bright",
 		["explosion( that damages nearby enemies)?"]: "highlight-text-blue-bright",
 		["extra (?=\\<div\\>)"]: "highlight-text-blue-bright",
 		["(?<=\\</div\\>) damage"]: "highlight-text-blue-bright",
@@ -94,12 +97,13 @@ class Renderer
 		["Crystal Saplings"]: "highlight-text-blue-bright",
 		["Crystal Bead(s)?"]: "highlight-text-blue-bright",
 		["Karma Embers"]: "highlight-text-blue-bright",
-		["Tears of Blood"]: "highlight-text-blue-bright",
+		["(\\d+ )?Tears of Blood( you possess)?"]: "highlight-text-blue-bright",
 		["Danger Zones"]: "highlight-text-blue-bright",
+		["Memories of the Dead"]: "highlight-text-blue-bright",
 		["EXP"]: "highlight-text-blue-bright",
 		["level up"]: "highlight-text-blue-bright",
 		["(every )?\\d+ level(s?)"]: "highlight-text-blue-bright",
-		["Peach(es)?"]: "highlight-text-blue-bright",
+		["Peach((es)|( Trees))?"]: "highlight-text-blue-bright",
 		["(\\d+ )?Sin Spewer enem((y)|(ies))"]: "highlight-text-blue-bright",
 		["Archer enemies"]: "highlight-text-blue-bright",
 		["Level Boss enemies"]: "highlight-text-blue-bright",
@@ -110,6 +114,7 @@ class Renderer
 
 		["Treasure(s)?"]: "highlight-text-blue-bright",
 		["\"Four\\-Wheeled Chariot\""]: "highlight-text-blue-bright",
+		["\"Red Hare\""]: "highlight-text-blue-bright",
 
 		// ["Flame( |\\-)attribute"]: "highlight-text-blue-bright",
 		// ["Ice( |\\-)attribute"]: "highlight-text-blue-bright",
@@ -117,11 +122,12 @@ class Renderer
 		// ["Bolt( |\\-)attribute"]: "highlight-text-blue-bright",
 		// ["Slay( |\\-)attribute"]: "highlight-text-blue-bright",
 
-		["(?<=\\D)(?<!(\\>)|(is above )|((is below )))(((by)|(max)) )?\\d+%?(?!(\\<)|( ((second(s)?)|(level(s)?))))"]: "highlight-text-blue-dark",
-		["\\d+ +second(s)?"]: "highlight-text-blue-dark",
+		["(?<=\\D)(?<!(\\>)|(is above )|((is below )))(((by)|(max)) )?\\d+%?( times)?(?!(\\<)|( ((second(s)?)|(level(s)?))))"]: "highlight-text-blue-dark",
+		["\\d+ second(s)?"]: "highlight-text-blue-dark",
 		["Negates"]: "highlight-text-blue-dark",
 		["Doubles"]: "highlight-text-blue-dark",
 		["Triples"]: "highlight-text-blue-dark",
+		["more frequently"]: "highlight-text-blue-dark",
 		["(((s|S)lightly )|((m|M)oderately ))?(c|C)harges"]: "highlight-text-blue-dark",
 	}
 
