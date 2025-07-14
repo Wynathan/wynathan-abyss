@@ -42,7 +42,7 @@ class Renderer
 	/** @type {Object.<RegExp, string>} */
 	static MapRegexPatternToSpanClassName = 
 	{
-		["\\[((\\w|ü)+(\\s+(\\w|ü)+)*)\\]"]: Renderer.MapRegexPatternToSpanClassName_EmbeddedEmblem,
+		["\\[((\\w|ü|')+(\\s+(\\w|ü|')+)*)\\]"]: Renderer.MapRegexPatternToSpanClassName_EmbeddedEmblem,
 
 		["appear more"]: "highlight-text-red",
 		["Status Ailment(s)?"]: "highlight-text-red",
@@ -72,14 +72,19 @@ class Renderer
 		["Disorient"]: "highlight-text-blue-bright",
 		["Shock"]: "highlight-text-blue-bright",
 		["Wound"]: "highlight-text-blue-bright",
-		["Formation slot bonus"]: "highlight-text-blue-bright",
+		["burned"]: "highlight-text-blue-bright",
+		["continuous damage from flames"]: "highlight-text-blue-bright",
+		["frozen"]: "highlight-text-blue-bright",
+		["immobility"]: "highlight-text-blue-bright",
+		["Formation(s)?( slot bonus)?"]: "highlight-text-blue-bright",
 		["Summoning Skill"]: "highlight-text-blue-bright",
 		["summoning cooldown"]: "highlight-text-blue-bright",
+		["summon heroes"]: "highlight-text-blue-bright",
 		["(s|S)ummons this hero"]: "highlight-text-blue-bright",
 		["(s|S)ummons other heroes"]: "highlight-text-blue-bright",
 		["this hero is summoned"]: "highlight-text-blue-bright",
 		["have been summoned"]: "highlight-text-blue-bright",
-		["the player hero"]: "highlight-text-blue-bright",
+		["(the )?player hero('s)?"]: "highlight-text-blue-bright",
 		["all heroes"]: "highlight-text-blue-bright",
 		["allied hero(es)?"]: "highlight-text-blue-bright",
 		["summoned heroes"]: "highlight-text-blue-bright",
@@ -110,6 +115,7 @@ class Renderer
 		["EXP"]: "highlight-text-blue-bright",
 		["level up"]: "highlight-text-blue-bright",
 		["(every )?\\d+ level(s?)"]: "highlight-text-blue-bright",
+		["random Emblem"]: "highlight-text-blue-bright",
 		["Peach((es)|( Trees))?"]: "highlight-text-blue-bright",
 		["(\\d+ )?Sin Spewer enem((y)|(ies))"]: "highlight-text-blue-bright",
 		["Archer enemies"]: "highlight-text-blue-bright",
@@ -123,6 +129,7 @@ class Renderer
 		["\"Four\\-Wheeled Chariot\""]: "highlight-text-blue-bright",
 		["\"Red Hare\""]: "highlight-text-blue-bright",
 		["\"Matsukaze\""]: "highlight-text-blue-bright",
+		["\"Cherry Blossom Armour\""]: "highlight-text-blue-bright",
 
 		// ["Flame( |\\-)attribute"]: "highlight-text-blue-bright",
 		// ["Ice( |\\-)attribute"]: "highlight-text-blue-bright",
@@ -135,6 +142,7 @@ class Renderer
 		["Negates"]: "highlight-text-blue-dark",
 		["Doubles"]: "highlight-text-blue-dark",
 		["Triples"]: "highlight-text-blue-dark",
+		["available for use"]: "highlight-text-blue-dark",
 		["more frequently"]: "highlight-text-blue-dark",
 		["(((s|S)lightly )|((m|M)oderately ))?(c|C)harges"]: "highlight-text-blue-dark",
 	}

@@ -28,7 +28,12 @@ class Emblem
 
 	static FactionOda = "Oda";
 	static FactionToyotomi = "Toyotomi";
+	static FactionTokugawa = "Tokugawa";
 	static FactionUesugi = "Uesugi";
+	static FactionTakeda = "Takeda";
+	static FactionSanada = "Sanada";
+	static FactionHojo = "Hojo";
+	static FactionImagawa = "Imagawa";
 	static FactionAzai = "Azai";
 
 	static FactionIndependent = "Independent";
@@ -81,7 +86,12 @@ class Emblem
 			case Emblem.FactionIndependent:
 			case Emblem.FactionOda:
 			case Emblem.FactionToyotomi:
+			case Emblem.FactionTokugawa:
 			case Emblem.FactionUesugi:
+			case Emblem.FactionTakeda:
+			case Emblem.FactionSanada:
+			case Emblem.FactionHojo:
+			case Emblem.FactionImagawa:
 			case Emblem.FactionAzai:
 			// TODO
 				return Emblem.TypeFaction;
@@ -151,10 +161,20 @@ class Emblem
 				return 30;
 			case Emblem.FactionToyotomi:
 				return 31;
+			case Emblem.FactionTokugawa:
+				return 32;
 			case Emblem.FactionUesugi:
 				return 33;
+			case Emblem.FactionTakeda:
+				return 34;
+			case Emblem.FactionSanada:
+				return 35;
+			case Emblem.FactionHojo:
+				return 36;
+			case Emblem.FactionImagawa:
+				return 37;
 			case Emblem.FactionAzai:
-				return 39;
+				return 38;
 			
 			case Emblem.FactionIndependent:
 				return 50;
