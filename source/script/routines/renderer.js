@@ -44,6 +44,7 @@ class Renderer
 
 		["appear more"]: "highlight-text-red",
 		["Status Ailment(s)?"]: "highlight-text-red",
+		["reduces(?= Defence)"]: "highlight-text-red",
 
 		["(?<!\\<div\\>)Speed(?!\\</div\\>)"]: "highlight-text-blue-bright",
 		["Normal Attacks"]: "highlight-text-blue-bright",
@@ -72,8 +73,11 @@ class Renderer
 		["Formation slot bonus"]: "highlight-text-blue-bright",
 		["Summoning Skill"]: "highlight-text-blue-bright",
 		["summoning cooldown"]: "highlight-text-blue-bright",
+		["(s|S)ummons this hero"]: "highlight-text-blue-bright",
 		["(s|S)ummons other heroes"]: "highlight-text-blue-bright",
 		["this hero is summoned"]: "highlight-text-blue-bright",
+		["have been summoned"]: "highlight-text-blue-bright",
+		["the player hero"]: "highlight-text-blue-bright",
 		["all heroes"]: "highlight-text-blue-bright",
 		["allied hero(es)?"]: "highlight-text-blue-bright",
 		["summoned heroes"]: "highlight-text-blue-bright",
@@ -116,6 +120,7 @@ class Renderer
 		["Treasure(s)?"]: "highlight-text-blue-bright",
 		["\"Four\\-Wheeled Chariot\""]: "highlight-text-blue-bright",
 		["\"Red Hare\""]: "highlight-text-blue-bright",
+		["\"Matsukaze\""]: "highlight-text-blue-bright",
 
 		// ["Flame( |\\-)attribute"]: "highlight-text-blue-bright",
 		// ["Ice( |\\-)attribute"]: "highlight-text-blue-bright",
@@ -123,7 +128,7 @@ class Renderer
 		// ["Bolt( |\\-)attribute"]: "highlight-text-blue-bright",
 		// ["Slay( |\\-)attribute"]: "highlight-text-blue-bright",
 
-		["(?<=\\D)(?<!(\\>)|(is above )|((is below )))(((by)|(max)) )?\\d+%?( times)?(?!(\\<)|( ((second(s)?)|(level(s)?))))"]: "highlight-text-blue-dark",
+		["(?<=\\D)(?<!(\\>)|(is above )|((is below )))(((by)|(max)) )?\\d+%?( time(s)?)?(?!(\\<)|( ((second(s)?)|(level(s)?))))"]: "highlight-text-blue-dark",
 		["\\d+ second(s)?"]: "highlight-text-blue-dark",
 		["Negates"]: "highlight-text-blue-dark",
 		["Doubles"]: "highlight-text-blue-dark",

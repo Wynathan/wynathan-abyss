@@ -3904,6 +3904,538 @@ class Data
 		// #endregion
 
 		// #endregion Other DW
+
+		// #region Oda
+
+		// #region Oda Nobunaga
+		new Hero(
+			"Oda Nobunaga", // Name
+			"Nobunaga Oda", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Charm", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Oda", "Daimyo", "Talent", "Three Heroes", "Master Gunner"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 7% for every [Oda] Emblem.", 
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 10% for every [Oda] Emblem.", 
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack for summoned heroes by 30%", 
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack for summoned heroes by 50%", 
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Lady No", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Take the World by Force", // Tactic Name
+				"Increases Attack by 70% for heroes with the [Oda] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 7),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Take the World by Force", // Tactic Name
+				"Increases Attack by 70% for heroes with the [Oda] Emblem and for attacks towards enemy barriers..", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 7),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Lady No
+		new Hero(
+			"Lady No", // Name
+			"No", // Name In-Game
+			["Nohime", "No hime"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Oda", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Musou Gauge charge by 10% for every [Oda] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Musou Gauge charge by 10% for every [Oda] Emblem.", 
+				"Increases Attack by 5% for every [Slay] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.", 
+				"Replenishes 1% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% for Charge Attacks towards enemy barriers.", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Focus", // Summon Skill Name
+				"Slay", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Venom Queen", // Tactic Name
+				"Slightly charges Assemble Gauge when you inflict [Slay] Wound on enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Venom Queen", // Tactic Name
+				"Moderately charges Assemble Gauge when you inflict [Slay] Wound on enemies.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Oichi
+		new Hero(
+			"Oichi", // Name
+			null, // Name In-Game
+			["Lady Oichi"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Ice"], // Stat Emblems
+			["Strength", "Ice"], // Stat Emblems Transcended
+			["Oda", "Azai", "Flower of War", "Grace"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Triggers Memories of the Dead more frequently.", 
+			],
+			[ // Trait 1 Transcended
+				"Triggers Memories of the Dead more frequently.", 
+				"Revives you when your Health reaches 0, up to 1 times.", 
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 20% for every [Azai] Emblem.", 
+				"At the start of each phase, replenishes your Health to 50% if Health is below 20%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 20% for every [Azai] Emblem.", 
+				"At the start of each phase, replenishes your Health to 50% if Health is below 40%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Inspired Formation (Defence)", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Azai Nagamasa", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"White Lily of the Battlefield", // Tactic Name
+				"Revives you when your Health reaches 0, up to 1 times.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 7),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"White Lily of the Battlefield", // Tactic Name
+				"Revives you when your Health reaches 0, up to 2 times.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 7),
+				]
+			)
+		),
+		// #endregion
+		// #region Mori Ranmaru
+		new Hero(
+			"Mori Ranmaru", // Name
+			"Ranmaru Mori", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Ice"], // Stat Emblems
+			["Ice", "Slay"], // Stat Emblems Transcended
+			["Oda", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack and Defence by 50% for 10 seconds when you summon [Oda Nobunaga].", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack and Defence by 50% for 15 seconds when you summon [Oda Nobunaga].", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2
+				"Increases Defence by 200% when Health is below 50%.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Defence by 300% when Health is below 50%.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Ran's Your Man!", // Tactic Name
+				"Summons this hero when other heroes who have the [Oda] Emblem have been summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			null
+		),
+		// #endregion
+		// #region Akechi Mitsuhide
+		new Hero(
+			"Akechi Mitsuhide", // Name
+			"Mitsuhide Akechi", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Oda", "Talent", "Master Gunner"], // Personal Emblems
+			["Oda", "Daimyo", "Talent", "Master Gunner"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases your total [Skill] Emblems by 50%.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases your total [Skill] Emblems by 50%.", 
+				"Increases Attack by 15% for every [Master Gunner] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 50% while Health is below 50%.", 
+				"Charges Musou Gauge by 1% when you destroy enemy projectiles.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 50% while Health is below 50%.", 
+				"Charges Musou Gauge by 3% when you destroy enemy projectiles.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Absorption", // Summon Skill Name
+				null, // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Mori Ranmaru", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 2),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Bellflower's Insight", // Tactic Name
+				"Increases Attack by 100% for heroes with the [Oda] Emblem when attacking enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Enemies at Honnoji", // Tactic Name
+				"Increases Attack by 150% and reduces Defence by 60% when the player hero attacks enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Gracia
+		new Hero(
+			"Gracia", // Name
+			null, // Name In-Game
+			["Lady Gracia", "Akechi Gracia"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm"], // Stat Emblems
+			["Charm", "Ice"], // Stat Emblems Transcended
+			["Oda", "Grace", "Torchbearer"], // Personal Emblems
+			["Oda", "Toyotomi", "Grace", "Torchbearer"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases your Tears of Blood by 500 at the start of battle in each phase.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases your Tears of Blood by 500 at the start of battle in each phase.", 
+				"Increases Attack and Defence by 2% for each allied hero (max 150%).",
+			],
+			[ // Trait 2
+				"Slightly charges Assemble Gauge when you inflict [Ice] Freeze on enemies.", 
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 100%).",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Assemble Gauge when you inflict [Ice] Freeze on enemies.", 
+				"Increases Attack by 5% for every 1000 Tears of Blood you possess (max 150%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Tornado Blade", // Summon Skill Name
+				"Ice", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Purely Innocent", // Tactic Name
+				"Gives you Tears of Blood when you attack enemies with [Ice] Freeze.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			),
+			null
+		),
+		// #endregion
+		// #region Maeda Toshiie
+		new Hero(
+			"Maeda Toshiie", // Name
+			"Toshiie Maeda", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Speed", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Oda", "Toyotomi", "Brave General"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Oda] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 7% for every [Oda] Emblem.", 
+				"Increases Musou Gauge charge by 7% for every [Toyotomi] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 50% towards enemies with [Wind] Disorient.", 
+				"Increases EXP acquired by 100% when enemies are defeated with Musou Attacks.",
+			],
+			new SummonSkill( // Summon Skill
+				"Sword Dance", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Mataza of the Spear", // Tactic Name
+				"Increases Musou Gauge charge by 5% for every [Oda] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Mataza of the Spear", // Tactic Name
+				"Increases Musou Gauge charge by 6% for every [Oda] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Maeda Keiji
+		new Hero(
+			"Maeda Keiji", // Name
+			"Keiji Maeda", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Speed", "Wind"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Uesugi", "Oda", "Brave General", "Flower of War"], // Personal Emblems
+			["Uesugi", "Oda", "Independent", "Brave General", "Flower of War"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% for 5 seconds when you interrupt an enemy's telegraphed attack.", 
+				"Slightly charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% for 15 seconds when you interrupt an enemy's telegraphed attack.", 
+				"Moderately charges Musou Gauge when you inflict [Wind] Disorient on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 30% in Danger Zones.", 
+				"Increases Attack and Defence by 50% if you have the \"Matsukaze\" Treasure.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack, Defence, Musou Gauge charge, and Assemble Gauge charge by 40% in Danger Zones.", 
+				"Increases Attack and Defence by 80% if you have the \"Matsukaze\" Treasure.",
+			],
+			new SummonSkill( // Summon Skill
+				"Cleaving Blade", // Summon Skill Name
+				"Wind", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Naoe Kanetsugu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Eccentric Warrior", // Tactic Name
+				"When you inflict [Wind] Disorient, causes an explosion that inflicts enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Okuni", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Eccentric Warrior", // Tactic Name
+				"When you inflict [Wind] Disorient, causes an explosion that inflicts enemies with [Wind] Disorient.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Okuni", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 8),
+				]
+			)
+		),
+		// #endregion
+		// #region Shibata Katsuie
+		new Hero(
+			"Shibata Katsuie", // Name
+			"Katsuie Shibata", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Oda", "Brave General"], // Personal Emblems
+			["Oda", "Brave General", "Daimyo"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 50% towards enemies with [Bolt] Shock.", 
+				"Increases Attack by 7% for every [Oda] Emblem.",
+			],
+			[ // Trait 2
+				"Increases Musou Gauge charge by 10% for every [Oda] Emblem.", 
+				"Increases Assemble Gauge charge by 50% while Health is below 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Musou Gauge charge by 15% for every [Oda] Emblem.", 
+				"Shortens summoning cooldown by 20% for heroes with [Brave General] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Swift Strike", // Summon Skill Name
+				"Bolt", // Summon Skill Element (or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Stampeding Shibata", // Tactic Name
+				"Shortens summoning cooldown by 20% for heroes with [Brave General] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Stampeding Shibata", // Tactic Name
+				"Shortens summoning cooldown by 30% and increases Attack towards enemy barriers by 50% for heroes with [Brave General] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Oda
 	];
 
 	static #mock = 

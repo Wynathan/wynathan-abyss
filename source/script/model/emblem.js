@@ -1,6 +1,7 @@
 class Emblem
 {
 	//#region Defines
+	// #region Stat Emblems
 	static StatVigour = "Vigour";
 	static StatSkill = "Skill";
 	static StatStrength = "Strength";
@@ -13,7 +14,9 @@ class Emblem
 	static ElementWind = "Wind";
 	static ElementBolt = "Bolt";
 	static ElementSlay = "Slay";
+	// #endregion Stat Emblems
 
+	// #region Factions
 	static FactionWei = "Wei";
 	static FactionWu = "Wu";
 	static FactionShu = "Shu";
@@ -22,7 +25,14 @@ class Emblem
 	static FactionDongZhuo = "Dong Zhuo Army";
 	static FactionYuanShao = "Yuan Shao Army";
 	static FactionYellowTurbans = "Yellow Turbans";
+
+	static FactionOda = "Oda";
+	static FactionToyotomi = "Toyotomi";
+	static FactionUesugi = "Uesugi";
+	static FactionAzai = "Azai";
+
 	static FactionIndependent = "Independent";
+	// #endregion Factions
 
 	static TypeAbility = 1;
 	static TypeStat = Emblem.TypeAbility;
@@ -43,6 +53,7 @@ class Emblem
 	{
 		switch (name)
 		{
+			// #region Stat Emblems
 			case Emblem.StatVigour:
 			case Emblem.StatSkill:
 			case Emblem.StatStrength:
@@ -56,6 +67,9 @@ class Emblem
 			case Emblem.ElementBolt:
 			case Emblem.ElementSlay:
 				return Emblem.TypeElement;
+			// #endregion Stat Emblems
+
+			// #region Factions
 			case Emblem.FactionWei:
 			case Emblem.FactionWu:
 			case Emblem.FactionShu:
@@ -65,10 +79,18 @@ class Emblem
 			case Emblem.FactionYuanShao:
 			case Emblem.FactionYellowTurbans:
 			case Emblem.FactionIndependent:
+			case Emblem.FactionOda:
+			case Emblem.FactionToyotomi:
+			case Emblem.FactionUesugi:
+			case Emblem.FactionAzai:
 			// TODO
 				return Emblem.TypeFaction;
+			// #endregion Factions
+			
+			// #region Personal Emblems
 			default:
 				return Emblem.TypePersonal;
+			// #endregion Personal Emblems
 		}
 	}
 
@@ -81,6 +103,7 @@ class Emblem
 	{
 		switch (name)
 		{
+			// #region Stat Emblems
 			case Emblem.StatVigour:
 				return 1;
 			case Emblem.StatSkill:
@@ -104,7 +127,9 @@ class Emblem
 				return 13;
 			case Emblem.ElementSlay:
 				return 14;
+			// #endregion Stat Emblems
 			
+			// #region Factions
 			case Emblem.FactionWei:
 				return 20;
 			case Emblem.FactionWu:
@@ -121,13 +146,27 @@ class Emblem
 				return 26;
 			case Emblem.FactionYellowTurbans:
 				return 27;
+			
+			case Emblem.FactionOda:
+				return 30;
+			case Emblem.FactionToyotomi:
+				return 31;
+			case Emblem.FactionUesugi:
+				return 33;
+			case Emblem.FactionAzai:
+				return 39;
+			
 			case Emblem.FactionIndependent:
-				return 28;
+				return 50;
+			// #endregion Factions
 			
 			// TODO
+			// #region Personal Emblems
+
+			// #endregion Personal Emblems
 
 			default:
-				return 100;
+				return 1000;
 		}
 	}
 
