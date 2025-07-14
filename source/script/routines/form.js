@@ -579,7 +579,8 @@ class Form
 	static toggleEmblemStatsDisplay(isTranscendent)
 	{
 		const form = Form.getFilterFormContainer();
-		const statEmblems = form.querySelectorAll("div[data-" + Form.HasStatsDataKey + "='true']");
+		const query = "div." + Renderer.EmblemClassName + "." + Renderer.EmblemTextClassName;
+		const statEmblems = form.querySelectorAll(query + "[data-" + Form.HasStatsDataKey + "='true']");
 
 		const regex = / x\d+$/g;
 		for (let i = 0; i < statEmblems.length; i++)
@@ -691,7 +692,7 @@ class Form
 			if (!map[emblem.name])
 				map[emblem.name] = new Emblem(emblem.name, emblem.type);
 			else
-				map[emblem.name].amount += 1;
+				map[emblem.name].amount += emblem.amount;
 		};
 
 		for (let heroName in Data.Heroes)
@@ -738,21 +739,15 @@ class Form
 			if (emblemStats[emblemName])
 			{
 				const stats = emblemStats[emblemName];
-				if (stats.isPersonal())
-				{
-					emblem.dataset[Form.StatsDataKey] = stats.amount;
-					hasStats = true;
-				}
+				emblem.dataset[Form.StatsDataKey] = stats.amount;
+				hasStats = true;
 			}
 
 			if (emblemT12Stats[emblemName])
 			{
 				const stats = emblemT12Stats[emblemName];
-				if (stats.isPersonal())
-				{
-					emblem.dataset[Form.StatsT12DataKey] = stats.amount;
-					hasStats = true;
-				}
+				emblem.dataset[Form.StatsT12DataKey] = stats.amount;
+				hasStats = true;
 			}
 
 			if (hasStats)
