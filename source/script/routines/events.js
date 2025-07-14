@@ -114,6 +114,7 @@ class Events
 		{
 			Events.#toggleSelected(target, true)
 			Form.resetFilters();
+			Form.filter();
 
 			window.clearTimeout(Events.#lastResetTimeoutId);
 			Events.#lastResetTimeoutId = window.setTimeout(Events.#toggleSelected, 300, target, false);

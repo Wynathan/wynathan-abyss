@@ -546,10 +546,6 @@ class Form
 		defaults[0] = enableTr;
 		defaults[1] = enableNonTr;
 
-		console.log(defaults.length);
-		console.log(options.length);
-		console.log(displayOptions.length);
-
 		const targetDefaultOptionsLength = options.length - 1;
 		const targetDefaultsLength = targetDefaultOptionsLength + displayOptions.length;
 
