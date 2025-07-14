@@ -23,6 +23,7 @@ class Renderer
 
 	static CursorPointerClassName = "cursor-pointer";
 	static CenterContentClassName = "center-content";
+	static NoWrapClassName = "no-wrap";
 	static ShowCounterClassName = "show-counter";
 
 	static EmblemIconWidth = 57;
@@ -31,6 +32,7 @@ class Renderer
 
 	static EmblemNameDataKey = "emblemname";
 	static IsPlayerDataKey = "isplayer";
+	static IsAllSummonsDataKey = "isallsummons";
 	static IsHeroDataKey = "ishero";
 	static HeroNameDataKey = "heroname";
 	static IsSummonSkillDataKey = "issummonskill";
@@ -592,6 +594,10 @@ class Renderer
 			{
 				div.dataset[Renderer.IsPlayerDataKey] = true;
 			}
+			if (emblemName === TacticTarget.AllSummons)
+			{
+				div.dataset[Renderer.IsAllSummonsDataKey] = true;
+			}
 			else if (Data.SummonSkills[emblemName])
 			{
 				div.classList.add(Renderer.SummonSkillClassName);
@@ -708,6 +714,7 @@ class Renderer
 			const span = window.document.createElement("span");
 			span.innerHTML = text;
 			target.appendChild(span);
+			target.classList.add(Renderer.NoWrapClassName);
 		}
 
 		for (let i = 0; i < activationConditions.length; i++)

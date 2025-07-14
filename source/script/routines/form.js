@@ -265,6 +265,9 @@ class Form
 				{
 					const target = targets[i];
 
+					if (target.isAllSummons())
+						return true;
+
 					if (target.isHero() && target.name === targetHero.name)
 						return true;
 
@@ -436,6 +439,9 @@ class Form
 				for (let i = 0; i < targets.length; i++)
 				{
 					const target = targets[i];
+
+					if (target.isAllSummons())
+						return true;
 
 					if (target.isEmblem() && target.emblem.name === emblemName)
 						return true;

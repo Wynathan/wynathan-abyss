@@ -350,7 +350,11 @@ class Events
 		const emblemName = Renderer.getEmblemName(emblemElement);
 
 		Form.resetFilters();
-		Form.toggleFilterByKey(emblemName);
+
+		if (emblemName === TacticTarget.AllSummons)
+			Form.filter();
+		else
+			Form.toggleFilterByKey(emblemName);
 	}
 
 	/**

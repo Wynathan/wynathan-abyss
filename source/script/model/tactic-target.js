@@ -1,11 +1,13 @@
 class TacticTarget
 {
 	static Player = "Player";
+	static AllSummons = "Everyone";
 
 	static TypePlayer = 1;
 	static TypeHero = 2;
 	static TypeEmblem = 3;
 	static TypeSummoningSkill = 4;
+	static TypeAllSummons = 5;
 
 	/** @type {number} */
 	type;
@@ -27,6 +29,9 @@ class TacticTarget
 		{
 			case TacticTarget.TypePlayer:
 				this.name = TacticTarget.Player;
+				break;
+			case TacticTarget.TypeAllSummons:
+				this.name = TacticTarget.AllSummons;
 				break;
 			case TacticTarget.TypeEmblem:
 				this.emblem = new Emblem(name);
@@ -56,5 +61,10 @@ class TacticTarget
 	isSummonSkill()
 	{
 		return this.type === TacticTarget.TypeSummoningSkill;
+	}
+
+	isAllSummons()
+	{
+		return this.type === TacticTarget.TypeAllSummons;
 	}
 }
