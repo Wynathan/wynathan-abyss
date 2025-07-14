@@ -208,7 +208,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Absorption", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Conditions
 					new SummonActivationCondition("Xun Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Guo Jia", SummonActivationCondition.TypeHero),
@@ -268,7 +268,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Explosive Bullet", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Zhen Ji", SummonActivationCondition.TypeHero),
@@ -331,7 +331,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Explosive Bullet", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
 				],
@@ -391,7 +391,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Iron Wall", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
@@ -453,7 +453,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
@@ -514,7 +514,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
@@ -577,7 +577,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -638,7 +638,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Attack)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Xun Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
@@ -699,7 +699,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Meteor Strike", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
 				],
@@ -761,7 +761,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Xiahou Dun", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Xu Chu", SummonActivationCondition.TypeHero),
@@ -822,7 +822,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sweeping Cyclone", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Dian Wei", SummonActivationCondition.TypeHero),
@@ -884,7 +884,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Soaring Blade", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -947,7 +947,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Amplifying Orb", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhang He", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -1011,7 +1011,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sweeping Cyclone", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -1073,7 +1073,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Swift Strike", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Yuan Shao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
@@ -1136,7 +1136,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Burst of Flowers", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -1203,7 +1203,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 5),
 				],
@@ -1266,7 +1266,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Da Qiao", SummonActivationCondition.TypeHero),
@@ -1328,7 +1328,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Defence)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
 				],
@@ -1386,7 +1386,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Jian", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 8),
@@ -1447,7 +1447,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -1499,7 +1499,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -1563,7 +1563,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Homing Blades", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhou Yu", SummonActivationCondition.TypeHero),
 				],
@@ -1621,7 +1621,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Oppressive Formation (Attack)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -1682,7 +1682,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sword Dance", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Lu Xun", SummonActivationCondition.TypeHero),
@@ -1744,7 +1744,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 2),
@@ -1805,7 +1805,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Amplifying Orb", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Jian", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
@@ -1866,7 +1866,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tornado Blade", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Ce", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -1927,7 +1927,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Swift Strike", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
@@ -1989,7 +1989,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Soaring Blade", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Lü Meng", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -2052,7 +2052,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Mist", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
@@ -2121,7 +2121,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -2187,7 +2187,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -2237,7 +2237,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tornado Blade", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Guan Yinping", SummonActivationCondition.TypeHero),
@@ -2300,7 +2300,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Explosive Bullet", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -2360,7 +2360,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sweeping Cyclone", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -2374,8 +2374,7 @@ class Data
 				"Match for 10,000 Foes", // Tactic Name
 				"Increases Attack by 100% towards enemies with [Wind] Disorient.", // Tactic Description
 				[ // Tactic Targets
-					// TODO: have to check
-					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"), 
 					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
@@ -2387,8 +2386,7 @@ class Data
 				"Match for 10,000 Foes", // Tactic Name
 				"Increases Attack by 120% towards enemies with [Wind] Disorient.", // Tactic Description
 				[ // Tactic Targets
-					// TODO: have to check
-					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"), 
 					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
@@ -2425,7 +2423,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
 				],
@@ -2486,7 +2484,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Meteor Strike", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -2549,7 +2547,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
 				],
@@ -2609,7 +2607,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Oppressive Formation (Defence)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
@@ -2670,7 +2668,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Homing Blades", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhang Liao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Pang Tong", SummonActivationCondition.TypeHero),
@@ -2733,7 +2731,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Amplifying Orb", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
 				],
@@ -2796,7 +2794,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Soaring Blade", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
@@ -2858,7 +2856,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Guan Yu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wei Yan", SummonActivationCondition.TypeHero),
@@ -2919,7 +2917,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Swift Strike", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhang Fei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -2982,7 +2980,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sweeping Cyclone", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Zhao Yun", SummonActivationCondition.TypeHero),
@@ -3045,7 +3043,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sword Dance", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhao Yun", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
@@ -3112,7 +3110,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
@@ -3123,7 +3121,7 @@ class Data
 			),
 			new SummonSkill( // Summon Skill Transcended
 				"Iron Wall", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Cao Pi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
@@ -3193,7 +3191,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Attack)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -3252,7 +3250,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Amplifying Orb", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Zhang Chunhua", SummonActivationCondition.TypeHero),
@@ -3315,7 +3313,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Meteor Strike", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Yi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wang Yuanji", SummonActivationCondition.TypeHero),
@@ -3377,7 +3375,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Homing Blades", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Zhao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Jin", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -3438,7 +3436,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sima Zhao", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Jiang Wei", SummonActivationCondition.TypeHero),
@@ -3505,7 +3503,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"War God's Cry", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Diaochan", SummonActivationCondition.TypeHero),
 				],
@@ -3568,7 +3566,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Speed)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 10),
 				],
@@ -3628,7 +3626,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 5),
@@ -3690,7 +3688,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Oppressive Formation (Attack)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Lü Bu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 5),
@@ -3754,7 +3752,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Meteor Strike", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -3817,7 +3815,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 8),
 					new SummonActivationCondition("Commander", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -3880,7 +3878,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Disarming Wave", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 3),
 					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 8),
@@ -3942,7 +3940,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tornado Blade", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Zhuge Liang", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
@@ -4005,7 +4003,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Meng Huo", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
@@ -4070,7 +4068,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Lady No", SummonActivationCondition.TypeHero),
 				],
@@ -4129,7 +4127,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
 				],
@@ -4191,7 +4189,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Defence)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Azai Nagamasa", SummonActivationCondition.TypeHero),
 				],
@@ -4249,7 +4247,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
@@ -4300,7 +4298,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Absorption", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Mori Ranmaru", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 2),
@@ -4361,7 +4359,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tornado Blade", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
 				],
@@ -4412,7 +4410,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sword Dance", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -4472,7 +4470,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Naoe Kanetsugu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -4535,7 +4533,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Swift Strike", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -4602,7 +4600,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Explosive Bullet", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Nene", SummonActivationCondition.TypeHero),
 				],
@@ -4661,7 +4659,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Burst of Flowers", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
@@ -4713,7 +4711,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Mist", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -4775,7 +4773,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Takenaka Hanbei", SummonActivationCondition.TypeHero),
@@ -4837,7 +4835,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Shima Sakon", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Otani Yoshitsugu", SummonActivationCondition.TypeHero),
@@ -4900,7 +4898,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ishida Mitsunari", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
@@ -4963,7 +4961,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Inspired Formation (Speed)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ishida Mitsunari", SummonActivationCondition.TypeHero),
 				],
@@ -5024,7 +5022,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Swift Strike", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5086,7 +5084,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Azai Nagamasa", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
@@ -5148,7 +5146,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Chacha", SummonActivationCondition.TypeHero),
 				],
@@ -5218,7 +5216,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Honda Tadakatsu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5279,7 +5277,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Legendary Blow", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null) // TODO: check if Flame
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Tokugawa Ieyasu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Ina", SummonActivationCondition.TypeHero),
@@ -5342,7 +5340,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sanada Nobuyuki", SummonActivationCondition.TypeHero),
 				],
@@ -5402,7 +5400,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ii Naomasa", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5463,7 +5461,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sword Dance", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Honda Tadakatsu", SummonActivationCondition.TypeHero),
 				],
@@ -5523,7 +5521,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Meteor Strike", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Otani Yoshitsugu", SummonActivationCondition.TypeHero),
 				],
@@ -5584,7 +5582,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Mist", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Tokugawa Ieyasu", SummonActivationCondition.TypeHero),
 				],
@@ -5648,7 +5646,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Soaring Blade", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -5710,7 +5708,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tornado Blade", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Hojo Ujiyasu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5772,7 +5770,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Burst of Flowers", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Hojo Ujiyasu", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5840,7 +5838,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Cleaving Blade", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Takeda Shingen", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -5902,7 +5900,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Amplifying Orb", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ishida Mitsunari", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 5),
@@ -5965,7 +5963,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Iron Wall", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Uesugi Kenshin", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Strength", SummonActivationCondition.TypeStatEmblem, 10),
@@ -6032,7 +6030,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Tactical Focus", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Takeda Shingen", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
@@ -6094,7 +6092,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sanada Masayuki", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Ina", SummonActivationCondition.TypeHero),
@@ -6158,7 +6156,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Soaring Blade", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
@@ -6222,7 +6220,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sanada Yukimura", SummonActivationCondition.TypeHero),
 				],
@@ -6283,7 +6281,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Sanada Yukimura", SummonActivationCondition.TypeHero),
 				],
@@ -6350,7 +6348,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Homing Blades", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Imagawa", SummonActivationCondition.TypePersonalEmblem, 2),
 				],
@@ -6410,7 +6408,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sword Dance", // Summon Skill Name
-				"Ice", // Summon Skill Element (or null)
+				"Ice", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
 				],
@@ -6471,7 +6469,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"April Showers", // Summon Skill Name
-				"Slay", // Summon Skill Element (or null)
+				"Slay", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Wisdom", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -6523,7 +6521,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Oppressive Formation (Defence)", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Mori Monotari", SummonActivationCondition.TypeHero),
 				],
@@ -6583,7 +6581,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
 					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -6646,7 +6644,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Sweeping Cyclone", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Shimazu Yoshihiro", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
@@ -6709,7 +6707,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Homing Blades", // Summon Skill Name
-				"Bolt", // Summon Skill Element (or null)
+				"Bolt", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Tachibana Muneshige", SummonActivationCondition.TypeHero),
 				],
@@ -6772,7 +6770,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Rapid-Fire Cannon", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Tachibana Ginchiyo", SummonActivationCondition.TypeHero),
 				],
@@ -6835,7 +6833,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Western Region", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -6896,7 +6894,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Dazzling Bullets", // Summon Skill Name
-				"Wind", // Summon Skill Element (or null)
+				"Wind", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Daimyo", SummonActivationCondition.TypePersonalEmblem, 3),
 					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 2),
@@ -6960,7 +6958,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Earth Shatter", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Toyotomi Hideyoshi", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
@@ -7022,7 +7020,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Disarming Wave", // Summon Skill Name
-				null, // Summon Skill Element (or null)
+				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Maeda Keiji", SummonActivationCondition.TypeHero),
 					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -7084,7 +7082,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Burst of Flowers", // Summon Skill Name
-				"Flame", // Summon Skill Element (or null)
+				"Flame", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Okuni", SummonActivationCondition.TypeHero),
 				],
@@ -7108,6 +7106,442 @@ class Data
 		// #endregion
 
 		// #endregion Other Samurai Warriors
+
+		// #region Guest
+
+		// #region Sophie
+		new Hero(
+			"Sophie", // Name
+			"Lady Sophie", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Flame", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Flower of War", "Talent"], // Personal Emblems
+			["Independent", "Flower of War", "Grace", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Assemble Gauge charge by 10% for every [Flower of War] Emblem.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Assemble Gauge charge by 10% for every [Flower of War] Emblem.", 
+				"Increases your total [Wisdom] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Independent] Emblem.", 
+				"Deals extra [Bolt] damage when you destroy enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 10% for every [Independent] Emblem.", 
+				"Deals extra [Bolt] damage when you destroy enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Alchemy", // Summon Skill Name
+				["Flame", "Bolt"], // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 2),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Law of Profusion", // Tactic Name
+				"Shortens summoning cooldown by 20% and increases Attack by 20% for heroes with [Flower of War] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 6),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Law of Profusion", // Tactic Name
+				"Shortens summoning cooldown by 40% and increases Attack by 20% for heroes with [Flower of War] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 3),
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 6),
+				]
+			)
+		),
+		// #endregion
+		// #region Ryza
+		new Hero(
+			"Ryza", // Name
+			null, // Name In-Game
+			["Lady Ryza"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Flame", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Flower of War", "Talent"], // Personal Emblems
+			["Independent", "Flower of War", "Grace", "Talent"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases hero rerolls at Crystal Saplings by 15.", 
+				"Makes it more likely for heroes with [Flower of War] Emblems to appear at Crystal Saplings.",
+			],
+			[ // Trait 1 Transcended
+				"Increases hero rerolls at Crystal Saplings by 15.", 
+				"Makes it more likely for heroes with [Flower of War] Emblems to appear at Crystal Saplings.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Flower of War] Emblem.", 
+				"When you defeat an enemy, causes an explosion that inflicts enemies with [Flame] Burn.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 7% for every [Flower of War] Emblem.", 
+				"When you defeat an enemy, causes an explosion that inflicts enemies with [Flame] Burn.",
+			],
+			new SummonSkill( // Summon Skill
+				"Alchemy", // Summon Skill Name
+				["Flame", "Ice"], // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 2),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Heaven's Quasar", // Tactic Name
+				"Summons other heroes who have [Flower of War] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Heaven's Quasar", // Tactic Name
+				"Summons other heroes who have [Flower of War] Emblem when this hero is summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Yumia
+		new Hero(
+			"Yumia", // Name
+			null, // Name In-Game
+			["Lady Yumia"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Wind", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Flower of War", "Master Gunner"], // Personal Emblems
+			["Independent", "Flower of War", "Grace", "Master Gunner"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 5% for every [Independent] Emblem.", 
+				"When you inflict [Wind] Disorient, causes an explosion that inflicts enemies with [Wind] Disorient.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 10% for every [Independent] Emblem.", 
+				"When you inflict [Wind] Disorient, causes an explosion that inflicts enemies with [Wind] Disorient.",
+			],
+			[ // Trait 2
+				"Increases your total [Wind] Emblems by 50%.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Increases your total [Wind] Emblems by 50%.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Alchemy", // Summon Skill Name
+				["Wind", "Slay"], // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 2),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Requiem Trigger", // Tactic Name
+				"Increases Attack by 50% for heroes with [Independent] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Independent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Requiem Trigger", // Tactic Name
+				"Increases Attack by 50% for heroes with [Independent] Emblem and for attacks towards enemy barriers.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Independent"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		
+		// #region Hayabusa Ryu
+		new Hero(
+			"Hayabusa Ryu", // Name
+			"Ryu Hayabusa", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Vigour", "Skill", "Speed", "Speed"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Brave General", "Shinobi", "Shinobi", "Shinobi"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Replenishes Health by 1% after every 50 enemies defeated.", 
+				"Increases your total [Speed] Emblems by 50%.",
+			],
+			[ // Trait 1 Transcended
+				"Replenishes Health by 1% after every 50 enemies defeated.", 
+				"Increases your total [Speed] Emblems by 70%.",
+			],
+			[ // Trait 2
+				"Increases Attack Speed by 10% for 10 seconds after evading.", 
+				"Increases your total [Vigour] Emblems by 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack Speed by 10% for 10 seconds after evading.", 
+				"Increases your total [Vigour] Emblems by 70%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Art of the Inferno", // Summon Skill Name
+				"Flame", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypeHero, 4),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"The Dragon Ninja", // Tactic Name
+				"Increases Speed and Attack Speed by 15% for the player hero.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 12),
+					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypeHero, 7),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"The Dragon Ninja", // Tactic Name
+				"Increases Speed and Attack Speed by 15% for the player hero.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypeHero, 7),
+				]
+			)
+		),
+		// #endregion
+		// #region Ayane
+		new Hero(
+			"Ayane", // Name
+			null, // Name In-Game
+			["Lady Ayane"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Speed", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Shinobi", "Flower of War"], // Personal Emblems
+			["Independent", "Shinobi", "Flower of War", "Grace"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 7% for every [Shinobi] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 7% for every [Shinobi] Emblem.", 
+				"Replenishes Health by 1% after every 50 enemies defeated.",
+			],
+			[ // Trait 2
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.", 
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Slightly charges Musou Gauge when you inflict [Slay] Wound on enemies.", 
+				"Sets up a barrier to block attacks for 10 seconds after you defeat 4 Sin Spewer enemies.",
+			],
+			new SummonSkill( // Summon Skill
+				"Flash Kunai", // Summon Skill Name
+				"Slay", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 2),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Mugen Tenshin Style", // Tactic Name
+				"Increases Attack by 50% for heroes with the [Speed] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Speed"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Mugen Tenshin Style", // Tactic Name
+				"Increases Attack by 50% for heroes with the [Speed] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Speed"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
+		),
+		// #endregion
+		// #region Rachel
+		new Hero(
+			"Rachel", // Name
+			null, // Name In-Game
+			["Lady Rachel"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Vigour", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Brave General", "Might"], // Personal Emblems
+			["Independent", "Brave General", "Flower of War", "Might"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 10% for every [Might] Emblem.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 10% for every [Might] Emblem.", 
+				"Makes defeated enemies explode, dealing damage to nearby enemies.",
+			],
+			[ // Trait 2
+				"Causes an explosion that damages nearby enemies when you destroy enemy projectiles.", 
+				"Replenishes 20% of your Health when you level up.",
+			],
+			[ // Trait 2 Transcended
+				"Causes an explosion that damages nearby enemies when you destroy enemy projectiles.", 
+				"Replenishes 20% of your Health when you level up.",
+			],
+			new SummonSkill( // Summon Skill
+				"Heavy Machine Gun", // Summon Skill Name
+				"Bolt", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Fiend Blood", // Tactic Name
+				"Increases Attack by 100% for heroes with [Might] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 6),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Fiend Blood", // Tactic Name
+				"Increases Attack by 100% for heroes with [Might] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			)
+		),
+		// #endregion
+		// #region Momiji
+		new Hero(
+			"Momiji", // Name
+			null, // Name In-Game
+			["Lady Momiji"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Speed", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Master Archer", "Shinobi", "Grace"], // Personal Emblems
+			["Independent", "Master Archer", "Shinobi", "Flower of War", "Grace"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+				"Restores 10% of your Health at the start of battle in each phase.",
+			],
+			[ // Trait 2
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			[ // Trait 2 Transcended
+				"Causes an explosion that damages nearby enemies when you destroy enemy barriers.", 
+				"Increases Attack by 30% for Charge Attacks towards enemy barriers.",
+			],
+			new SummonSkill( // Summon Skill
+				"Heavensong Bow", // Summon Skill Name
+				"Flame", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Master Archer", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Heavenbreaker", // Tactic Name
+				"Increases Attack by 5% for every [Speed] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Heavenbreaker", // Tactic Name
+				"Increases Attack by 5% for every [Speed] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+
+		// #endregion Guest
 	];
 
 	static #mock = 
@@ -7140,7 +7574,7 @@ class Data
 			],
 			new SummonSkill( // Summon Skill
 				"Placeholder", // Summon Skill Name
-				"Placeholder", // Summon Skill Element (or null)
+				"Placeholder", // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Placeholder", SummonActivationCondition.TypeHero, 10),
 				],
