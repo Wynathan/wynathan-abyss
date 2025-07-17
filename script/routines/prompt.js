@@ -68,35 +68,11 @@ class Prompt
 	 */
 	static show(e)
 	{
-		const prompt = Prompt.#getPrompt();
-		const hiddenClassName = Renderer.HiddenClassName;
-
-		prompt.classList.remove(hiddenClassName);
-
-		const boundaryWidth = window.innerWidth;
-		const boundaryHeight = window.document.querySelector("body").clientHeight;
-
-		const promptWidth = prompt.offsetWidth;
-		const promptHeight = prompt.offsetHeight;
-
-		const marginX = 20;
-		const marginY = 20;
-
-		let x = e.pageX;
-		let y = e.pageY;
-
-		if (x + promptWidth > boundaryWidth - marginX)
-			x = x - promptWidth;
-
-		if (y + promptHeight > boundaryHeight - marginY)
-			y = y - promptHeight;
-
-		prompt.style.left = x + "px";
-		prompt.style.top = y + "px";
-
-
 		/** @type {Element} */
 		const target = e.target.nodeName === "CANVAS" ? e.target.parentElement : e.target;
+
+		const prompt = Prompt.#getPrompt();
+		const hiddenClassName = Renderer.HiddenClassName;
 		
 		const whoIs = prompt.querySelector("#" + Prompt.WhoIsId);
 		const whoBuffs = prompt.querySelector("#" + Prompt.WhoBuffsId);
@@ -186,5 +162,29 @@ class Prompt
 				whoIsElement.addEventListener("click", Events.whoseSkillIsElementOnClick);
 			}
 		}
+
+		// Move Prompt to the target
+		prompt.classList.remove(hiddenClassName);
+
+		const boundaryWidth = window.innerWidth;
+		const boundaryHeight = window.document.querySelector("body").clientHeight;
+
+		const promptWidth = prompt.offsetWidth;
+		const promptHeight = prompt.offsetHeight;
+
+		const marginX = 20;
+		const marginY = 20;
+
+		let x = e.pageX;
+		let y = e.pageY;
+
+		if (x + promptWidth > boundaryWidth - marginX)
+			x = x - promptWidth;
+
+		if (y + promptHeight > boundaryHeight - marginY)
+			y = y - promptHeight;
+
+		prompt.style.left = x + "px";
+		prompt.style.top = y + "px";
 	}
 }
