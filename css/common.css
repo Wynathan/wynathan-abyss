@@ -39,3 +39,45 @@
 {
 	color: #c6a600;
 }
+
+.para-h1
+{
+	font-size: 2em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
+
+.para-h2
+{
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
+
+.para-h3
+{
+	font-size: 1.17em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
+
+.para-h4
+{
+	font-size: 1em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
+
+.para-h5
+{
+	font-size: 0.83em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
+
+.para-h6
+{
+	font-size: 0.67em;
+	font-weight: bold;
+	margin-block: 0.67em;
+}
