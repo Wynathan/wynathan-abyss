@@ -1,0 +1,163 @@
+/* Credit: https://css-tricks.com/responsive-data-tables/ */
+@media only screen 
+	and (max-width: 760px), (min-device-width: 768px) 
+	and (max-device-width: 1024px)
+{
+	#copyright > div
+	{
+		transform: none !important;
+		top: 5%;
+		left: 10%;
+		width: 80% !important;
+		max-width: 80% !important;
+		height: 80% !important;
+		max-height: 80% !important;
+	}
+
+	#copyright .copyright-button-close
+	{
+		/* float: left !important; */
+		padding-top: 5px !important;
+		padding-right: 30px !important;
+	}
+
+	.hidden, .t12-hidden, .display-hidden
+	{
+		display: none !important;
+	}
+	
+	/* Force table to not be like tables anymore */
+	table.table-root, thead, tbody, th, td, tr 
+	{
+		display: block !important;
+	}
+
+	body, header, main, footer, .filter-form
+	{
+		display: block !important;
+		max-width: 100% !important;
+	}
+
+	header 
+	{
+		text-align: center !important;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	table.table-root thead tr
+	{
+		position: absolute !important;
+		top: -9999px !important;
+		left: -9999px !important;
+	}
+
+	table.table-root tr
+	{
+		margin: 0 0 20px 0 !important;
+	}
+
+	.table-root tr.table-result-row,	
+		.table-root tr.table-result-row td
+	{
+		height: auto !important;
+	}
+	
+	table.table-root td 
+	{
+		position: relative !important;
+		text-align: start !important;
+		align-items: start !important;
+		justify-content: start !important;
+		width: calc(100% - 170px) !important; /* total width of td:before 150 + main padding 20 */
+		min-width: calc(100% - 170px) !important;
+		max-width: calc(100% - 170px) !important;
+		min-height: 30px !important;
+		padding-left: 160px !important;
+		margin-right: 20px !important;
+		/* Behave  like a "row" */
+		border-top: 0px solid #544c4a !important;
+		border-left: 4px solid #544c4a !important;
+		border-right: 4px solid #544c4a !important;
+		border-bottom: 4px solid #544c4a !important;
+		/* border-bottom: 1px solid #eee !important; */
+	}
+
+	table.table-root td:before 
+	{
+		/* Now like a table header */
+		text-align: left !important;
+		position: absolute !important;
+		/* Top/left values mimic padding */
+		top: 0 !important;
+		left: 6px !important;
+		width: 150px !important;
+		height: 99% !important;
+		padding-top: 5px !important;
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+		padding-bottom: 0px !important;
+		border-right: 4px solid #544c4a !important;
+		/* white-space: nowrap !important; */
+	}
+
+	table.table-root td:first-child
+	{
+		border-top: 4px solid #544c4a !important;
+	}
+
+	/* Label the data */
+	table.table-root td:nth-of-type(1):before { content: "Name" !important; }
+	table.table-root td:nth-of-type(2):before { content: "Stat Emblems"; }
+	table.table-root td:nth-of-type(3):before { content: "Hero Emblems"; }
+	table.table-root td:nth-of-type(4):before { content: "Traits 1"; }
+	table.table-root td:nth-of-type(5):before { content: "Traits 2"; }
+	table.table-root td:nth-of-type(6):before { content: "Summon Skill"; }
+	table.table-root td:nth-of-type(7):before { content: "Skill Element"; }
+	table.table-root td:nth-of-type(8):before { content: "Hero Tactic"; }
+	table.table-root td:nth-of-type(9):before { content: "Tactic Targets"; }
+
+	/* Row number before Hero Name emblem */
+	table.table-root tr.show-counter td:first-child .emblems-container:first-child::before
+	{
+		vertical-align: middle;
+		content: counter(rowNumber);
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+
+	table.table-root .trait,
+		table.table-root .summon-tactic-name, 
+		table.table-root .summon-tactic-description
+	{
+		padding-left: 6px !important;
+		padding-right: 6px !important;
+	}
+
+	/* .filter-form #filter-personal-emblems .filter-group */
+	.filter-group
+	{
+		/* max-width: fit-content !important; */
+		width: calc(100% - 8px) !important;
+		max-width: calc(100% - 8px) !important;
+	}
+
+	.filter-form #search
+	{
+		text-align: center !important;
+	}
+
+	.t12-container .t12-wrapper .emblems-container
+	{
+		align-self: normal !important;
+	}
+
+	.emblems-container
+	{
+		text-align: left !important;
+	}
+
+	.summon-skill-container
+	{
+		display: inline-block !important;
+	}
+}

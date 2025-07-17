@@ -1,0 +1,88 @@
+.table-root tbody tr.show-counter
+{
+	/* position: relative; */
+	counter-increment: rowNumber;
+}
+
+/* Row number before Hero Name emblem */
+.table-root tbody tr.show-counter td:first-child::before 
+{
+	content: counter(rowNumber);
+	padding-top: 3px;
+	padding-left: 3px;
+	padding-right: 0px;
+	padding-bottom: 3px;
+}
+
+.table-header .header-name, 
+	tr.table-result-row > td:nth-of-type(1)
+{
+	width: 140px;
+	min-width: 140px;
+	max-width: 140px;
+}
+
+.table-header .header-stats, 
+	tr.table-result-row > td:nth-of-type(2)
+{
+	width: 80px;
+	min-width: 80px;
+	max-width: 80px;
+}
+
+.table-header .header-emblems, 
+	tr.table-result-row > td:nth-of-type(3)
+{
+	width: 160px;
+	min-width: 160px;
+	max-width: 160px;
+}
+
+.table-header .header-traits-1, .table-header .header-traits-2, 
+	tr.table-result-row > td:nth-of-type(4), 
+	tr.table-result-row > td:nth-of-type(5)
+{
+	width: 240px;
+	min-width: 240px;
+	max-width: 240px;
+}
+
+.table-header .header-skill, 
+	tr.table-result-row > td:nth-of-type(6)
+{
+	width: 160px;
+	min-width: 160px;
+	max-width: 160px;
+}
+
+.table-header .header-skill-element, 
+	tr.table-result-row > td:nth-of-type(7)
+{
+	width: 50px;
+	min-width: 50px;
+	max-width: 50px;
+}
+
+.table-header .header-tactic, 
+	tr.table-result-row > td:nth-of-type(8)
+{
+	vertical-align: top;
+	width: 240px;
+	min-width: 240px;
+	max-width: 240px;
+}
+
+.table-header .header-tactic-targets, 
+	tr.table-result-row > td:nth-of-type(9)
+{
+	width: 100px;
+	min-width: 100px;
+	max-width: 100px;
+}
+
+.table-header .header-tactic,
+	.table-header .header-traits-1, 
+	.table-header .header-traits-2
+{
+	vertical-align: middle;
+}

@@ -1,0 +1,41 @@
+.cursor-pointer
+{
+	cursor: pointer;
+}
+
+.center-content
+{
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.no-wrap
+{
+	white-space: nowrap;
+}
+
+.hidden, .t12-hidden, .display-hidden
+{
+	display: none !important;
+}
+
+.highlight-text-blue-dark 
+{
+	color: #67b3ec;
+}
+
+.highlight-text-blue-bright 
+{
+	color: #a9f3ec;
+}
+
+.highlight-text-red
+{
+	color: #e77d7d;
+}
+
+.highlight-text-gold
+{
+	color: #c6a600;
+}

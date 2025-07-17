@@ -1,0 +1,69 @@
+.table-root
+{
+	color: #d6d6d6;
+	width: fit-content;
+	/* margin: auto; */
+	border-collapse: separate;
+	border-spacing: 0px;
+}
+
+.table-root .table-header th
+{
+	background-color: #0d375d;
+	padding: 2px;
+	border-top: 4px solid #544c4a;
+	border-right: 4px solid #544c4a;
+	border-bottom: 4px solid #544c4a;
+}
+
+.table-root .table-header th:first-child
+{
+	border-top-left-radius: 8px;
+	border-left: 4px solid #544c4a;
+}
+
+.table-root .table-header th:last-child
+{
+	border-top-right-radius: 8px;
+}
+
+.table-root tbody
+{
+	text-align: left;
+}
+
+.table-root tr.table-result-row
+{
+	height: 1px; /* make sure the browser knows the rows actually have a height  */
+}
+
+.table-root tr.table-result-row td
+{
+	background-color: #000821;
+	height: 1px; /* make sure the browser knows the rows actually have a height  */
+	border-right: 4px solid #544c4a;
+	border-bottom: 4px solid #544c4a;
+}
+
+@supports (height: -moz-available)
+{
+	.table-root tr.table-result-row td
+	{
+		height: 100%;
+	}
+}
+
+.table-root tr.table-result-row td:first-child
+{
+	border-left: 4px solid #544c4a;
+}
+
+.table-root tr.table-result-row:last-child td:first-child
+{
+	border-bottom-left-radius: 8px;
+}
+
+.table-root tr.table-result-row:last-child td:last-child
+{
+	border-bottom-right-radius: 8px;
+}
