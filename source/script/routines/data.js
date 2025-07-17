@@ -1817,7 +1817,7 @@ class Data
 			null, // Summon Skill Transcended
 			new Tactic( // Tactic
 				"Desperate Measures", // Tactic Name
-				"Changes the Status Inflictionfor Summoning Skill [Amplifying Orb] to 100%.", // Tactic Description
+				"Changes the Status Infliction for Summoning Skill [Amplifying Orb] to 100%.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeSummoningSkill, "Amplifying Orb"),
 				],
@@ -3137,7 +3137,7 @@ class Data
 					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Bold"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
 					new TacticTarget(TacticTarget.TypePlayer),
 				],
