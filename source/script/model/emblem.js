@@ -301,4 +301,23 @@ class Emblem
 	{
 		return this.type === Emblem.TypeFaction;
 	}
+
+	/**
+	 * 
+	 * @param {Emblem} other 
+	 * @returns {boolean}
+	 */
+	equals(other)
+	{
+		if (!other)
+			return false;
+
+		if (this.name !== other.name)
+			return false;
+
+		if (this.type !== other.type)
+			return false;
+
+		return this.amount === other.amount;
+	}
 }

@@ -161,4 +161,106 @@ class Hero
 		else
 			this.tacticTranscended = tactic;
 	}
+
+	doesT12ChangeStats()
+	{
+		/**
+		 * 
+		 * @param {Object.<string, Emblem>} a 
+		 * @param {Object.<string, Emblem>} b 
+		 * @returns boolean
+		 */
+		const doesNotContain = function(a, b)
+		{
+			for (let emblemName in a)
+			{
+				const aEmblem = a[emblemName];
+				if (!aEmblem.isStatOrElement())
+					continue;
+
+				const bEmblem = b[emblemName];
+				if (!bEmblem)
+					return true;
+
+				if (aEmblem.amount !== bEmblem.amount)
+					return true;
+			}
+
+			return false;
+		}
+
+		const a = this.emblems;
+		const b = this.emblemsTranscended;
+
+		return doesNotContain(a, b) || doesNotContain(b, a);
+	}
+
+	doesT12ChangePersonal()
+	{
+		/**
+		 * 
+		 * @param {Object.<string, Emblem>} a 
+		 * @param {Object.<string, Emblem>} b 
+		 * @returns boolean
+		 */
+		const doesNotContain = function(a, b)
+		{
+			for (let emblemName in a)
+			{
+				const aEmblem = a[emblemName];
+				if (!aEmblem.isPersonal())
+					continue;
+
+				const bEmblem = b[emblemName];
+				if (!bEmblem)
+					return true;
+
+				if (aEmblem.amount !== bEmblem.amount)
+					return true;
+			}
+
+			return false;
+		}
+
+		const a = this.emblems;
+		const b = this.emblemsTranscended;
+
+		return doesNotContain(a, b) || doesNotContain(b, a);
+	}
+
+	/**
+	 * 
+	 * @param {string[]} a 
+	 * @param {string[]} b 
+	 * @returns {boolean}
+	 */
+	#areStringArraysEqual(a, b)
+	{
+		if (!a || !b)
+			return false;
+
+		if (a === b)
+			return true;
+
+		if (a.length !== b.length)
+			return false;
+
+		for (let i = 0; i < a.length; i++)
+		{
+			if (a[i] !== b[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	doesT12ChangeTrait1()
+	{
+		return !this.#areStringArraysEqual(this.trait1, this.trait1Transcended);
+	}
+
+	doesT12ChangeTrait2()
+	{
+		return !this.#areStringArraysEqual(this.trait2, this.trait2Transcended);
+	}
 }

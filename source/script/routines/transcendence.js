@@ -1,6 +1,10 @@
 class Transcendence
 {
 	static TargetClassName = "t12-target"
+	static ContainerClassName = "t12-container";
+	static ShareClassName = "t12-share";
+	static WrapperClassName = "t12-wrapper";
+	static IconClassName = "t12-icon";
 	static HiddenClassName = "t12-hidden";
 	static DataKey = "t12";
 	static Options =
@@ -29,12 +33,12 @@ class Transcendence
 	/**
 	 * 
 	 * @param {HTMLTableCellElement} element 
-	 * @param {boolean} isTranscendent 
+	 * @param {boolean|string} isTranscendent 
 	 */
 	static setTranscendenceData(element, isTranscendent)
 	{
 		element.classList.add(Transcendence.TargetClassName);
-		element.dataset[Transcendence.DataKey] = Boolean(isTranscendent);
+		element.dataset[Transcendence.DataKey] = isTranscendent;
 	}
 
 	static getOptions()
@@ -49,7 +53,8 @@ class Transcendence
 	{
 		const transcendenceOptionsElements = Transcendence.getOptions();
 		const options = { };
-		for (let i = 0; i < transcendenceOptionsElements.length; i++) {
+		for (let i = 0; i < transcendenceOptionsElements.length; i++) 
+		{
 			const element = transcendenceOptionsElements[i];
 			/** @type {string} */
 			const key = element.dataset[Transcendence.DataKey];
@@ -57,7 +62,7 @@ class Transcendence
 			options[key] = isSelected;
 		}
 
-		const table = window.document.getElementById(Renderer.TargetTableId);
+		const table = Renderer.getTableBody();
 		const targets = table.querySelectorAll("." + Transcendence.TargetClassName);
 
 		for (let i = 0; i < targets.length; i++)

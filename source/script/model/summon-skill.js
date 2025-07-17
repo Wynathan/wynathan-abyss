@@ -1,5 +1,9 @@
 class SummonSkill 
 {
+	static BuffAmount = "Amount";
+	static BuffRange = "Range";
+	static BuffDuration = "Duration";
+
 	/** @type {string} */
 	name;
 	/** @type {Emblem[]=} */
@@ -85,5 +89,48 @@ class SummonSkill
 		}
 
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param {SummonSkill} other 
+	 * @returns {boolean}
+	 */
+	equals(other)
+	{
+		if (!other)
+			return false;
+
+		if (this.name !== other.name)
+			return false;
+
+		if (this.elements.length !== other.elements.length)
+			return false;
+
+		if (this.upgradeConditions.length !== other.upgradeConditions.length)
+			return false;
+
+		for (let i = 0; i < this.elements.length; i++)
+		{
+			if (!this.elements[i].equals(other.elements[i]))
+				return false;
+		}
+
+		for (let i = 0; i < this.upgradeConditions.length; i++)
+		{
+			if (!this.upgradeConditions[i].equals(other.upgradeConditions[i]))
+				return false;
+		}
+
+		if (this.isImprovedByAmount !== other.isImprovedByAmount)
+			return false;
+
+		if (this.isImprovedByRange !== other.isImprovedByRange)
+			return false;
+
+		if (this.isImprovedByDuration !== other.isImprovedByDuration)
+			return false;
+
+		return true;
 	}
 }

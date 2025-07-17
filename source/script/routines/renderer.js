@@ -20,15 +20,12 @@ class Renderer
 	// static SummonActivationConditionClassName = "summon-activation-conditions";
 	static SummonTacticNameClassName = "summon-tactic-name";
 	static SummonTacticDescriptionClassName = "summon-tactic-description";
+	static SummonTacticActivationConditionsClassName = "summon-tactic-activation-conditions";
 
 	static CursorPointerClassName = "cursor-pointer";
 	static CenterContentClassName = "center-content";
 	static NoWrapClassName = "no-wrap";
 	static ShowCounterClassName = "show-counter";
-
-	static EmblemIconWidth = 57;
-	static EmblemIconHeight = 57;
-	static EmblemIconScale = 0.5;
 
 	static EmblemNameDataKey = "emblemname";
 	static IsPlayerDataKey = "isplayer";
@@ -545,6 +542,46 @@ class Renderer
 
 	/**
 	 * 
+	 * @param {string} iconBase64 
+	 * @param {number} scale 
+	 * @param {number=} widthOverrie 
+	 * @param {number=} heightOverride 
+	 * @returns {HTMLCanvasElement}
+	 */
+	static #createCanvasWithIcon(iconBase64, scale, widthOverrie, heightOverride)
+	{
+		const canvas = window.document.createElement("canvas");
+		
+		const width = widthOverrie ?? Icons.EmblemIconWidth;
+		const height = heightOverride ?? Icons.EmblemIconHeight;
+
+		canvas.width = width * scale;
+		canvas.height = height * scale;
+
+		const context = canvas.getContext("2d");
+
+		var image = new Image();
+		image.src = "data:image/png;base64," + iconBase64;
+		image.onload = function()
+		{ 
+			context.drawImage(
+				image,
+				0,
+				0,
+				width,
+				height,
+				0, 
+				0, 
+				width * scale,
+				height * scale
+			);
+		};
+
+		return canvas;
+	}
+
+	/**
+	 * 
 	 * @param {string} emblemName 
 	 * @param {number=} scale 
 	 * @returns HTMLDivElement
@@ -560,35 +597,12 @@ class Renderer
 		{
 			div.classList.add(Renderer.EmblemIconClassName);
 
-			const canvas = window.document.createElement("canvas");
-			canvas.classList.add(Renderer.EmblemCanvasClassName);
-			
-			const width = Renderer.EmblemIconWidth;
-			const height = Renderer.EmblemIconHeight;
 			if (!scale)
-				scale = Renderer.EmblemIconScale;
-
-			canvas.width = width * scale;
-			canvas.height = height * scale;
-
-			const context = canvas.getContext("2d");
-
-			var image = new Image();
-			image.src = "data:image/png;base64," + Icons.MapEmblemToBase64[emblemName];
-			image.onload = function()
-			{ 
-				context.drawImage(
-					image,
-					0,
-					0,
-					width,
-					height,
-					0, 
-					0, 
-					width * scale,
-					height * scale
-				);
-			}
+				scale = Icons.EmblemIconScale;
+			
+			const iconBase64 = Icons.MapEmblemToBase64[emblemName];
+			const canvas = Renderer.#createCanvasWithIcon(iconBase64, scale);
+			canvas.classList.add(Renderer.EmblemCanvasClassName);
 			
 			div.appendChild(canvas);
 		}
@@ -629,83 +643,379 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {Object.<string, Emblem>} emblems 
-	 * @param {boolean=} isTranscendent 
-	 * @returns {{ stats: HTMLTableCellElement, emblems: HTMLTableCellElement }}
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
 	 */
-	static #generateEmblemColumns(emblems, isTranscendent)
+	static #addNameColumn(row, hero)
 	{
-		const statsColumn = window.document.createElement("td");
-		statsColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(statsColumn, isTranscendent);
+		const nameColumn = window.document.createElement("td");
+		nameColumn.classList.add(Renderer.CenterContentClassName);
 
-		const statsContainer = window.document.createElement("div");
-		statsContainer.classList.add(Renderer.EmblemsContainerClassName);
+		const nameContainer = window.document.createElement("div");
+		nameContainer.classList.add(Renderer.EmblemsContainerClassName);
 
-		const emblemsColumn = window.document.createElement("td");
-		emblemsColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(emblemsColumn, isTranscendent);
+		const nameEmblem = Renderer.createEmblemElement(hero.name);
+		nameEmblem.classList.add(Renderer.NameEmblemClassName);
 
-		const emblemsContainer = window.document.createElement("div");
-		emblemsContainer.classList.add(Renderer.EmblemsContainerClassName);
+		nameContainer.appendChild(nameEmblem);
+		nameColumn.appendChild(nameContainer);
 
-		for (let emblemName in emblems)
+		row.appendChild(nameColumn);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addEmblemsColumns(row, hero)
+	{
+		const statsColumn = Renderer.#generaleEmblemsColumn(hero, true, false);
+		row.appendChild(statsColumn);
+
+		const emblemsColumn = Renderer.#generaleEmblemsColumn(hero, false, true);
+		row.appendChild(emblemsColumn);
+	}
+
+	/**
+	 * 
+	 * @param {boolean} shouldSeparate 
+	 * @param {boolean=} isT12 
+	 * @returns {HTMLDivElement}
+	 */
+	static #createT12IconDiv(shouldSeparate, isT12)
+	{
+		const iconsWrapper = window.document.createElement("div");
+		iconsWrapper.classList.add(Transcendence.IconClassName);
+
+		const scale = Icons.T12IconScale;
+
+		const createIcon = function(value)
 		{
-			const emblem = emblems[emblemName];
-
-			for (let i = 0; i < emblem.amount; i++)
-			{
-				const emblemElement = Renderer.createEmblemElement(emblem.name);
-
-				if (emblem.isStatOrElement())
-					statsContainer.appendChild(emblemElement);
-				else
-					emblemsContainer.appendChild(emblemElement);
-			}
+			const iconBase64 = Icons.MapT12ValueToBase64[value];
+			const icon = Renderer.#createCanvasWithIcon(iconBase64, scale);
+			Transcendence.setTranscendenceData(icon, value);
+			iconsWrapper.appendChild(icon);
 		}
 
-		statsColumn.appendChild(statsContainer);
-		emblemsColumn.appendChild(emblemsContainer);
+		if (!shouldSeparate || !isT12)
+			createIcon(false);
 
-		return { stats: statsColumn, emblems: emblemsColumn };
+		if (!shouldSeparate || isT12)
+			createIcon(true);
+
+		return iconsWrapper;
+	}
+
+	/**
+	 * 
+	 * @param {Hero} hero 
+	 * @param {boolean} generateStats 
+	 * @param {boolean} generatePersonal 
+	 * @returns {HTMLTableCellElement}
+	 */
+	static #generaleEmblemsColumn(hero, generateStats, generatePersonal)
+	{
+		const column = window.document.createElement("td");
+
+		const container = window.document.createElement("div");
+		container.classList.add(Renderer.CenterContentClassName);
+		container.classList.add(Transcendence.ContainerClassName);
+
+		const shouldSeparateStats = generateStats && hero.doesT12ChangeStats();
+		const shouldSeparatePersonal = generatePersonal && hero.doesT12ChangePersonal();
+		const shouldSeparate = shouldSeparateStats || shouldSeparatePersonal;
+
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
+
+		/**
+		 * 
+		 * @param {Object.<string, Emblem>} emblems 
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(emblems, isT12)
+		{
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
+
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
+
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
+
+			const emblemsContainer = window.document.createElement("div");
+			emblemsContainer.classList.add(Renderer.EmblemsContainerClassName);
+
+			for (let emblemName in emblems)
+			{
+				const emblem = emblems[emblemName];
+
+				const shouldGenerateStat = generateStats && emblem.isStatOrElement();
+				const shouldGeneratePersonal = generatePersonal && emblem.isPersonal();
+
+				if (shouldGenerateStat || shouldGeneratePersonal)
+				{
+					const emblemElement = Renderer.createEmblemElement(emblem.name);
+					emblemsContainer.appendChild(emblemElement);
+				}
+			}
+
+			wrapper.appendChild(emblemsContainer);
+			container.appendChild(wrapper);
+		}
+
+		if (shouldSeparate)
+		{
+			createContainer(hero.emblems, false);
+			createContainer(hero.emblemsTranscended, true);
+		}
+		else
+		{
+			createContainer(hero.emblems);
+		}
+
+		column.appendChild(container);
+
+		return column;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addTraitsColumns(row, hero)
+	{
+		const t1 = hero.trait1;
+		const t1T12 = hero.trait1Transcended;
+		const t1ShouldSeparate = hero.doesT12ChangeTrait1();
+		const trait1Column = Renderer.#generateTraitsColumn(t1, t1T12, t1ShouldSeparate);
+		row.appendChild(trait1Column);
+		
+		const t2 = hero.trait2;
+		const t2T12 = hero.trait2Transcended;
+		const t2ShouldSeparate = hero.doesT12ChangeTrait2();
+		const trait2Column = Renderer.#generateTraitsColumn(t2, t2T12, t2ShouldSeparate);
+		row.appendChild(trait2Column);
 	}
 
 	/**
 	 * 
 	 * @param {string[]} traits 
-	 * @param {boolean=} isTranscendent 
+	 * @param {string[]} traitsT12 
+	 * @param {boolean} shouldSeparate 
 	 * @returns {HTMLTableCellElement}
 	 */
-	static #generateTraitColumn(traits, isTranscendent)
+	static #generateTraitsColumn(traits, traitsT12, shouldSeparate)
 	{
-		const traitColumn = window.document.createElement("td");
-		//traitColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(traitColumn, isTranscendent);
-		
-		const div = window.document.createElement("div");
-		//div.classList.add(Renderer.TraitClassName);
+		const column = window.document.createElement("td");
 
-		for (let i = 0; i < traits.length; i++)
+		const container = window.document.createElement("div");
+		container.classList.add(Transcendence.ContainerClassName);
+
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
+
+		/**
+		 * 
+		 * @param {string[]} currentTraits 
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(currentTraits, isT12)
 		{
-			const trait = traits[i];
-			if (!trait)
-				continue;
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
 
-			const container = window.document.createElement("div");
-			container.classList.add(Renderer.TraitClassName);
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
 
-			const iterSpan = window.document.createElement("span");
-			iterSpan.innerHTML = (i + 1) + ".&nbsp;";
-			container.appendChild(iterSpan);
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
 
-			const children = Renderer.renderTextAsElementArray(trait);
-			Renderer.appendChildren(container, children);
+			for (let i = 0; i < currentTraits.length; i++)
+			{
+				const trait = currentTraits[i];
+				if (!trait)
+					continue;
 
-			div.appendChild(container);
+				const traitContainer = window.document.createElement("div");
+				traitContainer.classList.add(Renderer.TraitClassName);
+
+				const iterSpan = window.document.createElement("span");
+				iterSpan.innerHTML = (i + 1) + ".&nbsp;";
+				traitContainer.appendChild(iterSpan);
+
+				const children = Renderer.renderTextAsElementArray(trait);
+				Renderer.appendChildren(traitContainer, children);
+
+				wrapper.appendChild(traitContainer);
+			}
+
+			container.appendChild(wrapper);
 		}
 
-		traitColumn.appendChild(div);
-		return traitColumn;
+		if (shouldSeparate)
+		{
+			createContainer(traits, false);
+			createContainer(traitsT12, true);
+		}
+		else
+		{
+			createContainer(traits);
+		}
+
+		column.appendChild(container);
+
+		return column;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addSummonSkillColumns(row, hero)
+	{
+		const skill = hero.summonSkill;
+		const skillT12 = hero.summonSkillTranscended;
+		const shouldSeparate = !skill.equals(skillT12);
+
+		const skillColumn = Renderer.#generateSkillColumn(skill, skillT12, shouldSeparate);
+		row.appendChild(skillColumn);
+		
+		const elementColumn = Renderer.#generateSkillElementColumn(skill, skillT12, shouldSeparate);
+		row.appendChild(elementColumn);
+	}
+
+	/**
+	 * 
+	 * @param {SummonSkill} skill 
+	 * @param {SummonSkill} skillT12 
+	 * @param {boolean} shouldSeparate 
+	 * @returns {HTMLTableCellElement}
+	 */
+	static #generateSkillColumn(skill, skillT12, shouldSeparate)
+	{
+		const column = window.document.createElement("td");
+
+		const container = window.document.createElement("div");
+		container.classList.add(Renderer.CenterContentClassName);
+		container.classList.add(Transcendence.ContainerClassName);
+
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
+
+		/**
+		 * 
+		 * @param {SummonSkill} currentSkill 
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(currentSkill, isT12)
+		{
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
+
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
+
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
+
+			const emblemContainer = window.document.createElement("div");
+			emblemContainer.classList.add(Renderer.EmblemsContainerClassName);
+			emblemContainer.classList.add(Renderer.SummonSkillContainerClassName);
+
+			const emblem = Renderer.createEmblemElement(currentSkill.name);
+			emblemContainer.appendChild(emblem);
+			wrapper.appendChild(emblemContainer);
+
+			const conditions = Renderer.#generateActivationConditionsDiv(currentSkill.upgradeConditions);
+			wrapper.appendChild(conditions);
+
+			container.appendChild(wrapper);
+		}
+
+		if (shouldSeparate)
+		{
+			createContainer(skill, false);
+			createContainer(skillT12, true);
+		}
+		else
+		{
+			createContainer(skill);
+		}
+
+		column.appendChild(container);
+
+		return column;
+	}
+
+	/**
+	 * 
+	 * @param {SummonSkill} skill 
+	 * @param {SummonSkill} skillT12 
+	 * @param {boolean} shouldSeparate 
+	 * @returns {HTMLTableCellElement}
+	 */
+	static #generateSkillElementColumn(skill, skillT12, shouldSeparate)
+	{
+		const column = window.document.createElement("td");
+
+		const container = window.document.createElement("div");
+		container.classList.add(Renderer.CenterContentClassName);
+		container.classList.add(Transcendence.ContainerClassName);
+
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
+
+		/**
+		 * 
+		 * @param {SummonSkill} currentSkill 
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(currentSkill, isT12)
+		{
+			if (!currentSkill.hasAnyElements())
+				return;
+
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
+
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
+
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
+
+			const emblemsContainer = window.document.createElement("div");
+			emblemsContainer.classList.add(Renderer.EmblemsContainerClassName);
+			
+			for (let i = 0; i < currentSkill.elements.length; i++)
+			{
+				const elementEmblem = currentSkill.elements[i];
+				const elementEmblemElement = Renderer.createEmblemElement(elementEmblem.name);
+				emblemsContainer.appendChild(elementEmblemElement);
+			}
+
+			wrapper.appendChild(emblemsContainer);
+			container.appendChild(wrapper);
+		}
+
+		if (shouldSeparate)
+		{
+			createContainer(skill, false);
+			createContainer(skillT12, true);
+		}
+		else
+		{
+			createContainer(skill);
+		}
+
+		column.appendChild(container);
+
+		return column;
 	}
 
 	/**
@@ -750,95 +1060,192 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {SummonSkill} summonSkill 
-	 * @param {boolean=} isTranscendent 
-	 * @returns { summonSkill: HTMLTableCellElement, element: HTMLTableCellElement }
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
 	 */
-	static #generateSkillColumns(summonSkill, isTranscendent)
+	static #addTacticColumns(row, hero)
 	{
-		const summonSkillColumn = window.document.createElement("td");
-		summonSkillColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(summonSkillColumn, isTranscendent);
-		
-		const summonSkilEmblemContainer = window.document.createElement("div");
-		summonSkilEmblemContainer.classList.add(Renderer.EmblemsContainerClassName);
-		summonSkilEmblemContainer.classList.add(Renderer.SummonSkillContainerClassName);
+		const tactic = hero.tactic;
+		const tacticT12 = hero.tacticTranscended;
+		const shouldSeparateTactics = !tactic.equals(tacticT12, true);
+		const shouldSeparateTargets = !tactic.targetsEqual(tacticT12);
 
-		const summonSkilEmblem = Renderer.createEmblemElement(summonSkill.name);
-		summonSkilEmblemContainer.appendChild(summonSkilEmblem);
-		summonSkillColumn.appendChild(summonSkilEmblemContainer);
+		const tacticColumn = Renderer.#generateTacticColumn(tactic, tacticT12, shouldSeparateTactics);
+		row.appendChild(tacticColumn);
 
-		const acDiv = Renderer.#generateActivationConditionsDiv(summonSkill.upgradeConditions);
-		summonSkillColumn.appendChild(acDiv);
-
-		const summonSkillElementColumn = window.document.createElement("td");
-		summonSkillElementColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(summonSkillElementColumn, isTranscendent);
-
-		const summonSkillElementContainer = window.document.createElement("div");
-		summonSkillElementContainer.classList.add(Renderer.EmblemsContainerClassName);
-
-		if (summonSkill.hasAnyElements())
-		{
-			for (let i = 0; i < summonSkill.elements.length; i++)
-			{
-				const elementEmblem = summonSkill.elements[i];
-				const elementEmblemElement = Renderer.createEmblemElement(elementEmblem.name);
-				summonSkillElementContainer.appendChild(elementEmblemElement);
-			}
-		}
-
-		summonSkillElementColumn.appendChild(summonSkillElementContainer);
-
-		return { summonSkill: summonSkillColumn, elements: summonSkillElementColumn };
+		const targetsColumn = Renderer.#generateTacticTargetsColumn(tactic, tacticT12, shouldSeparateTargets);
+		row.appendChild(targetsColumn);
 	}
 
 	/**
 	 * 
 	 * @param {Tactic} tactic 
-	 * @param {boolean=} isTranscendent 
-	 * @returns { tactic: HTMLTableCellElement, targets: HTMLTableCellElement }
+	 * @param {Tactic} tacticT12 
+	 * @param {boolean} shouldSeparate 
+	 * @returns {HTMLTableCellElement}
 	 */
-	static #generateTacticColumns(tactic, isTranscendent)
+	static #generateTacticColumn(tactic, tacticT12, shouldSeparate)
 	{
-		const tacticColumn = window.document.createElement("td");
-		Transcendence.setTranscendenceData(tacticColumn, isTranscendent);
+		const column = window.document.createElement("td");
 
-		const nameDiv = window.document.createElement("div");
-		nameDiv.classList.add(Renderer.SummonTacticNameClassName);
-		nameDiv.innerText = tactic.name;
+		const container = window.document.createElement("div");
+		container.classList.add(Transcendence.ContainerClassName);
 
-		const descriptionDiv = window.document.createElement("div");
-		descriptionDiv.classList.add(Renderer.SummonTacticDescriptionClassName);
-		const descriptionElements = Renderer.renderTextAsElementArray(tactic.description);
-		Renderer.appendChildren(descriptionDiv, descriptionElements);
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
 
-		tacticColumn.appendChild(nameDiv);
-		tacticColumn.appendChild(descriptionDiv);
-
-		const acDiv = Renderer.#generateActivationConditionsDiv(tactic.activationConditions);
-		tacticColumn.appendChild(acDiv);
-
-		const tacticTargetColumn = window.document.createElement("td");
-		tacticTargetColumn.classList.add(Renderer.CenterContentClassName);
-		Transcendence.setTranscendenceData(tacticTargetColumn, isTranscendent);
-
-		const tacticTargetContainer = window.document.createElement("div");
-		tacticTargetContainer.classList.add(Renderer.EmblemsContainerClassName);
-
-		if (tactic.targets)
+		/**
+		 * 
+		 * @param {Tactic} currentTactic
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(currentTactic, isT12)
 		{
-			for (let i = 0; i < tactic.targets.length; i++)
-			{
-				const target = tactic.targets[i];
-				const emblemElement = Renderer.createEmblemElement(target.name);
-				tacticTargetContainer.appendChild(emblemElement);
-			}
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
+
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
+
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
+
+			const name = window.document.createElement("div");
+			name.classList.add(Renderer.SummonTacticNameClassName);
+			name.innerText = currentTactic.name;
+			wrapper.appendChild(name);
+
+			const description = window.document.createElement("div");
+			description.classList.add(Renderer.SummonTacticDescriptionClassName);
+
+			const descriptionElements = Renderer.renderTextAsElementArray(currentTactic.description);
+			Renderer.appendChildren(description, descriptionElements);
+			
+			wrapper.appendChild(description);
+
+			const conditions = Renderer.#generateActivationConditionsDiv(currentTactic.activationConditions);
+			conditions.classList.add(Renderer.SummonTacticActivationConditionsClassName);
+			wrapper.appendChild(conditions);
+
+			container.appendChild(wrapper);
 		}
 
-		tacticTargetColumn.appendChild(tacticTargetContainer);
+		if (shouldSeparate)
+		{
+			createContainer(tactic, false);
+			createContainer(tacticT12, true);
+		}
+		else
+		{
+			createContainer(tactic);
+		}
 
-		return { tactic: tacticColumn, targets: tacticTargetColumn };
+		column.appendChild(container);
+
+		return column;
+	}
+
+	/**
+	 * 
+	 * @param {Tactic} tactic 
+	 * @param {Tactic} tacticT12 
+	 * @param {boolean} shouldSeparate 
+	 * @returns {HTMLTableCellElement}
+	 */
+	static #generateTacticTargetsColumn(tactic, tacticT12, shouldSeparate)
+	{
+		const column = window.document.createElement("td");
+
+		const container = window.document.createElement("div");
+		container.classList.add(Renderer.CenterContentClassName);
+		container.classList.add(Transcendence.ContainerClassName);
+
+		if (shouldSeparate)
+			container.classList.add(Transcendence.ShareClassName);
+
+		/**
+		 * 
+		 * @param {Tactic} currentTactic 
+		 * @param {boolean=} isT12 
+		 */
+		const createContainer = function(currentTactic, isT12)
+		{
+			if (currentTactic.targets.length === 0)
+				return;
+
+			const wrapper = window.document.createElement("div");
+			wrapper.classList.add(Transcendence.WrapperClassName);
+
+			if (shouldSeparate)
+				Transcendence.setTranscendenceData(wrapper, isT12);
+
+			const iconsWrapper = Renderer.#createT12IconDiv(shouldSeparate, isT12);
+			wrapper.appendChild(iconsWrapper);
+
+			const createEmblemsContainer = function()
+			{
+				const emblemsContainer = window.document.createElement("div");
+				emblemsContainer.classList.add(Renderer.EmblemsContainerClassName);
+				return emblemsContainer;
+			}
+
+			let statEmblemsContainer = null;
+			let personalEmblemsContainer = null;
+			let otherEmblemsContainer = null;
+
+			for (let i = 0; i < currentTactic.targets.length; i++)
+			{
+				const target = currentTactic.targets[i];
+				const emblemElement = Renderer.createEmblemElement(target.name);
+
+				if (target.isStatOrElement())
+				{
+					if (statEmblemsContainer === null)
+						statEmblemsContainer = createEmblemsContainer();
+
+					statEmblemsContainer.appendChild(emblemElement);
+				}
+				else if (target.isPersonalEmblem())
+				{
+					if (personalEmblemsContainer === null)
+						personalEmblemsContainer = createEmblemsContainer();
+
+					personalEmblemsContainer.appendChild(emblemElement);
+				}
+				else
+				{
+					if (otherEmblemsContainer === null)
+						otherEmblemsContainer = createEmblemsContainer();
+
+					otherEmblemsContainer.appendChild(emblemElement);
+				}
+			}
+
+			if (statEmblemsContainer)
+				wrapper.appendChild(statEmblemsContainer);
+
+			if (personalEmblemsContainer)
+				wrapper.appendChild(personalEmblemsContainer);
+
+			if (otherEmblemsContainer)
+				wrapper.appendChild(otherEmblemsContainer);
+
+			container.appendChild(wrapper);
+		}
+
+		if (shouldSeparate)
+		{
+			createContainer(tactic, false);
+			createContainer(tacticT12, true);
+		}
+		else
+		{
+			createContainer(tactic);
+		}
+
+		column.appendChild(container);
+
+		return column;
 	}
 
 	/**
@@ -852,54 +1259,11 @@ class Renderer
 		row.classList.add(Renderer.TableRowClassName);
 		row.dataset[Renderer.HeroNameDataKey] = hero.name;
 
-		const nameColumn = window.document.createElement("td");
-		nameColumn.classList.add(Renderer.CenterContentClassName);
-
-		const nameContainer = window.document.createElement("div");
-		nameContainer.classList.add(Renderer.EmblemsContainerClassName);
-
-		const nameEmblem = Renderer.createEmblemElement(hero.name);
-		nameEmblem.classList.add(Renderer.NameEmblemClassName);
-
-		nameContainer.appendChild(nameEmblem);
-		nameColumn.appendChild(nameContainer);
-
-		row.appendChild(nameColumn);
-
-		const emblems = Renderer.#generateEmblemColumns(hero.emblems, false);
-		const emblemsTr = Renderer.#generateEmblemColumns(hero.emblemsTranscended, true);
-
-		row.appendChild(emblems.stats);
-		row.appendChild(emblemsTr.stats);
-
-		row.appendChild(emblems.emblems);
-		row.appendChild(emblemsTr.emblems);
-
-		const trait1 = Renderer.#generateTraitColumn(hero.trait1, false);
-		const trait1Tr = Renderer.#generateTraitColumn(hero.trait1Transcended, true);
-		row.appendChild(trait1);
-		row.appendChild(trait1Tr);
-
-		const trait2 = Renderer.#generateTraitColumn(hero.trait2, false);
-		const trait2Tr = Renderer.#generateTraitColumn(hero.trait2Transcended, true);
-		row.appendChild(trait2);
-		row.appendChild(trait2Tr);
-
-		const skill = Renderer.#generateSkillColumns(hero.summonSkill, false);
-		row.appendChild(skill.summonSkill);
-		row.appendChild(skill.elements);
-
-		const skillTr = Renderer.#generateSkillColumns(hero.summonSkillTranscended, true);
-		row.appendChild(skillTr.summonSkill);
-		row.appendChild(skillTr.elements);
-
-		const tactic = Renderer.#generateTacticColumns(hero.tactic, false);
-		row.appendChild(tactic.tactic);
-		row.appendChild(tactic.targets);
-
-		const tacticTr = Renderer.#generateTacticColumns(hero.tacticTranscended, true);
-		row.appendChild(tacticTr.tactic);
-		row.appendChild(tacticTr.targets);
+		Renderer.#addNameColumn(row, hero);
+		Renderer.#addEmblemsColumns(row, hero);
+		Renderer.#addTraitsColumns(row, hero);
+		Renderer.#addSummonSkillColumns(row, hero);
+		Renderer.#addTacticColumns(row, hero);
 
 		return row;
 	}

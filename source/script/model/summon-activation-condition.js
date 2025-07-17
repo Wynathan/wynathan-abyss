@@ -40,4 +40,23 @@ class SummonActivationCondition
 	{
 		return this.type === SummonActivationCondition.TypePersonalEmblem;
 	}
+
+	/**
+	 * 
+	 * @param {SummonActivationCondition} other 
+	 * @returns boolean
+	 */
+	equals(other)
+	{
+		if (!other)
+			return false;
+
+		if (this.type !== other.type)
+			return false;
+
+		if (this.amount !== other.amount)
+			return false;
+
+		return this.name === other.name;
+	}
 }

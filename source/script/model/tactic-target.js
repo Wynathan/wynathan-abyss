@@ -58,6 +58,16 @@ class TacticTarget
 		return this.type === TacticTarget.TypeEmblem;
 	}
 
+	isStatOrElement()
+	{
+		return this.isEmblem() && this.emblem.isStatOrElement();
+	}
+
+	isPersonalEmblem()
+	{
+		return this.isEmblem() && this.emblem.isPersonal();
+	}
+
 	isSummonSkill()
 	{
 		return this.type === TacticTarget.TypeSummoningSkill;
@@ -66,5 +76,21 @@ class TacticTarget
 	isAllSummons()
 	{
 		return this.type === TacticTarget.TypeAllSummons;
+	}
+
+	/**
+	 * 
+	 * @param {TacticTarget} other 
+	 * @returns boolean
+	 */
+	equals(other)
+	{
+		if (!other)
+			return false;
+
+		if (this.type !== other.type)
+			return false;
+
+		return this.name === other.name;
 	}
 }

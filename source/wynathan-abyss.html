@@ -23,21 +23,13 @@
 					false, // Display Row Numbers
 
 					true, // Stat Emblems
-					true, // [T] Stat Emblems
 					true, // Hero Emblems
-					true, // [T] Hero Emblems
 					true, // Traits 1
-					true, // [T] Traits 1
 					true, // Traits 2
-					true, // [T] Traits 2
 					true, // Summon Skill
 					true, // Element
-					true, // [T] Summon Skill
-					true, // [T] Element
 					true, // Hero Tactic
 					true, // Targets
-					true, // [T] Hero Tactic
-					true, // [T] Targets
 				];
 			}
 		</script>
@@ -53,6 +45,9 @@
 
 			body
 			{
+				/* align-content: center;
+				align-items: center;
+				text-align: center; */
 				position: relative;
 				background-color: #0d133f;
 				width: max-content;
@@ -65,7 +60,7 @@
 
 			header
 			{
-				text-align: left;
+				/* text-align: left; */
 				color: #d6d6d6;
 				height: fit-content;
 				margin: 0px;
@@ -73,7 +68,6 @@
 				padding-left: 20px;
 				padding-right: 20px;
 				padding-bottom: 0px;
-				/* user-select: none; */
 			}
 
 			main
@@ -252,6 +246,11 @@
 				border-radius: 8px;
 			}
 
+			.filter-form #options-display
+			{
+				width: calc(100% - 8px);
+			}
+
 			.filter-form .filter-item
 			{
 				user-select: none;
@@ -267,8 +266,9 @@
 		<style>
 			.table-root
 			{
-				width: fit-content;
 				color: #d6d6d6;
+				width: fit-content;
+				/* margin: auto; */
 				border-collapse: separate;
 				border-spacing: 0px;
 			}
@@ -293,11 +293,30 @@
 				border-top-right-radius: 8px;
 			}
 
+			.table-root tbody
+			{
+				text-align: left;
+			}
+
+			.table-root tr.table-result-row
+			{
+				height: 1px; /* make sure the browser knows the rows actually have a height  */
+			}
+
 			.table-root tr.table-result-row td
 			{
 				background-color: #000821;
+				height: 1px; /* make sure the browser knows the rows actually have a height  */
 				border-right: 4px solid #544c4a;
 				border-bottom: 4px solid #544c4a;
+			}
+
+			@supports (height: -moz-available)
+			{
+				.table-root tr.table-result-row td
+				{
+					height: 100%;
+				}
 			}
 
 			.table-root tr.table-result-row td:first-child
@@ -343,8 +362,7 @@
 			}
 
 			.table-header .header-stats, 
-				tr.table-result-row > td:nth-of-type(2), 
-				tr.table-result-row > td:nth-of-type(3)
+				tr.table-result-row > td:nth-of-type(2)
 			{
 				width: 80px;
 				min-width: 80px;
@@ -352,8 +370,7 @@
 			}
 
 			.table-header .header-emblems, 
-				tr.table-result-row > td:nth-of-type(4), 
-				tr.table-result-row > td:nth-of-type(5)
+				tr.table-result-row > td:nth-of-type(3)
 			{
 				width: 160px;
 				min-width: 160px;
@@ -361,20 +378,16 @@
 			}
 
 			.table-header .header-traits-1, .table-header .header-traits-2, 
-				tr.table-result-row > td:nth-of-type(6), 
-				tr.table-result-row > td:nth-of-type(7), 
-				tr.table-result-row > td:nth-of-type(8), 
-				tr.table-result-row > td:nth-of-type(9)
+				tr.table-result-row > td:nth-of-type(4), 
+				tr.table-result-row > td:nth-of-type(5)
 			{
-				vertical-align: top;
 				width: 240px;
 				min-width: 240px;
 				max-width: 240px;
 			}
 
 			.table-header .header-skill, 
-				tr.table-result-row > td:nth-of-type(10), 
-				tr.table-result-row > td:nth-of-type(12)
+				tr.table-result-row > td:nth-of-type(6)
 			{
 				width: 160px;
 				min-width: 160px;
@@ -382,8 +395,7 @@
 			}
 
 			.table-header .header-skill-element, 
-				tr.table-result-row > td:nth-of-type(11), 
-				tr.table-result-row > td:nth-of-type(13)
+				tr.table-result-row > td:nth-of-type(7)
 			{
 				width: 50px;
 				min-width: 50px;
@@ -391,8 +403,7 @@
 			}
 
 			.table-header .header-tactic, 
-				tr.table-result-row > td:nth-of-type(14), 
-				tr.table-result-row > td:nth-of-type(16)
+				tr.table-result-row > td:nth-of-type(8)
 			{
 				vertical-align: top;
 				width: 240px;
@@ -401,8 +412,7 @@
 			}
 
 			.table-header .header-tactic-targets, 
-				tr.table-result-row > td:nth-of-type(15), 
-				tr.table-result-row > td:nth-of-type(17)
+				tr.table-result-row > td:nth-of-type(9)
 			{
 				width: 100px;
 				min-width: 100px;
@@ -417,6 +427,55 @@
 			}
 		</style>
 
+		<!-- Transcendence Table Data -->
+		<style>
+			.t12-container
+			{
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				height: 100%;
+			}
+
+			.t12-container .t12-wrapper
+			{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				width: calc(100% - 2px);
+				height: calc(100% - 2px);
+				margin: 1px;
+			}
+
+			.t12-container .t12-wrapper .t12-icon
+			{
+				display: flex;
+				align-self: baseline;
+				height: 17px;
+				padding-top: 1px;
+				padding-left: 2px;
+				padding-right: 2px;
+				padding-bottom: 1px;
+				user-select: none;
+			}
+
+			.t12-container .t12-wrapper .emblems-container
+			{
+				align-self: center;
+				margin: 0px;
+			}
+
+			.t12-container .t12-wrapper .emblems-container.summon-tactic-activation-conditions
+			{
+				align-self: baseline;
+			}
+
+			.t12-container.t12-share:not(:has(div.t12-hidden)) .t12-wrapper:has(div.trait)
+			{
+				justify-content: normal;
+			}
+		</style>
+
 		<!-- Table Data -->
 		<style>
 			.name
@@ -426,9 +485,6 @@
 				justify-content: justify;
 				display: inline-block;
 				width: fit-content;
-				/* width: 100px; */
-				/* min-width: 100px; */
-				/* max-width: 100px; */
 				margin: 2px;
 				padding: 2px;
 				color: #efefef;
@@ -665,13 +721,12 @@
 
 			.hidden, .t12-hidden, .display-hidden
 			{
-				display: none;
+				display: none !important;
 			}
 
 			.highlight-text-blue-dark 
 			{
 				color: #67b3ec;
-				/* font-weight: bold; */
 			}
 
 			.highlight-text-blue-bright 
@@ -682,6 +737,11 @@
 			.highlight-text-red
 			{
 				color: #e77d7d;
+			}
+
+			.highlight-text-gold
+			{
+				color: #c6a600;
 			}
 		</style>
 
@@ -744,6 +804,12 @@
 				{
 					margin: 0 0 20px 0 !important;
 				}
+
+				.table-root tr.table-result-row,	
+					.table-root tr.table-result-row td
+				{
+					height: auto !important;
+				}
 				
 				table.table-root td 
 				{
@@ -791,21 +857,13 @@
 				/* Label the data */
 				table.table-root td:nth-of-type(1):before { content: "Name" !important; }
 				table.table-root td:nth-of-type(2):before { content: "Stat Emblems"; }
-				table.table-root td:nth-of-type(3):before { content: "[T] Stat Emblems"; }
-				table.table-root td:nth-of-type(4):before { content: "Hero Emblems"; }
-				table.table-root td:nth-of-type(5):before { content: "[T] Hero Emblems"; }
-				table.table-root td:nth-of-type(6):before { content: "Traits 1"; }
-				table.table-root td:nth-of-type(7):before { content: "[T] Traits 1"; }
-				table.table-root td:nth-of-type(8):before { content: "Traits 2"; }
-				table.table-root td:nth-of-type(9):before { content: "[T] Traits 2"; }
-				table.table-root td:nth-of-type(10):before { content: "Summon Skill"; }
-				table.table-root td:nth-of-type(11):before { content: "Element"; }
-				table.table-root td:nth-of-type(12):before { content: "[T] Summon Skill"; }
-				table.table-root td:nth-of-type(13):before { content: "[T] Element"; }
-				table.table-root td:nth-of-type(14):before { content: "Hero Tactic"; }
-				table.table-root td:nth-of-type(15):before { content: "Targets"; }
-				table.table-root td:nth-of-type(16):before { content: "[T] Hero Tactic"; }
-				table.table-root td:nth-of-type(17):before { content: "[T] Targets"; }
+				table.table-root td:nth-of-type(3):before { content: "Hero Emblems"; }
+				table.table-root td:nth-of-type(4):before { content: "Traits 1"; }
+				table.table-root td:nth-of-type(5):before { content: "Traits 2"; }
+				table.table-root td:nth-of-type(6):before { content: "Summon Skill"; }
+				table.table-root td:nth-of-type(7):before { content: "Skill Element"; }
+				table.table-root td:nth-of-type(8):before { content: "Hero Tactic"; }
+				table.table-root td:nth-of-type(9):before { content: "Tactic Targets"; }
 
 				/* Row number before Hero Name emblem */
 				table.table-root tr.show-counter td:first-child .emblems-container:first-child::before
@@ -837,6 +895,11 @@
 					text-align: center !important;
 				}
 
+				.t12-container .t12-wrapper .emblems-container
+				{
+					align-self: normal !important;
+				}
+
 				.emblems-container
 				{
 					text-align: left !important;
@@ -852,7 +915,6 @@
 
 
 		<!-- #region Portable: comment out -->
-		<!-- -->
 		<script src="script/model/emblem.js" defer></script>
 		<script src="script/model/summon-activation-condition.js" defer></script>
 		<script src="script/model/summon-skill.js" defer></script>
@@ -868,7 +930,6 @@
 		<script src="script/routines/prompt.js" defer></script>
 		<script src="script/routines/copyright-prompt.js" defer></script>
 		<script src="script/run.js" defer></script>
-		<!-- -->
 		<!-- #endregion Portable: comment out -->
 	</head>
 
@@ -882,7 +943,8 @@
 				<span>Made by</span>
 				<span><a class="highlight-text-blue-dark" href="mailto:Wynathan<glebov.vo@outlook.com>?subject=Warriors Abyss -- An Interactive Spreadsheet">Wynathan</a></span><span>.</span>
 				<span>See the</span>
-				<span id="copyright-button-open" class="highlight-text-blue-bright cursor-pointer" data-link="https://spdx.org/licenses/MIT.html">MIT Copyright License here</span><span>.</span>
+				<!-- Link to a generic copy online: https://spdx.org/licenses/MIT.html -->
+				<span id="copyright-button-open" class="highlight-text-blue-bright cursor-pointer">MIT Copyright License here</span><span>.</span>
 			</h6>
 			<h6>
 				<span>Game Version:</span>
@@ -936,22 +998,14 @@
 				<thead class="table-header">
 					<tr>
 						<th class="header-name">Hero Name</th>
-						<th class="header-stats t12-target" data-t12="false">Stat Emblems</th>
-						<th class="header-stats t12-target" data-t12="true">[T] Stat Emblems</th>
-						<th class="header-emblems t12-target" data-t12="false">Hero Emblems</th>
-						<th class="header-emblems t12-target" data-t12="true">[T] Hero Emblems</th>
-						<th class="header-traits-1 t12-target" data-t12="false">Traits 1</th>
-						<th class="header-traits-1 t12-target" data-t12="true">[T] Traits 1</th>
-						<th class="header-traits-2 t12-target" data-t12="false">Traits 2</th>
-						<th class="header-traits-2 t12-target" data-t12="true">[T] Traits 2</th>
-						<th class="header-skill t12-target" data-t12="false">Summon Skill</th>
-						<th class="header-skill-element t12-target" data-t12="false">El.</th>
-						<th class="header-skill t12-target" data-t12="true">[T] Summon Skill</th>
-						<th class="header-skill-element t12-target" data-t12="true">[T] El.</th>
-						<th class="header-tactic t12-target" data-t12="false">Hero Tactic</th>
-						<th class="header-tactic-targets t12-target" data-t12="false">Targets</th>
-						<th class="header-tactic t12-target" data-t12="true">[T] Hero Tactic</th>
-						<th class="header-tactic-targets t12-target" data-t12="true">[T] Targets</th>
+						<th class="header-stats t12-target">Stat Emblems</th>
+						<th class="header-emblems t12-target">Hero Emblems</th>
+						<th class="header-traits-1 t12-target">Traits 1</th>
+						<th class="header-traits-2 t12-target">Traits 2</th>
+						<th class="header-skill t12-target">Summon Skill</th>
+						<th class="header-skill-element t12-target">El.</th>
+						<th class="header-tactic t12-target">Hero Tactic</th>
+						<th class="header-tactic-targets t12-target">Targets</th>
 					</tr>
 				</thead>
 			</table>
