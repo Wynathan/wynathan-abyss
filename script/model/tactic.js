@@ -45,20 +45,11 @@ class Tactic
 		if (this.description !== other.description)
 			return false;
 
-		if (this.activationConditions.length !== other.activationConditions.length)
+		if (!ignoreTargets && !this.targetsEqual(other))
 			return false;
 
-		if (!ignoreTargets)
-		{
-			if (this.targets.length !== other.targets.length)
-				return false;
-
-			for (let i = 0; i < this.targets.length; i++)
-			{
-				if (!this.targets[i].equals(other.targets[i]))
-					return false;
-			}
-		}
+		if (this.activationConditions.length !== other.activationConditions.length)
+			return false;
 
 		for (let i = 0; i < this.activationConditions.length; i++)
 		{
@@ -77,6 +68,9 @@ class Tactic
 	targetsEqual(other)
 	{
 		if (!other)
+			return false;
+
+		if (this.targets.length !== other.targets.length)
 			return false;
 
 		for (let i = 0; i < this.targets.length; i++)
