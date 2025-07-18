@@ -757,8 +757,11 @@ class Renderer
 
 				if (shouldGenerateStat || shouldGeneratePersonal)
 				{
-					const emblemElement = Renderer.createEmblemElement(emblem.name);
-					emblemsContainer.appendChild(emblemElement);
+					for (let i = 0; i < emblem.amount; i++)
+					{
+						const emblemElement = Renderer.createEmblemElement(emblem.name);
+						emblemsContainer.appendChild(emblemElement);
+					}
 				}
 			}
 
