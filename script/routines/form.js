@@ -409,6 +409,43 @@ class Form
 
 	/**
 	 * 
+	 * @param {string} buff 
+	 * @param {boolean} value 
+	 */
+	static filterBySummonSkillBuff(buff, value)
+	{
+		const data = Data.copy();
+		/** @type {Object.<string, Hero>} */
+		const result = { };
+		
+		if (buff && buff.length > 0)
+		{
+			const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+			const checkTr = transcendenceOptions.checkTr;
+			const checkNonTr = transcendenceOptions.checkNonTr;
+
+			for (let heroName in data)
+			{
+				const hero = data[heroName];
+
+				let hasAsTarget = false;
+
+				if (!hasAsTarget && checkTr && hero.summonSkillTranscended.hasBuffValue(buff, value))
+					hasAsTarget = true;
+
+				if (!hasAsTarget && checkNonTr && hero.summonSkill.hasBuffValue(buff, value))
+					hasAsTarget = true;
+
+				if (hasAsTarget)
+					result[hero.name] = hero;
+			}
+		}
+
+		Renderer.hideHeroesExcept(result);
+	}
+
+	/**
+	 * 
 	 * @param {string} emblemName 
 	 */
 	static filterByTargetEmblem(emblemName)

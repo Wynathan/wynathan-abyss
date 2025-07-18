@@ -4,6 +4,7 @@ class Prompt
 
 	static ButtonClassName = "prompt-button";
 	static EmblemContainerClassName = "prompt-emblem";
+	static PromptTargetClassName = "prompt-target";
 
 	static WhoIsId = "prompt-who-is";
 	static WhoIsEmblemId = "prompt-who-is-emblem";
@@ -34,7 +35,7 @@ class Prompt
 			if (target.nodeName === "CANVAS")
 				target = target.parentElement;
 
-			if (target.classList.contains(Renderer.EmblemClassName))
+			if (target.classList.contains(Prompt.PromptTargetClassName))
 			{
 				if (Events.getParentById(target, Renderer.TargetTableId))
 					return;
@@ -71,7 +72,7 @@ class Prompt
 	 */
 	static show(e)
 	{
-		/** @type {Element} */
+		/** @type {HTMLDivElement} */
 		const target = e.target.nodeName === "CANVAS" ? e.target.parentElement : e.target;
 
 		const prompt = Prompt.#getPrompt();
@@ -88,6 +89,7 @@ class Prompt
 
 		whoIs.removeEventListener("click", Events.whoIsHeroOnClick);
 		whoIs.removeEventListener("click", Events.whoIsSummonSkillOnClick);
+		whoIs.removeEventListener("click", Events.whoIsSkillBuffOnClick);
 		whoIs.removeEventListener("click", Events.whoIsEmblemOnClick);
 
 		whoBuffs.removeEventListener("click", Events.whoBuffsHeroOnClick);
@@ -124,6 +126,21 @@ class Prompt
 			whoBuffs.classList.add(hiddenClassName);
 
 			whoIs.addEventListener("click", Events.whoIsSummonSkillOnClick);
+		}
+		else if (Renderer.getIsSummonSkillBuff(target))
+		{
+			const buff = target.dataset[Renderer.SummonSkillBuffDataKey];
+			const value = target.dataset[Renderer.SummonSkillBuffValueDataKey];
+			const scale = Math.floor(Icons.EmblemIconWidth * Icons.EmblemIconScale) / Icons.SummonSkillBuffWidth
+			
+			const icon = Renderer.createSummonSkillBuffIconContainer(buff, value, scale);
+
+			whoIsEmblem.replaceChildren(icon);
+			whoBuffsEmblem.replaceChildren();
+
+			whoBuffs.classList.add(hiddenClassName);
+
+			whoIs.addEventListener("click", Events.whoIsSkillBuffOnClick);
 		}
 		else if (Renderer.getIsPlayer(target))
 		{

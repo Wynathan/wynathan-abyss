@@ -11,28 +11,28 @@ class SummonSkill
 	/** @type {SummonActivationCondition[]} */
 	upgradeConditions = [];
 	/** @type {boolean} */
-	isImprovedByAmount;
+	isBuffedByAmount;
 	/** @type {boolean} */
-	isImprovedByRange;
+	isBuffedByRange;
 	/** @type {boolean} */
-	isImprovedByDuration;
+	isBuffedByDuration;
 
 	/**
 	 * 
 	 * @param {string} name 
 	 * @param {(string|string[]|null)} elements 
 	 * @param {SummonActivationCondition[]} upgradeConditions 
-	 * @param {boolean=} isImprovedByAmount 
-	 * @param {boolean=} isImprovedByRange 
-	 * @param {boolean=} isImprovedByDuration 
+	 * @param {boolean=} isBuffedByAmount 
+	 * @param {boolean=} isBuffedByRange 
+	 * @param {boolean=} isBuffedByDuration 
 	 */
 	constructor(
 		name, 
 		elements, 
 		upgradeConditions,
-		isImprovedByAmount,
-		isImprovedByRange,
-		isImprovedByDuration
+		isBuffedByAmount,
+		isBuffedByRange,
+		isBuffedByDuration
 	)
 	{
 		this.name = name;
@@ -58,9 +58,9 @@ class SummonSkill
 		if (upgradeConditions)
 			this.upgradeConditions = upgradeConditions;
 
-		this.isImprovedByAmount = Boolean(isImprovedByAmount);
-		this.isImprovedByRange = Boolean(isImprovedByRange);
-		this.isImprovedByDuration = Boolean(isImprovedByDuration);
+		this.isBuffedByAmount = Boolean(isBuffedByAmount);
+		this.isBuffedByRange = Boolean(isBuffedByRange);
+		this.isBuffedByDuration = Boolean(isBuffedByDuration);
 	}
 
 	/**
@@ -87,6 +87,28 @@ class SummonSkill
 			if (elementName === element.name)
 				return true;
 		}
+
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param {string} buff 
+	 * @param {boolean} value 
+	 * @returns {boolean}
+	 */
+	hasBuffValue(buff, value)
+	{
+		const valueBoolean = Boolean(value);
+
+		if (buff === SummonSkill.BuffAmount)
+			return this.isBuffedByAmount === valueBoolean;
+
+		if (buff === SummonSkill.BuffRange)
+			return this.isBuffedByRange === valueBoolean;
+
+		if (buff === SummonSkill.BuffDuration)
+			return this.isBuffedByDuration === valueBoolean;
 
 		return false;
 	}
@@ -122,13 +144,13 @@ class SummonSkill
 				return false;
 		}
 
-		if (this.isImprovedByAmount !== other.isImprovedByAmount)
+		if (this.isBuffedByAmount !== other.isBuffedByAmount)
 			return false;
 
-		if (this.isImprovedByRange !== other.isImprovedByRange)
+		if (this.isBuffedByRange !== other.isBuffedByRange)
 			return false;
 
-		if (this.isImprovedByDuration !== other.isImprovedByDuration)
+		if (this.isBuffedByDuration !== other.isBuffedByDuration)
 			return false;
 
 		return true;

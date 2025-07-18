@@ -110,3 +110,14 @@
 	/* margin-bottom: 0px; */
 	padding-bottom: 0px;
 }
+
+.summon-skill-buff
+{
+	display: inline-block;
+	margin-left: 3px;
+	margin-right: 3px;
+	padding-top: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+}

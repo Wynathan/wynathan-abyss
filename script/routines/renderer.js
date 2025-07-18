@@ -17,6 +17,8 @@ class Renderer
 	static TraitClassName = "trait";
 	static SummonSkillClassName = "summon-skill";
 	static SummonSkillContainerClassName = "summon-skill-container";
+	static SummonSkillBuffsContainerClassName = "summon-skill-buffs-container";
+	static SummonSkillBuffClassName = "summon-skill-buff";
 	// static SummonActivationConditionClassName = "summon-activation-conditions";
 	static SummonTacticNameClassName = "summon-tactic-name";
 	static SummonTacticDescriptionClassName = "summon-tactic-description";
@@ -33,6 +35,8 @@ class Renderer
 	static IsHeroDataKey = "ishero";
 	static HeroNameDataKey = "heroname";
 	static IsSummonSkillDataKey = "issummonskill";
+	static SummonSkillBuffDataKey = "skillbuff";
+	static SummonSkillBuffValueDataKey = "skillbuffvalue";
 
 	static MapRegexPatternToSpanClassName_EmbeddedEmblem = "MapRegexPatternToSpanClassName_EmbeddedEmblem";
 
@@ -304,6 +308,22 @@ class Renderer
 	// #region Data Attributes
 	/**
 	 * 
+	 * @param {string | boolean} value 
+	 * @returns {boolean?}
+	 */
+	static stringToBool(value)
+	{
+		if (value === true || value === "true")
+			return true;
+
+		if (value === false || value === "false")
+			return false;
+
+		return null;
+	}
+
+	/**
+	 * 
 	 * @param {HTMLElement} element 
 	 * @returns {string}
 	 */
@@ -316,33 +336,42 @@ class Renderer
 	/**
 	 * 
 	 * @param {HTMLElement} element 
+	 * @returns {boolean}
 	 */
 	static getIsHero(element)
 	{
 		const data = element.dataset[Renderer.IsHeroDataKey];
-		
-		if (data === true || data === "true")
-			return true;
-
-		if (data === false || data === "false")
-			return false;
-
-		return null;
+		return Renderer.stringToBool(data);
 	}
 
 	/**
 	 * 
 	 * @param {HTMLElement} element 
+	 * @returns {boolean}
 	 */
 	static getIsSummonSkill(element)
 	{
 		const data = element.dataset[Renderer.IsSummonSkillDataKey];
-		
-		if (data === true || data === "true")
-			return true;
+		return Renderer.stringToBool(data);
+	}
 
-		if (data === false || data === "false")
-			return false;
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 * @returns {boolean}
+	 */
+	static getIsSummonSkillBuff(element)
+	{
+		const data = element.dataset[Renderer.SummonSkillBuffDataKey];
+		
+		if (data === SummonSkill.BuffAmount)
+			return true;
+		
+		if (data === SummonSkill.BuffRange)
+			return true;
+		
+		if (data === SummonSkill.BuffDuration)
+			return true;
 
 		return null;
 	}
@@ -350,18 +379,12 @@ class Renderer
 	/**
 	 * 
 	 * @param {HTMLElement} element 
+	 * @returns {boolean}
 	 */
 	static getIsPlayer(element)
 	{
 		const data = element.dataset[Renderer.IsPlayerDataKey];
-		
-		if (data === true || data === "true")
-			return true;
-
-		if (data === false || data === "false")
-			return false;
-
-		return null;
+		return Renderer.stringToBool(data);
 	}
 	// #endregion Data Attributes
 
@@ -410,7 +433,16 @@ class Renderer
 		for (let i = 0; i < emblems.length; i++)
 		{
 			const emblem = emblems[i];
+			emblem.classList.add(Prompt.PromptTargetClassName);
 			emblem.addEventListener("click", Events.emblemOnClick);
+		}
+
+		const skillBuffs = tbody.querySelectorAll("." + Renderer.SummonSkillBuffClassName);
+		for (let i = 0; i < skillBuffs.length; i++)
+		{
+			const buff = skillBuffs[i];
+			buff.classList.add(Prompt.PromptTargetClassName);
+			buff.addEventListener("click", Events.skillBuffOnClick);
 		}
 
 		Transcendence.toggleDisplay();
@@ -548,8 +580,7 @@ class Renderer
 		{
 			div.classList.add(Renderer.EmblemIconClassName);
 
-			if (!scale)
-				scale = Icons.EmblemIconScale;
+			scale = scale ?? Icons.EmblemIconScale;
 			
 			const iconBase64 = Icons.MapEmblemToBase64[emblemName];
 			const canvas = Renderer.#createCanvasWithIcon(iconBase64, scale);
@@ -811,6 +842,45 @@ class Renderer
 
 		return iconsWrapper;
 	}
+
+	/**
+	 * 
+	 * @param {string} buff 
+	 * @param {string | boolean} value 
+	 * @param {number=} scale 
+	 * @returns {HTMLDivElement}
+	 */
+	static createSummonSkillBuffIconContainer(buff, value, scale)
+	{
+		const boolValue = Renderer.stringToBool(value);
+		return Renderer.#createSummonSkillBuffIconDiv(buff, boolValue, scale);
+	}
+
+	/**
+	 * 
+	 * @param {string} buff 
+	 * @param {true} value 
+	 * @param {number=} scale 
+	 * @returns {HTMLDivElement}
+	 */
+	static #createSummonSkillBuffIconDiv(buff, value, scale)
+	{
+		const wrapper = window.document.createElement("div");
+		wrapper.classList.add(Renderer.SummonSkillBuffClassName);
+		wrapper.classList.add(Renderer.CursorPointerClassName);
+		wrapper.dataset[Renderer.SummonSkillBuffDataKey] = buff;
+		wrapper.dataset[Renderer.SummonSkillBuffValueDataKey] = value;
+
+		scale = scale ?? Icons.SummonSkillIconScale;
+
+		const width = Icons.SummonSkillBuffWidth;
+		const height = Icons.SummonSkillBuffHeight;
+		const iconBase64 = Icons.MapSummonSkillBuffValueToBase64[buff][value];
+		const icon = Renderer.#createCanvasWithIcon(iconBase64, scale, width, height);
+
+		wrapper.appendChild(icon);
+		return wrapper;
+	}
 	// #endregion Render Text, Icons, Emblems
 
 	// #region Generate Columns
@@ -1003,6 +1073,19 @@ class Renderer
 			const emblem = Renderer.createEmblemElement(currentSkill.name);
 			emblemContainer.appendChild(emblem);
 			wrapper.appendChild(emblemContainer);
+
+			const buffsContainer = window.document.createElement("div");
+			buffsContainer.classList.add(Renderer.SummonSkillBuffsContainerClassName);
+
+			const amount = Renderer.#createSummonSkillBuffIconDiv(SummonSkill.BuffAmount, currentSkill.isBuffedByAmount);
+			const range = Renderer.#createSummonSkillBuffIconDiv(SummonSkill.BuffRange, currentSkill.isBuffedByRange);
+			const duration = Renderer.#createSummonSkillBuffIconDiv(SummonSkill.BuffDuration, currentSkill.isBuffedByDuration);
+
+			buffsContainer.appendChild(amount);
+			buffsContainer.appendChild(range);
+			buffsContainer.appendChild(duration);
+
+			wrapper.appendChild(buffsContainer);
 
 			const conditions = Renderer.#generateActivationConditionsDiv(currentSkill.upgradeConditions);
 			wrapper.appendChild(conditions);

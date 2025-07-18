@@ -247,12 +247,37 @@ class Events
 
 	/**
 	 * 
+	 * @param {MouseEvent} e 
+	 */
+	static skillBuffOnClick(e)
+	{
+		/** @type HTMLElement */
+		let target = e.target;
+
+		if (Prompt.isPrompt(target))
+			return;
+
+		Prompt.show(e);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 */
+	static #getClosestPromptEmblemContainer(element)
+	{
+		const button = Events.getParentByClass(element, Prompt.ButtonClassName);
+		const emblemContainer = button.querySelector("." + Prompt.EmblemContainerClassName);
+		return emblemContainer;
+	}
+
+	/**
+	 * 
 	 * @param {HTMLElement} element 
 	 */
 	static #getClosestPromptEmblem(element)
 	{
-		const button = Events.getParentByClass(element, Prompt.ButtonClassName);
-		const emblemContainer = button.querySelector("." + Prompt.EmblemContainerClassName);
+		const emblemContainer = Events.#getClosestPromptEmblemContainer(element);
 		const emblemElement = emblemContainer.querySelector("." + Renderer.EmblemClassName);
 		return emblemElement;
 	}
@@ -313,6 +338,29 @@ class Events
 
 		Form.resetFilters();
 		Form.filterBySummonSkill(summonSkillName);
+	}
+
+	/**
+	 * 
+	 * @param {MouseEvent} e 
+	 */
+	static whoIsSkillBuffOnClick(e)
+	{
+		/** @type HTMLElement */
+		let target = e.target;
+
+		if (!Prompt.isPrompt(target))
+			return;
+
+		const container = Events.#getClosestPromptEmblemContainer(target);
+		/** @type {HTMLDivElement} */
+		const skillBuff = container.querySelector("div." + Renderer.SummonSkillBuffClassName);
+		const buff = skillBuff.dataset[Renderer.SummonSkillBuffDataKey];
+		const valueString = skillBuff.dataset[Renderer.SummonSkillBuffValueDataKey];
+		const value = Renderer.stringToBool(valueString);
+
+		Form.resetFilters();
+		Form.filterBySummonSkillBuff(buff, value);
 	}
 
 	/**
