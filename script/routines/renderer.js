@@ -145,6 +145,228 @@ class Renderer
 		["(((s|S)lightly )|((m|M)oderately ))?(c|C)harges"]: "highlight-text-blue-dark",
 	}
 
+	static showAll()
+	{
+		const tbody = Renderer.getTableBody();
+		const rows = tbody.querySelectorAll(Renderer.TableRowClassName);
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+			row.classList.remove(Renderer.HiddenClassName);
+		}
+	}
+
+	// #region Filter
+	/**
+	 * 
+	 * @param {Object.<string, Hero>} heroes 
+	 */
+	static hideHeroesExcept(heroes)
+	{
+		if (!heroes)
+			return;
+
+		const tbody = Renderer.getTableBody();
+		const rows = tbody.querySelectorAll("tr." + Renderer.TableRowClassName);
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+			const heroName = row.dataset[Renderer.HeroNameDataKey];
+
+			if (heroes[heroName])
+				row.classList.remove(Renderer.HiddenClassName);
+			else
+				row.classList.add(Renderer.HiddenClassName);
+		}
+	}
+
+	// #endregion Filter
+
+	// #region Options
+
+	/**
+	 * 
+	 * @param {boolean} visible 
+	 */
+	static toggleHeroInGameOrder(useInGameOrder)
+	{
+		const table = Renderer.getTableBody();
+		const rows = table.querySelectorAll("tr");
+		/** @type {Object.<string, HTMLTableRowElement>} */
+		const mapHeroNameToRow = { };
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+			const heroName = row.dataset[Renderer.HeroNameDataKey];
+			
+			mapHeroNameToRow[heroName] = row;
+		}
+
+		if (useInGameOrder)
+		{
+			for (let i = 0; i < Data.HeroesInGameOrder.length; i++)
+			{
+				const heroName = Data.HeroesInGameOrder[i];
+				const row = mapHeroNameToRow[heroName];
+				table.appendChild(row);
+			}
+		}
+		else
+		{
+			for (let heroName in Data.Heroes)
+			{
+				const row = mapHeroNameToRow[heroName];
+				table.appendChild(row);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param {boolean} visible 
+	 */
+	static toggleHeroInGameNames(visible)
+	{
+		const table = Renderer.getTableBody();
+		const heroEmblems = table.querySelectorAll("div[data-" + Renderer.IsHeroDataKey + "='true']");
+
+		for (let i = 0; i < heroEmblems.length; i++)
+		{
+			const emblem = heroEmblems[i];
+			const heroName = Renderer.getEmblemName(emblem);
+			const hero = Data.Heroes[heroName];
+
+			if (hero.nameInGame)
+			{
+				if (visible)
+					emblem.innerText = hero.nameInGame;
+				else
+					emblem.innerText = hero.name;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param {boolean} visible 
+	 */
+	static toggleRowNumbers(visible)
+	{
+		const table = Renderer.getTableBody();
+		const rows = table.querySelectorAll("tr");
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+
+			if (visible)
+				row.classList.add(Renderer.ShowCounterClassName);
+			else
+				row.classList.remove(Renderer.ShowCounterClassName);
+		}
+	}
+
+	/**
+	 * 
+	 * @param {number} index 
+	 * @param {boolean} visible 
+	 */
+	static toggleColumnDisplay(index, visible)
+	{
+		const table = window.document.getElementById(Renderer.TargetTableId);
+		const rows = table.querySelectorAll("tr");
+
+		for (let i = 0; i < rows.length; i++)
+		{
+			const row = rows[i];
+			const children = row.children;
+
+			for (let j = 0; j < children.length; j++)
+			{
+				if (j !== index)
+					continue;
+
+				const child = children.item(j);
+				
+				if (visible)
+					child.classList.remove(Renderer.DisplayHiddenClassName);
+				else
+					child.classList.add(Renderer.DisplayHiddenClassName);
+			}
+		}
+	}
+
+	// #endregion Options
+
+	// #region Data Attributes
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 * @returns {string}
+	 */
+	static getEmblemName(element)
+	{
+		const data = element.dataset[Renderer.EmblemNameDataKey];
+		return data;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 */
+	static getIsHero(element)
+	{
+		const data = element.dataset[Renderer.IsHeroDataKey];
+		
+		if (data === true || data === "true")
+			return true;
+
+		if (data === false || data === "false")
+			return false;
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 */
+	static getIsSummonSkill(element)
+	{
+		const data = element.dataset[Renderer.IsSummonSkillDataKey];
+		
+		if (data === true || data === "true")
+			return true;
+
+		if (data === false || data === "false")
+			return false;
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLElement} element 
+	 */
+	static getIsPlayer(element)
+	{
+		const data = element.dataset[Renderer.IsPlayerDataKey];
+		
+		if (data === true || data === "true")
+			return true;
+
+		if (data === false || data === "false")
+			return false;
+
+		return null;
+	}
+	// #endregion Data Attributes
+
+	// #region Fetch/Manipulate DOM
+	/** @returns {HTMLTableSectionElement} */
 	static getTableBody()
 	{
 		const table = window.document.getElementById(Renderer.TargetTableId);
@@ -165,10 +387,209 @@ class Renderer
 	 * @param {HTMLElement} element 
 	 * @param {HTMLElement[]} children 
 	 */
-	static appendChildren(element, children)
+	static #appendChildren(element, children)
 	{
 		for (let i = 0; i < children.length; i++)
 			element.appendChild(children[i]);
+	}
+	// #endregion Fetch/Manipulate DOM
+
+	// #region Render
+	static render()
+	{
+		const tbody = Renderer.getTableBody();
+
+		for (let heroName in Data.Heroes)
+		{
+			const hero = Data.Heroes[heroName];
+			const row = Renderer.#generateRow(hero);
+			tbody.appendChild(row);
+		}
+
+		const emblems = tbody.querySelectorAll("." + Renderer.EmblemClassName);
+		for (let i = 0; i < emblems.length; i++)
+		{
+			const emblem = emblems[i];
+			emblem.addEventListener("click", Events.emblemOnClick);
+		}
+
+		Transcendence.toggleDisplay();
+	}
+
+	/**
+	 * 
+	 * @param {Hero} hero 
+	 * @returns HTMLTableRowElement 
+	 */
+	static #generateRow(hero)
+	{
+		const row = window.document.createElement("tr");
+		row.classList.add(Renderer.TableRowClassName);
+		row.dataset[Renderer.HeroNameDataKey] = hero.name;
+
+		Renderer.#addNameColumn(row, hero);
+		Renderer.#addEmblemsColumns(row, hero);
+		Renderer.#addTraitsColumns(row, hero);
+		Renderer.#addSummonSkillColumns(row, hero);
+		Renderer.#addTacticColumns(row, hero);
+
+		return row;
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addEmblemsColumns(row, hero)
+	{
+		const statsColumn = Renderer.#generaleEmblemsColumn(hero, true, false);
+		row.appendChild(statsColumn);
+
+		const emblemsColumn = Renderer.#generaleEmblemsColumn(hero, false, true);
+		row.appendChild(emblemsColumn);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addNameColumn(row, hero)
+	{
+		const nameColumn = window.document.createElement("td");
+		nameColumn.classList.add(Renderer.CenterContentClassName);
+
+		const nameContainer = window.document.createElement("div");
+		nameContainer.classList.add(Renderer.EmblemsContainerClassName);
+
+		const nameEmblem = Renderer.createEmblemElement(hero.name);
+		nameEmblem.classList.add(Renderer.NameEmblemClassName);
+
+		nameContainer.appendChild(nameEmblem);
+		nameColumn.appendChild(nameContainer);
+
+		row.appendChild(nameColumn);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addTraitsColumns(row, hero)
+	{
+		const t1 = hero.trait1;
+		const t1T12 = hero.trait1Transcended;
+		const t1ShouldSeparate = hero.doesT12ChangeTrait1();
+		const trait1Column = Renderer.#generateTraitsColumn(t1, t1T12, t1ShouldSeparate);
+		row.appendChild(trait1Column);
+		
+		const t2 = hero.trait2;
+		const t2T12 = hero.trait2Transcended;
+		const t2ShouldSeparate = hero.doesT12ChangeTrait2();
+		const trait2Column = Renderer.#generateTraitsColumn(t2, t2T12, t2ShouldSeparate);
+		row.appendChild(trait2Column);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addSummonSkillColumns(row, hero)
+	{
+		const skill = hero.summonSkill;
+		const skillT12 = hero.summonSkillTranscended;
+		const shouldSeparate = !skill.equals(skillT12);
+
+		const skillColumn = Renderer.#generateSkillColumn(skill, skillT12, shouldSeparate);
+		row.appendChild(skillColumn);
+		
+		const elementColumn = Renderer.#generateSkillElementColumn(skill, skillT12, shouldSeparate);
+		row.appendChild(elementColumn);
+	}
+
+	/**
+	 * 
+	 * @param {HTMLTableRowElement} row 
+	 * @param {Hero} hero 
+	 */
+	static #addTacticColumns(row, hero)
+	{
+		const tactic = hero.tactic;
+		const tacticT12 = hero.tacticTranscended;
+		const shouldSeparateTactics = !tactic.equals(tacticT12, true);
+		const shouldSeparateTargets = !tactic.targetsEqual(tacticT12);
+
+		const tacticColumn = Renderer.#generateTacticColumn(tactic, tacticT12, shouldSeparateTactics);
+		row.appendChild(tacticColumn);
+
+		const targetsColumn = Renderer.#generateTacticTargetsColumn(tactic, tacticT12, shouldSeparateTargets);
+		row.appendChild(targetsColumn);
+	}
+	// #endregion Render
+
+	// #region Render Text, Icons, Emblems
+	/**
+	 * 
+	 * @param {string} emblemName 
+	 * @param {number=} scale 
+	 * @returns HTMLDivElement
+	 */
+	static createEmblemElement(emblemName, scale)
+	{
+		const div = window.document.createElement("div");
+		div.classList.add(Renderer.CursorPointerClassName);
+		div.classList.add(Renderer.EmblemClassName);
+		div.dataset[Renderer.EmblemNameDataKey] = emblemName;
+
+		if (Icons.MapEmblemToBase64[emblemName])
+		{
+			div.classList.add(Renderer.EmblemIconClassName);
+
+			if (!scale)
+				scale = Icons.EmblemIconScale;
+			
+			const iconBase64 = Icons.MapEmblemToBase64[emblemName];
+			const canvas = Renderer.#createCanvasWithIcon(iconBase64, scale);
+			canvas.classList.add(Renderer.EmblemCanvasClassName);
+			
+			div.appendChild(canvas);
+		}
+		else
+		{
+			div.classList.add(Renderer.EmblemTextClassName);
+			div.classList.add(Renderer.CenterContentClassName);
+
+			let displayName = emblemName;
+
+			if (emblemName === TacticTarget.Player)
+			{
+				div.dataset[Renderer.IsPlayerDataKey] = true;
+			}
+			if (emblemName === TacticTarget.AllSummons)
+			{
+				div.dataset[Renderer.IsAllSummonsDataKey] = true;
+			}
+			else if (Data.SummonSkills[emblemName])
+			{
+				div.classList.add(Renderer.SummonSkillClassName);
+				div.dataset[Renderer.IsSummonSkillDataKey] = true;
+			}
+			else if (Data.Heroes[emblemName])
+			{
+				div.dataset[Renderer.IsHeroDataKey] = true;
+
+				const hero = Data.Heroes[emblemName];
+				if (Form.isUseInGameNamesSelected() && hero.nameInGame)
+					displayName = hero.nameInGame;
+			}
+
+			div.innerText = displayName;
+		}
+
+		return div;
 	}
 
 	/**
@@ -176,7 +597,7 @@ class Renderer
 	 * @param {string} text 
 	 * @returns {HTMLElement[]}
 	 */
-	static renderTextAsElementArray(text)
+	static #renderTextAsElementArray(text)
 	{
 		if (!text)
 			return "";
@@ -309,237 +730,6 @@ class Renderer
 		return resultArray;
 	}
 
-	static render()
-	{
-		const tbody = Renderer.getTableBody();
-
-		for (let heroName in Data.Heroes)
-		{
-			const hero = Data.Heroes[heroName];
-			const row = Renderer.#generateRow(hero);
-			tbody.appendChild(row);
-		}
-
-		const emblems = tbody.querySelectorAll("." + Renderer.EmblemClassName);
-		for (let i = 0; i < emblems.length; i++)
-		{
-			const emblem = emblems[i];
-			emblem.addEventListener("click", Events.emblemOnClick);
-		}
-
-		Transcendence.toggleDisplay();
-	}
-
-	/**
-	 * 
-	 * @param {boolean} visible 
-	 */
-	static toggleHeroInGameOrder(useInGameOrder)
-	{
-		const table = Renderer.getTableBody();
-		const rows = table.querySelectorAll("tr");
-		/** @type {Object.<string, HTMLTableRowElement>} */
-		const mapHeroNameToRow = { };
-
-		for (let i = 0; i < rows.length; i++)
-		{
-			const row = rows[i];
-			const heroName = row.dataset[Renderer.HeroNameDataKey];
-			
-			mapHeroNameToRow[heroName] = row;
-		}
-
-		if (useInGameOrder)
-		{
-			for (let i = 0; i < Data.HeroesInGameOrder.length; i++)
-			{
-				const heroName = Data.HeroesInGameOrder[i];
-				const row = mapHeroNameToRow[heroName];
-				table.appendChild(row);
-			}
-		}
-		else
-		{
-			for (let heroName in Data.Heroes)
-			{
-				const row = mapHeroNameToRow[heroName];
-				table.appendChild(row);
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param {boolean} visible 
-	 */
-	static toggleHeroInGameNames(visible)
-	{
-		const table = Renderer.getTableBody();
-		const heroEmblems = table.querySelectorAll("div[data-" + Renderer.IsHeroDataKey + "='true']");
-
-		for (let i = 0; i < heroEmblems.length; i++)
-		{
-			const emblem = heroEmblems[i];
-			const heroName = Renderer.getEmblemName(emblem);
-			const hero = Data.Heroes[heroName];
-
-			if (hero.nameInGame)
-			{
-				if (visible)
-					emblem.innerText = hero.nameInGame;
-				else
-					emblem.innerText = hero.name;
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param {boolean} visible 
-	 */
-	static toggleRowNumbers(visible)
-	{
-		const table = Renderer.getTableBody();
-		const rows = table.querySelectorAll("tr");
-
-		for (let i = 0; i < rows.length; i++)
-		{
-			const row = rows[i];
-
-			if (visible)
-				row.classList.add(Renderer.ShowCounterClassName);
-			else
-				row.classList.remove(Renderer.ShowCounterClassName);
-		}
-	}
-
-	static showAll()
-	{
-		const tbody = Renderer.getTableBody();
-		const rows = tbody.querySelectorAll(Renderer.TableRowClassName);
-
-		for (let i = 0; i < rows.length; i++)
-		{
-			const row = rows[i];
-			row.classList.remove(Renderer.HiddenClassName);
-		}
-	}
-
-	/**
-	 * 
-	 * @param {number} index 
-	 * @param {boolean} visible 
-	 */
-	static toggleColumnDisplay(index, visible)
-	{
-		const table = window.document.getElementById(Renderer.TargetTableId);
-		const rows = table.querySelectorAll("tr");
-
-		for (let i = 0; i < rows.length; i++)
-		{
-			const row = rows[i];
-			const children = row.children;
-
-			for (let j = 0; j < children.length; j++)
-			{
-				if (j !== index)
-					continue;
-
-				const child = children.item(j);
-				
-				if (visible)
-					child.classList.remove(Renderer.DisplayHiddenClassName);
-				else
-					child.classList.add(Renderer.DisplayHiddenClassName);
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param {Object.<string, Hero>} heroes 
-	 */
-	static hideHeroesExcept(heroes)
-	{
-		if (!heroes)
-			return;
-
-		const tbody = Renderer.getTableBody();
-		const rows = tbody.querySelectorAll("tr." + Renderer.TableRowClassName);
-
-		for (let i = 0; i < rows.length; i++)
-		{
-			const row = rows[i];
-			const heroName = row.dataset[Renderer.HeroNameDataKey];
-
-			if (heroes[heroName])
-				row.classList.remove(Renderer.HiddenClassName);
-			else
-				row.classList.add(Renderer.HiddenClassName);
-		}
-	}
-
-	/**
-	 * 
-	 * @param {HTMLElement} element 
-	 */
-	static getEmblemName(element)
-	{
-		const data = element.dataset[Renderer.EmblemNameDataKey];
-		return data;
-	}
-
-	/**
-	 * 
-	 * @param {HTMLElement} element 
-	 */
-	static getIsHero(element)
-	{
-		const data = element.dataset[Renderer.IsHeroDataKey];
-		
-		if (data === true || data === "true")
-			return true;
-
-		if (data === false || data === "false")
-			return false;
-
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param {HTMLElement} element 
-	 */
-	static getIsSummonSkill(element)
-	{
-		const data = element.dataset[Renderer.IsSummonSkillDataKey];
-		
-		if (data === true || data === "true")
-			return true;
-
-		if (data === false || data === "false")
-			return false;
-
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param {HTMLElement} element 
-	 */
-	static getIsPlayer(element)
-	{
-		const data = element.dataset[Renderer.IsPlayerDataKey];
-		
-		if (data === true || data === "true")
-			return true;
-
-		if (data === false || data === "false")
-			return false;
-
-		return null;
-	}
-
 	/**
 	 * 
 	 * @param {string} iconBase64 
@@ -578,103 +768,6 @@ class Renderer
 		};
 
 		return canvas;
-	}
-
-	/**
-	 * 
-	 * @param {string} emblemName 
-	 * @param {number=} scale 
-	 * @returns HTMLDivElement
-	 */
-	static createEmblemElement(emblemName, scale)
-	{
-		const div = window.document.createElement("div");
-		div.classList.add(Renderer.CursorPointerClassName);
-		div.classList.add(Renderer.EmblemClassName);
-		div.dataset[Renderer.EmblemNameDataKey] = emblemName;
-
-		if (Icons.MapEmblemToBase64[emblemName])
-		{
-			div.classList.add(Renderer.EmblemIconClassName);
-
-			if (!scale)
-				scale = Icons.EmblemIconScale;
-			
-			const iconBase64 = Icons.MapEmblemToBase64[emblemName];
-			const canvas = Renderer.#createCanvasWithIcon(iconBase64, scale);
-			canvas.classList.add(Renderer.EmblemCanvasClassName);
-			
-			div.appendChild(canvas);
-		}
-		else
-		{
-			div.classList.add(Renderer.EmblemTextClassName);
-			div.classList.add(Renderer.CenterContentClassName);
-
-			let displayName = emblemName;
-
-			if (emblemName === TacticTarget.Player)
-			{
-				div.dataset[Renderer.IsPlayerDataKey] = true;
-			}
-			if (emblemName === TacticTarget.AllSummons)
-			{
-				div.dataset[Renderer.IsAllSummonsDataKey] = true;
-			}
-			else if (Data.SummonSkills[emblemName])
-			{
-				div.classList.add(Renderer.SummonSkillClassName);
-				div.dataset[Renderer.IsSummonSkillDataKey] = true;
-			}
-			else if (Data.Heroes[emblemName])
-			{
-				div.dataset[Renderer.IsHeroDataKey] = true;
-
-				const hero = Data.Heroes[emblemName];
-				if (Form.isUseInGameNamesSelected() && hero.nameInGame)
-					displayName = hero.nameInGame;
-			}
-
-			div.innerText = displayName;
-		}
-
-		return div;
-	}
-
-	/**
-	 * 
-	 * @param {HTMLTableRowElement} row 
-	 * @param {Hero} hero 
-	 */
-	static #addNameColumn(row, hero)
-	{
-		const nameColumn = window.document.createElement("td");
-		nameColumn.classList.add(Renderer.CenterContentClassName);
-
-		const nameContainer = window.document.createElement("div");
-		nameContainer.classList.add(Renderer.EmblemsContainerClassName);
-
-		const nameEmblem = Renderer.createEmblemElement(hero.name);
-		nameEmblem.classList.add(Renderer.NameEmblemClassName);
-
-		nameContainer.appendChild(nameEmblem);
-		nameColumn.appendChild(nameContainer);
-
-		row.appendChild(nameColumn);
-	}
-
-	/**
-	 * 
-	 * @param {HTMLTableRowElement} row 
-	 * @param {Hero} hero 
-	 */
-	static #addEmblemsColumns(row, hero)
-	{
-		const statsColumn = Renderer.#generaleEmblemsColumn(hero, true, false);
-		row.appendChild(statsColumn);
-
-		const emblemsColumn = Renderer.#generaleEmblemsColumn(hero, false, true);
-		row.appendChild(emblemsColumn);
 	}
 
 	/**
@@ -718,6 +811,9 @@ class Renderer
 
 		return iconsWrapper;
 	}
+	// #endregion Render Text, Icons, Emblems
+
+	// #region Generate Columns
 
 	/**
 	 * 
@@ -798,26 +894,6 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {HTMLTableRowElement} row 
-	 * @param {Hero} hero 
-	 */
-	static #addTraitsColumns(row, hero)
-	{
-		const t1 = hero.trait1;
-		const t1T12 = hero.trait1Transcended;
-		const t1ShouldSeparate = hero.doesT12ChangeTrait1();
-		const trait1Column = Renderer.#generateTraitsColumn(t1, t1T12, t1ShouldSeparate);
-		row.appendChild(trait1Column);
-		
-		const t2 = hero.trait2;
-		const t2T12 = hero.trait2Transcended;
-		const t2ShouldSeparate = hero.doesT12ChangeTrait2();
-		const trait2Column = Renderer.#generateTraitsColumn(t2, t2T12, t2ShouldSeparate);
-		row.appendChild(trait2Column);
-	}
-
-	/**
-	 * 
 	 * @param {string[]} traits 
 	 * @param {string[]} traitsT12 
 	 * @param {boolean} shouldSeparate 
@@ -862,8 +938,8 @@ class Renderer
 				iterSpan.innerHTML = (i + 1) + ".&nbsp;";
 				traitContainer.appendChild(iterSpan);
 
-				const children = Renderer.renderTextAsElementArray(trait);
-				Renderer.appendChildren(traitContainer, children);
+				const children = Renderer.#renderTextAsElementArray(trait);
+				Renderer.#appendChildren(traitContainer, children);
 
 				wrapper.appendChild(traitContainer);
 			}
@@ -884,24 +960,6 @@ class Renderer
 		column.appendChild(container);
 
 		return column;
-	}
-
-	/**
-	 * 
-	 * @param {HTMLTableRowElement} row 
-	 * @param {Hero} hero 
-	 */
-	static #addSummonSkillColumns(row, hero)
-	{
-		const skill = hero.summonSkill;
-		const skillT12 = hero.summonSkillTranscended;
-		const shouldSeparate = !skill.equals(skillT12);
-
-		const skillColumn = Renderer.#generateSkillColumn(skill, skillT12, shouldSeparate);
-		row.appendChild(skillColumn);
-		
-		const elementColumn = Renderer.#generateSkillElementColumn(skill, skillT12, shouldSeparate);
-		row.appendChild(elementColumn);
 	}
 
 	/**
@@ -1075,25 +1133,6 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {HTMLTableRowElement} row 
-	 * @param {Hero} hero 
-	 */
-	static #addTacticColumns(row, hero)
-	{
-		const tactic = hero.tactic;
-		const tacticT12 = hero.tacticTranscended;
-		const shouldSeparateTactics = !tactic.equals(tacticT12, true);
-		const shouldSeparateTargets = !tactic.targetsEqual(tacticT12);
-
-		const tacticColumn = Renderer.#generateTacticColumn(tactic, tacticT12, shouldSeparateTactics);
-		row.appendChild(tacticColumn);
-
-		const targetsColumn = Renderer.#generateTacticTargetsColumn(tactic, tacticT12, shouldSeparateTargets);
-		row.appendChild(targetsColumn);
-	}
-
-	/**
-	 * 
 	 * @param {Tactic} tactic 
 	 * @param {Tactic} tacticT12 
 	 * @param {boolean} shouldSeparate 
@@ -1133,8 +1172,8 @@ class Renderer
 			const description = window.document.createElement("div");
 			description.classList.add(Renderer.SummonTacticDescriptionClassName);
 
-			const descriptionElements = Renderer.renderTextAsElementArray(currentTactic.description);
-			Renderer.appendChildren(description, descriptionElements);
+			const descriptionElements = Renderer.#renderTextAsElementArray(currentTactic.description);
+			Renderer.#appendChildren(description, descriptionElements);
 			
 			wrapper.appendChild(description);
 
@@ -1262,24 +1301,5 @@ class Renderer
 
 		return column;
 	}
-
-	/**
-	 * 
-	 * @param {Hero} hero 
-	 * @returns HTMLTableRowElement 
-	 */
-	static #generateRow(hero)
-	{
-		const row = window.document.createElement("tr");
-		row.classList.add(Renderer.TableRowClassName);
-		row.dataset[Renderer.HeroNameDataKey] = hero.name;
-
-		Renderer.#addNameColumn(row, hero);
-		Renderer.#addEmblemsColumns(row, hero);
-		Renderer.#addTraitsColumns(row, hero);
-		Renderer.#addSummonSkillColumns(row, hero);
-		Renderer.#addTacticColumns(row, hero);
-
-		return row;
-	}
+	// #endregion Columns
 }
