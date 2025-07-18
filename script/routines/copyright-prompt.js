@@ -3,6 +3,7 @@ class CopyrightPrompt
 	static Id = "copyright";
 	static ButtonOpenId = "copyright-button-open";
 	static ButtonCloseId = "copyright-button-close";
+	static InsertYearClassName = "insert-year";
 
 	static #getArticle()
 	{
@@ -38,8 +39,18 @@ class CopyrightPrompt
 		const buttonClose = CopyrightPrompt.#getButtonClose();
 		buttonClose.addEventListener("click", CopyrightPrompt.hide);
 
-		const footer = window.document.querySelector("footer ." + Renderer.CursorPointerClassName);
+		const footer = window.document.querySelector("footer span." + Renderer.CursorPointerClassName);
 		footer.addEventListener("click", CopyrightPrompt.show);
+
+		const now = new Date(Date.now());
+		const year = now.getFullYear();
+		const spansInsertYear = window.document.querySelectorAll("span." + CopyrightPrompt.InsertYearClassName);
+		for (let i = 0; i < spansInsertYear.length; i++)
+		{
+			/** @type {HTMLSpanElement} */
+			const span = spansInsertYear[i];
+			span.innerText = year;
+		}
 	}
 
 	static show()
