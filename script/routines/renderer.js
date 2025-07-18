@@ -679,16 +679,28 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {boolean} shouldSeparate 
-	 * @param {boolean=} isT12 
+	 * @param {boolean} isT12 
+	 * @param {number=} scale 
 	 * @returns {HTMLDivElement}
 	 */
-	static #createT12IconDiv(shouldSeparate, isT12)
+	static createT12IconContainer(isT12, scale)
+	{
+		return Renderer.#createT12IconDiv(true, isT12, scale);
+	}
+
+	/**
+	 * 
+	 * @param {boolean} shouldSeparate 
+	 * @param {boolean=} isT12 
+	 * @param {number=} scale 
+	 * @returns {HTMLDivElement}
+	 */
+	static #createT12IconDiv(shouldSeparate, isT12, scale)
 	{
 		const iconsWrapper = window.document.createElement("div");
 		iconsWrapper.classList.add(Transcendence.IconClassName);
 
-		const scale = Icons.T12IconScale;
+		scale = scale ?? Icons.T12IconScale;
 
 		const createIcon = function(value)
 		{

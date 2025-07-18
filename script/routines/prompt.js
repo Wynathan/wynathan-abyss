@@ -52,6 +52,9 @@ class Prompt
 	 */
 	static isPrompt(element)
 	{
+		if (!element)
+			return false;
+
 		const parent = Events.getParentById(element, Prompt.Id);
 		return Boolean(parent);
 	}

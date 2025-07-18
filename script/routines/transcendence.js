@@ -7,10 +7,13 @@ class Transcendence
 	static IconClassName = "t12-icon";
 	static HiddenClassName = "t12-hidden";
 	static DataKey = "t12";
+	static OptionEmblemPrefix = "Use";
+	
+	/** @type {Object.<string, boolean>} */
 	static Options =
 	{
-		["Use Transcended"]: true,
-		["Use Non-Transcended"]: false,
+		["Transcended"]: true,
+		["Non-Transcended"]: false,
 	};
 
 	/**

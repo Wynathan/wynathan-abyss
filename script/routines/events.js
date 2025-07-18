@@ -105,10 +105,7 @@ class Events
 	static optionsOnClick(e)
 	{
 		/** @type HTMLElement */
-		const target = e.target;
-
-		if (Prompt.isPrompt(target))
-			return;
+		const target = Events.getParentByClass(e.target, Form.OptionsItemClassName);
 
 		if (target.id === Form.ResetFiltersId)
 		{

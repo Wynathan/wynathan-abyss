@@ -157,3 +157,11 @@
 {
 	user-select: none;
 }
+
+.filter-form .options-item.t12-target .t12-icon
+{
+	display: inline-block;
+	vertical-align: middle;
+	width: 17px;
+	height: 17px;
+}

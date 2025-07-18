@@ -838,14 +838,29 @@ class Form
 		}
 
 		// #region Options
+		const t12Prefix = Transcendence.OptionEmblemPrefix;
 		for (let option in Transcendence.Options)
 		{
-			const emblem = Renderer.createEmblemElement(option);
+			const value = Transcendence.Options[option];
+			
+			const emblem = Renderer.createEmblemElement("");
 			emblem.classList.add(Form.OptionsItemClassName);
 			emblem.classList.add(Transcendence.TargetClassName);
 
+			const prefix = window.document.createElement("span");
+			prefix.innerText = t12Prefix + " ";
+			
+			const icon = Renderer.createT12IconContainer(value);
+
+			const suffix = window.document.createElement("span");
+			suffix.innerText = " " + option;
+
+			emblem.appendChild(prefix);
+			emblem.appendChild(icon);
+			emblem.appendChild(suffix);
+
 			emblem.addEventListener("click", Events.optionsOnClick);
-			emblem.dataset[Transcendence.DataKey] = Transcendence.Options[option];
+			emblem.dataset[Transcendence.DataKey] = value;
 			optionsContainer.appendChild(emblem);
 		}
 
