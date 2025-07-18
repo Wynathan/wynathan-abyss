@@ -2,6 +2,8 @@
 @media only screen 
 	and (max-width: 760px), (min-device-width: 768px) 
 	and (max-device-width: 1024px)
+	/* For testing purposes only: */
+	/* and (max-device-width: 1920px) */
 {
 	#copyright > div
 	{
@@ -127,10 +129,10 @@
 
 	table.table-root .trait,
 		table.table-root .summon-tactic-name, 
-		table.table-root .summon-tactic-description
+		table.table-root .summon-tactic-description,
+		table.table-root .summon-tactic-activation-conditions
 	{
-		padding-left: 6px !important;
-		padding-right: 6px !important;
+		padding-left: 4px !important;
 	}
 
 	/* .filter-form #filter-personal-emblems .filter-group */
