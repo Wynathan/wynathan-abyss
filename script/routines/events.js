@@ -120,45 +120,26 @@ class Events
 	 */
 	static optionsOnClick(e)
 	{
-		/** @type HTMLElement */
+		Loader.show();
+
 		const target = Events.getParentByClass(e.target, Form.OptionsItemClassName);
 
 		if (target.id === Form.ResetFiltersId)
 		{
-			Loader.show();
-
 			Events.#toggleSelected(target, true)
 			Form.resetFilters();
 			Form.filter();
 
 			window.clearTimeout(Events.#lastResetTimeoutId);
 			Events.#lastResetTimeoutId = window.setTimeout(Events.#toggleSelected, 300, target, false);
-
-			Loader.hide();
-			return;
-		}
-
-		Loader.show();
-		
-		const isSelected = Events.#toggleSelected(target);
-
-		const index = Events.#getIndexAmongstSiblings(target);
-		Config.setDefaultOptionAt(index, isSelected);
-		
-		if (target.id === Form.UseInGameOrderId)
-		{
-			Renderer.toggleHeroInGameOrder(isSelected);
-		}
-		else if (target.id === Form.DisplayInGameNamesId)
-		{
-			Renderer.toggleHeroInGameNames(isSelected);
-		}
-		else if (target.id === Form.DisplayRowNumbersId)
-		{
-			Renderer.toggleRowNumbers(isSelected);
 		}
 		else
 		{
+			const isSelected = Events.#toggleSelected(target);
+
+			const index = Events.#getIndexAmongstSiblings(target);
+			Config.setDefaultOptionAt(index, isSelected);
+			
 			const transcendenceOptionsElements = Transcendence.getOptions();
 			let isAnySelected = false;
 
@@ -195,48 +176,56 @@ class Events
 	 */
 	static displayOptionsOnClick(e)
 	{
-		/** @type HTMLElement */
-		let target = e.target;
-
-		if (Prompt.isPrompt(target))
-			return;
-
 		Loader.show();
+
+		/** @type HTMLElement */
+		const target = e.target;
 
 		const isSelected = Events.#toggleSelected(target);
 
-		const isTranscendent = Transcendence.getIsTranscendent(target);
-		let className = null;
-
-		for (let i = 0; i < target.classList.length; i++)
-		{
-			const currentClassName = target.classList.item(i);
-			if (currentClassName.indexOf("header-") === 0)
-			{
-				className = currentClassName;
-				break;
-			}
-		}
-
-		const table = window.document.getElementById(Renderer.TargetTableId);
-		const headers = table.querySelectorAll("th." + Transcendence.TargetClassName);
-		
-		let index = -1;
-		for (let i = 0; i < headers.length; i++)
-		{
-			const header = headers[i];
-			if (header.classList.contains(className))
-			{
-				const headerTr = Transcendence.getIsTranscendent(header);
-				if (headerTr === isTranscendent)
-				{
-					index = i;
-					break;
-				}
-			}
-		}
-
+		const index = Events.#getIndexAmongstSiblings(target);
 		Config.setDefaultDisplayOptionAt(index, isSelected);
+		
+		if (target.id === Form.UseInGameOrderId)
+		{
+			Renderer.toggleHeroInGameOrder(isSelected);
+		}
+		else if (target.id === Form.DisplayInGameNamesId)
+		{
+			Renderer.toggleHeroInGameNames(isSelected);
+		}
+		else if (target.id === Form.DisplayRowNumbersId)
+		{
+			Renderer.toggleRowNumbers(isSelected);
+		}
+		else if (target.id === Form.DisplayCenterId)
+		{
+			const body = window.document.getElementsByTagName("body")[0];
+			if (isSelected)
+				body.classList.add(Renderer.CenterContentClassName);
+			else
+				body.classList.remove(Renderer.CenterContentClassName);
+		}
+
+		Loader.hide();
+	}
+
+	/**
+	 * 
+	 * @param {MouseEvent} e 
+	 */
+	static displayColumnsOnClick(e)
+	{
+		Loader.show();
+
+		/** @type HTMLElement */
+		const target = e.target;
+
+		const isSelected = Events.#toggleSelected(target);
+
+		const index = Events.#getIndexAmongstSiblings(target);
+		Config.setDefaultDisplayColumnAt(index, isSelected);
+
 		Renderer.toggleColumnDisplay(index + 1, isSelected);
 
 		Loader.hide();

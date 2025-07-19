@@ -44,12 +44,34 @@ class Transcendence
 		element.dataset[Transcendence.DataKey] = isTranscendent;
 	}
 
-	static getOptions()
+	static #getOptionsContainer()
 	{
 		const formContainer = Form.getFilterFormContainer();
-		const optionsContainer = formContainer.querySelector("div#options");
+		const optionsContainer = formContainer.querySelector("div#" + Form.FilterOptionsContainerId);
+		return optionsContainer;
+	}
+
+	static getOptions()
+	{
+		const optionsContainer = Transcendence.#getOptionsContainer();
 		const elements = optionsContainer.querySelectorAll("div." + Transcendence.TargetClassName);
 		return elements;
+	}
+
+	/**
+	 * @returns {{ checkTr: boolean, checkNonTr: boolean }}
+	 */
+	static getSelectionValues()
+	{
+		const optionsContainer = Transcendence.#getOptionsContainer();
+
+		const optionTr = optionsContainer.querySelector("div[data-" + Transcendence.DataKey + "='true']");
+		const optionNonTr = optionsContainer.querySelector("div[data-" + Transcendence.DataKey + "='false']");
+		
+		const checkTr = optionTr.classList.contains(Form.SelectedClassName);
+		const checkNonTr = optionNonTr.classList.contains(Form.SelectedClassName);
+
+		return { checkTr: checkTr, checkNonTr: checkNonTr };
 	}
 
 	static toggleDisplay()

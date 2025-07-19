@@ -1,7 +1,8 @@
 class Config
 {
-	static #keyOptions = "options";
-	static #keyDisplayOptions = "display";
+	static #keyOptions = "filter-options";
+	static #keyDisplayOptions = "display-options";
+	static #keyDisplayColumns = "display-columns";
 
 	static initialise()
 	{
@@ -10,11 +11,13 @@ class Config
 
 		const options = Config.getDefaultOptions(0);
 		const displayOptions = Config.getDefaultDisplayOptions(0);
+		const displayColumns = Config.getDefaultDisplayColumns(0);
 
 		window.localStorage.clear();
 
 		Config.setDefaultOptions(options);
 		Config.setDefaultDisplayOptions(displayOptions);
+		Config.setDefaultDisplayColumns(displayColumns);
 	}
 
 	/**
@@ -63,6 +66,7 @@ class Config
 		return Config.#stringToBoolArray(rawValue, minLength, defaultValue);
 	}
 
+	// #region Filter Options
 	/**
 	 * 
 	 * @param {number} minLength 
@@ -105,7 +109,9 @@ class Config
 		array[index] = value;
 		Config.setDefaultOptions(array);
 	}
+	// #endregion Filter Options
 
+	// #region Display Options
 	/**
 	 * 
 	 * @param {number} minLength 
@@ -143,4 +149,45 @@ class Config
 		array[index] = value;
 		Config.setDefaultDisplayOptions(array);
 	}
+	// #endregion Display Options
+
+	// #region Show/Hide Specific Columns
+	/**
+	 * 
+	 * @param {number} minLength 
+	 * @returns {boolean[]}
+	 */
+	static getDefaultDisplayColumns(minLength)
+	{
+		return Config.#getArrayBool(Config.#keyDisplayColumns, minLength, true);
+	}
+
+	/**
+	 * 
+	 * @param {boolean[]} options 
+	 */
+	static setDefaultDisplayColumns(options)
+	{
+		if (!window || !window.localStorage)
+			return;
+
+		window.localStorage[Config.#keyDisplayColumns] = options;
+	}
+
+	/**
+	 * 
+	 * @param {number} index 
+	 * @param {boolean} value 
+	 * @returns 
+	 */
+	static setDefaultDisplayColumnAt(index, value)
+	{
+		if (!window || !window.localStorage)
+			return;
+
+		const array = Config.getDefaultDisplayColumns(index + 1);
+		array[index] = value;
+		Config.setDefaultDisplayColumns(array);
+	}
+	// #endregion Show/Hide Specific Columns
 }

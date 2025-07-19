@@ -54,7 +54,7 @@
 	user-select: none;
 }
 
-.center-content .emblem-icon
+div.center-content .emblem-icon
 {
 	margin: 2px;
 }
@@ -94,8 +94,6 @@
 .trait, .summon-tactic-description
 {
 	text-align: justify;
-	align-items: justify;
-	justify-content: justify;
 	display: inline-block;
 	color: #cccccc;
 	width: fit-content;

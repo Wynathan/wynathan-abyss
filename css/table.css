@@ -2,9 +2,13 @@
 {
 	color: #d6d6d6;
 	width: fit-content;
-	/* margin: auto; */
 	border-collapse: separate;
 	border-spacing: 0px;
+}
+
+body.center-content .table-root
+{
+	margin: auto;
 }
 
 .table-root .table-header th

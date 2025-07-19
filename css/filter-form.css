@@ -65,14 +65,14 @@
 /* Stat Emblems */
 .filter-form #filter-stats-elements .filter-group:first-of-type
 {
-	width: calc(55% - 8px); /* portion 40% - total padding 4 */
-	max-width: calc(55% - 8px); /* portion 40% - total padding 4 */
+	width: calc(55% - 8px); /* portion 55% - total padding 4 */
+	max-width: calc(55% - 8px); /* portion 55% - total padding 4 */
 }
 
 .filter-form #filter-stats-elements .filter-group:last-of-type
 {
-	width: calc(45% - 8px); /* portion 60% - total padding 8 */
-	max-width: calc(45% - 8px); /* portion 60% - total padding 8 */
+	width: calc(45% - 8px); /* portion 45% - total padding 8 */
+	max-width: calc(45% - 8px); /* portion 45% - total padding 8 */
 }
 
 /* Personal Emblems */
@@ -91,14 +91,21 @@
 /* Options */
 .filter-form #filter-options-group .filter-group:first-of-type
 {
-	width: calc(25% - 8px); /* portion 40% - total padding 4 */
-	max-width: calc(25% - 8px); /* portion 40% - total padding 4 */
+	width: calc(25% - 8px); /* portion 25% - total padding 4 */
+	max-width: calc(25% - 8px); /* portion 25% - total padding 4 */
 }
 
 .filter-form #filter-options-group .filter-group:last-of-type
 {
-	width: calc(75% - 8px); /* portion 60% - total padding 8 */
-	max-width: calc(75% - 8px); /* portion 60% - total padding 8 */
+	width: calc(75% - 8px); /* portion 75% - total padding 8 */
+	max-width: calc(75% - 8px); /* portion 75% - total padding 8 */
+}
+
+/* Display Options */
+.filter-form #filter-options-display-group .filter-group
+{
+	width: calc(50% - 8px); /* portion 50% - total padding 4 */
+	max-width: calc(50% - 8px); /* portion 50% - total padding 4 */
 }
 
 .filter-form .filter-emblems > .emblem-icon

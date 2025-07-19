@@ -2,18 +2,20 @@ class Form
 {
 	static FilterFormId = "filter-form";
 	static SearchId = "search";
-	static OptionsContainerId = "options";
+	static FilterOptionsContainerId = "filter-options";
 	static DisplayOptionsContainerId = "options-display";
+	static DisplayColumnsContainerId = "options-columns";
 
 	static EmblemsContainerClassName = "filter-emblems";
 	static EmblemDataKey = "emblem";
 	static FilterItemClassName = "filter-item";
 	static OptionsItemClassName = "options-item";
 	static SelectedClassName = "selected";
+	static ResetFiltersId = "reset-filters";
 	static DisplayInGameNamesId = "display-in-game-names";
 	static UseInGameOrderId = "use-in-game-order";
 	static DisplayRowNumbersId = "display-row-numbers";
-	static ResetFiltersId = "reset-filters";
+	static DisplayCenterId = "display-center";
 
 	static HasStatsDataKey = "hasstats";
 	static StatsDataKey = "stats";
@@ -40,23 +42,6 @@ class Form
 	{
 		const searchBox = Form.#getSearchBox();
 		searchBox.value = value;
-	}
-
-	/**
-	 * @returns {{ checkTr: boolean, checkNonTr: boolean }}
-	 */
-	static #getCheckTranscendenceOptions()
-	{
-		const formContainer = Form.getFilterFormContainer();
-		const optionsContainer = formContainer.querySelector("div#options div." + Form.EmblemsContainerClassName);
-
-		const optionTr = optionsContainer.querySelector("div[data-" + Transcendence.DataKey + "='true']");
-		const optionNonTr = optionsContainer.querySelector("div[data-" + Transcendence.DataKey + "='false']");
-		
-		const checkTr = optionTr.classList.contains(Form.SelectedClassName);
-		const checkNonTr = optionNonTr.classList.contains(Form.SelectedClassName);
-
-		return { checkTr: checkTr, checkNonTr: checkNonTr };
 	}
 
 	/**
@@ -170,7 +155,7 @@ class Form
 		selectedFactions.forEach(x => filterFactions.push(x.dataset[emblemDataKey]));
 		selectedPersonal.forEach(x => filterPersonal.push(x.dataset[emblemDataKey]));
 
-		const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+		const transcendenceOptions = Transcendence.getSelectionValues();
 		const checkTr = transcendenceOptions.checkTr;
 		const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -247,7 +232,7 @@ class Form
 		/** @type {Object.<string, Hero>} */
 		const result = { };
 
-		const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+		const transcendenceOptions = Transcendence.getSelectionValues();
 		const checkTr = transcendenceOptions.checkTr;
 		const checkNonTr = transcendenceOptions.checkNonTr;
 		
@@ -331,7 +316,7 @@ class Form
 		/** @type {Object.<string, Hero>} */
 		const result = { };
 
-		const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+		const transcendenceOptions = Transcendence.getSelectionValues();
 		const checkTr = transcendenceOptions.checkTr;
 		const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -383,7 +368,7 @@ class Form
 		
 		if (summonSkillName && summonSkillName.length > 0)
 		{
-			const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+			const transcendenceOptions = Transcendence.getSelectionValues();
 			const checkTr = transcendenceOptions.checkTr;
 			const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -420,7 +405,7 @@ class Form
 		
 		if (buff && buff.length > 0)
 		{
-			const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+			const transcendenceOptions = Transcendence.getSelectionValues();
 			const checkTr = transcendenceOptions.checkTr;
 			const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -456,7 +441,7 @@ class Form
 
 		if (emblemName && emblemName.length > 0)
 		{
-			const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+			const transcendenceOptions = Transcendence.getSelectionValues();
 			const checkTr = transcendenceOptions.checkTr;
 			const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -512,7 +497,7 @@ class Form
 		
 		if (emblemName && emblemName.length > 0)
 		{
-			const transcendenceOptions = Form.#getCheckTranscendenceOptions();
+			const transcendenceOptions = Transcendence.getSelectionValues();
 			const checkTr = transcendenceOptions.checkTr;
 			const checkNonTr = transcendenceOptions.checkNonTr;
 
@@ -542,7 +527,7 @@ class Form
 		
 		const formContainer = Form.getFilterFormContainer();
 
-		const optionsRoot = formContainer.querySelector("div#" + Form.OptionsContainerId);
+		const optionsRoot = formContainer.querySelector("div#" + Form.FilterOptionsContainerId);
 		const optionsContainer = optionsRoot.querySelector("div." + containerClassName);
 		const options = optionsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
 
@@ -550,11 +535,13 @@ class Form
 		const displayOptionsContainer = displayOptionsRoot.querySelector("div." + containerClassName);
 		const displayOptions = displayOptionsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
 
-		const optionsAmount = options.length - 1;
-		const displayOptionsAmount = displayOptions.length;
+		const displayColumnsRoot = formContainer.querySelector("div#" + Form.DisplayColumnsContainerId);
+		const displayColumnsContainer = displayColumnsRoot.querySelector("div." + containerClassName);
+		const displayColumns = displayColumnsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
 
-		const defaultOptions = Config.getDefaultOptions(optionsAmount);
-		const defaultDisplayOptions = Config.getDefaultDisplayOptions(displayOptionsAmount);
+		const defaultOptions = Config.getDefaultOptions(options.length);
+		const defaultDisplayOptions = Config.getDefaultDisplayOptions(displayOptions.length);
+		const defaultColumnsOptions = Config.getDefaultDisplayColumns(displayColumns.length);
 
 		/**
 		 * 
@@ -562,9 +549,9 @@ class Form
 		 * @param {boolean[]} defaults 
 		 * @param {number} length 
 		 */
-		const setDefaultSelection = function(elements, defaults, length)
+		const setDefaultSelection = function(elements, defaults)
 		{
-			for (let i = 0; i < length; i++)
+			for (let i = 0; i < elements.length; i++)
 			{
 				const element = elements[i];
 				const value = defaults[i];
@@ -573,14 +560,16 @@ class Form
 					element.click();
 			}
 
-			return defaults.slice(0, length);
+			return defaults.slice(0, elements.length);
 		}
 
-		const overrideOptions = setDefaultSelection(options, defaultOptions, optionsAmount);
-		const overrideDisplayOptions = setDefaultSelection(displayOptions, defaultDisplayOptions, displayOptionsAmount);
+		const overrideOptions = setDefaultSelection(options, defaultOptions);
+		const overrideDisplayOptions = setDefaultSelection(displayOptions, defaultDisplayOptions);
+		const overrideDisplayColumns = setDefaultSelection(displayColumns, defaultColumnsOptions);
 
 		Config.setDefaultOptions(overrideOptions);
 		Config.setDefaultDisplayOptions(overrideDisplayOptions);
+		Config.setDefaultDisplayColumns(overrideDisplayColumns);
 
 		//Transcendence.toggleDisplay();
 	}
@@ -793,9 +782,6 @@ class Form
 		const elementsContainer = formContainer.querySelector("div#filter-elements div." + containerClassName);
 		const factionsContainer = formContainer.querySelector("div#filter-factions div." + containerClassName);
 		const personalContainer = formContainer.querySelector("div#filter-personal div." + containerClassName);
-
-		const optionsRoot = formContainer.querySelector("div#" + Form.OptionsContainerId);
-		const optionsContainer = optionsRoot.querySelector("div." + containerClassName);
 		
 		/**
 		 * 
@@ -856,6 +842,9 @@ class Form
 		}
 
 		// #region Options
+		const optionsRoot = formContainer.querySelector("div#" + Form.FilterOptionsContainerId);
+		const optionsContainer = optionsRoot.querySelector("div." + containerClassName);
+
 		const t12Prefix = Transcendence.OptionEmblemPrefix;
 		for (let option in Transcendence.Options)
 		{
@@ -882,24 +871,6 @@ class Form
 			optionsContainer.appendChild(emblem);
 		}
 
-		const useInGameOrder = Renderer.createEmblemElement("Use In-Game Order");
-		useInGameOrder.id = Form.UseInGameOrderId;
-		useInGameOrder.classList.add(Form.OptionsItemClassName);
-		useInGameOrder.addEventListener("click", Events.optionsOnClick);
-		optionsContainer.appendChild(useInGameOrder);
-
-		const displayInGameNames = Renderer.createEmblemElement("Display In-Game Names");
-		displayInGameNames.id = Form.DisplayInGameNamesId;
-		displayInGameNames.classList.add(Form.OptionsItemClassName);
-		displayInGameNames.addEventListener("click", Events.optionsOnClick);
-		optionsContainer.appendChild(displayInGameNames);
-
-		const displayRowNumber = Renderer.createEmblemElement("Display Row Numbers");
-		displayRowNumber.id = Form.DisplayRowNumbersId;
-		displayRowNumber.classList.add(Form.OptionsItemClassName);
-		displayRowNumber.addEventListener("click", Events.optionsOnClick);
-		optionsContainer.appendChild(displayRowNumber);
-
 		const clear = Renderer.createEmblemElement("Reset Filters");
 		clear.id = Form.ResetFiltersId;
 		clear.classList.add(Form.OptionsItemClassName);
@@ -908,8 +879,33 @@ class Form
 		// #endregion Options
 
 		// #region Display Options
-		const displayOptionsContainerRoot = formContainer.querySelector("div#" + Form.DisplayOptionsContainerId);
-		const displayOptionsContainer = displayOptionsContainerRoot.querySelector("div." + containerClassName);
+		const displayOptionsRoot = formContainer.querySelector("div#" + Form.DisplayOptionsContainerId);
+		const displayOptionsContainer = displayOptionsRoot.querySelector("div." + containerClassName);
+
+		const useInGameOrder = Renderer.createEmblemElement("Use In-Game Order");
+		useInGameOrder.id = Form.UseInGameOrderId;
+		useInGameOrder.addEventListener("click", Events.displayOptionsOnClick);
+		displayOptionsContainer.appendChild(useInGameOrder);
+
+		const displayInGameNames = Renderer.createEmblemElement("Display In-Game Names");
+		displayInGameNames.id = Form.DisplayInGameNamesId;
+		displayInGameNames.addEventListener("click", Events.displayOptionsOnClick);
+		displayOptionsContainer.appendChild(displayInGameNames);
+
+		const displayRowNumber = Renderer.createEmblemElement("Display Row Numbers");
+		displayRowNumber.id = Form.DisplayRowNumbersId;
+		displayRowNumber.addEventListener("click", Events.displayOptionsOnClick);
+		displayOptionsContainer.appendChild(displayRowNumber);
+
+		const displayCenter = Renderer.createEmblemElement("Center Content");
+		displayCenter.id = Form.DisplayCenterId;
+		displayCenter.addEventListener("click", Events.displayOptionsOnClick);
+		displayOptionsContainer.appendChild(displayCenter);
+		// #endregion Display Options
+
+		// #region Display Columns
+		const displayColumnsContainerRoot = formContainer.querySelector("div#" + Form.DisplayColumnsContainerId);
+		const displayColumnsContainer = displayColumnsContainerRoot.querySelector("div." + containerClassName);
 
 		const table = window.document.getElementById(Renderer.TargetTableId);
 		const headers = table.querySelectorAll("th." + Transcendence.TargetClassName);
@@ -917,25 +913,13 @@ class Form
 		for (let i = 0; i < headers.length; i++)
 		{
 			const header = headers[i];
-			const headerText = header.innerText;
-			const transcendenceData = Transcendence.getIsTranscendent(header);
-
-			const emblem = Renderer.createEmblemElement(headerText);
+			const emblem = Renderer.createEmblemElement(header.innerText);
+			// Render them as selected at first, let the reset logic handle the defaults.
 			emblem.classList.add(Form.SelectedClassName);
+			emblem.addEventListener("click", Events.displayColumnsOnClick);
 
-			Transcendence.setTranscendenceData(emblem, transcendenceData);
-
-			for (let j = 0; j < header.classList.length; j++)
-			{
-				const className = header.classList.item(j);
-				if (className.indexOf("header-") === 0)
-					emblem.classList.add(className);
-			}
-
-			emblem.addEventListener("click", Events.displayOptionsOnClick);
-
-			displayOptionsContainer.appendChild(emblem);
+			displayColumnsContainer.appendChild(emblem);
 		}
-		// #endregion Display Options
+		// #endregion Display Columns
 	}
 }
