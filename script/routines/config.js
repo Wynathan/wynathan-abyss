@@ -119,7 +119,7 @@ class Config
 	 */
 	static getDefaultDisplayOptions(minLength)
 	{
-		return Config.#getArrayBool(Config.#keyDisplayOptions, minLength, true);
+		return Config.#getArrayBool(Config.#keyDisplayOptions, minLength, false);
 	}
 
 	/**
