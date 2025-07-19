@@ -1,7 +1,9 @@
 
 function runOnLoad()
 {
+	Config.initialise();
 	Data.initialise();
+	
 	Prompt.initialise();
 	CopyrightPrompt.initialise();
 	

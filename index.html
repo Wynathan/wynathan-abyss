@@ -8,32 +8,6 @@
 		<meta name="description" content="Warriors Abyss -- An Interactive Spreadsheet">
 		<meta name="keywords" content="Warriors, Abyss, Dynasty, Samurai, Orochi, spreadsheet, table">
 		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
-
-		<!-- #region UserConfig.Defaults -->
-		<script>
-			class UserConfig
-			{
-				static Defaults = 
-				[
-					// Make sure values are either true or false, no quotation marks
-					false, // Use Transcended
-					true, // Use Non-Transcended
-					false, // Use In-Game Order
-					false, // Display In-Game Names
-					false, // Display Row Numbers
-
-					true, // Stat Emblems
-					true, // Hero Emblems
-					true, // Traits 1
-					true, // Traits 2
-					true, // Summon Skill
-					true, // Element
-					true, // Hero Tactic
-					true, // Targets
-				];
-			}
-		</script>
-		<!-- #endregion UserConfig.Defaults -->
 		
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -54,6 +28,7 @@
 		<script src="script/model/tactic-target.js" defer></script>
 		<script src="script/model/tactic.js" defer></script>
 		<script src="script/model/hero.js" defer></script>
+		<script src="script/routines/config.js" defer></script>
 		<script src="script/routines/data.js" defer></script>
 		<script src="script/routines/icons.js" defer></script>
 		<script src="script/routines/events.js" defer></script>
@@ -82,7 +57,7 @@
 			</p>
 			<p class="para-h5">
 				<span>Current Version:</span>
-				<span class="highlight-text-blue-bright">v0.10.5-beta, 2025-07-18</span><span>.</span>
+				<span class="highlight-text-blue-bright">v0.10.6-beta, 2025-07-19</span><span>.</span>
 			</p>
 			<p class="para-h5">
 				<span>Game Version:</span>

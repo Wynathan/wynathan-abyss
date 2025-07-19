@@ -44,6 +44,22 @@ class Events
 
 	/**
 	 * 
+	 * @param {HTMLElement} element 
+	 */
+	static #getIndexAmongstSiblings(element)
+	{
+		const parent = element.parentElement;
+		for (let i = 0; i < parent.children.length; i++)
+		{
+			if (element === parent.children[i])
+				return i;
+		}
+
+		return -1;
+	}
+
+	/**
+	 * 
 	 * @param {HTMLElement} target 
 	 * @param {boolean=} forceValue
 	 * @returns {boolean}
@@ -119,6 +135,9 @@ class Events
 		}
 		
 		const isSelected = Events.#toggleSelected(target);
+
+		const index = Events.#getIndexAmongstSiblings(target);
+		Config.setDefaultOptionAt(index, isSelected);
 		
 		if (target.id === Form.UseInGameOrderId)
 		{
@@ -207,6 +226,7 @@ class Events
 			}
 		}
 
+		Config.setDefaultDisplayOptionAt(index, isSelected);
 		Renderer.toggleColumnDisplay(index + 1, isSelected);
 	}
 

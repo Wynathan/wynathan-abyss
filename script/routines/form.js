@@ -550,56 +550,37 @@ class Form
 		const displayOptionsContainer = displayOptionsRoot.querySelector("div." + containerClassName);
 		const displayOptions = displayOptionsContainer.querySelectorAll("div." + Renderer.EmblemTextClassName);
 
-		let defaults = [];
-		if (UserConfig && UserConfig.Defaults && UserConfig.Defaults.constructor === Array)
-			defaults = UserConfig.Defaults;
-		else
-			console.warn("UserConfig.Defaults is not defined or invalid. Make sure it is an Array of boolean.");
+		const optionsAmount = options.length - 1;
+		const displayOptionsAmount = displayOptions.length;
 
-		let enableTr = true;
-		let enableNonTr = false;
-
-		if (defaults.length >= 1)
-			enableTr = defaults[0];
-		if (defaults.length >= 2)
-			enableNonTr = defaults[1];
-		
-		if (!enableTr && !enableNonTr)
-			enableNonTr = true;
-
-		defaults[0] = enableTr;
-		defaults[1] = enableNonTr;
-
-		const targetDefaultOptionsLength = options.length - 1;
-		const targetDefaultsLength = targetDefaultOptionsLength + displayOptions.length;
-
-		for (let i = defaults.length; i < targetDefaultOptionsLength; i++)
-			defaults[i] = false;
-
-		for (let i = defaults.length; i < targetDefaultsLength; i++)
-			defaults[i] = true;
-
-		let defaultsIndex = 0;
+		const defaultOptions = Config.getDefaultOptions(optionsAmount);
+		const defaultDisplayOptions = Config.getDefaultDisplayOptions(displayOptionsAmount);
 
 		/**
 		 * 
-		 * @param {HTMLElement} element 
+		 * @param {NodeListOf<Element>} elements 
+		 * @param {boolean[]} defaults 
+		 * @param {number} length 
 		 */
-		const setDefaultSelection = function(element)
+		const setDefaultSelection = function(elements, defaults, length)
 		{
-			const value = defaults.length > defaultsIndex && defaults[defaultsIndex];
-			const isSelected = element.classList.contains(Form.SelectedClassName);
-			if (value !== isSelected)
-				element.click();
+			for (let i = 0; i < length; i++)
+			{
+				const element = elements[i];
+				const value = defaults[i];
+				const isSelected = element.classList.contains(Form.SelectedClassName);
+				if (value !== isSelected)
+					element.click();
+			}
 
-			defaultsIndex++;
+			return defaults.slice(0, length);
 		}
 
-		for (let i = 0; i < options.length - 1; i++)
-			setDefaultSelection(options[i])
+		const overrideOptions = setDefaultSelection(options, defaultOptions, optionsAmount);
+		const overrideDisplayOptions = setDefaultSelection(displayOptions, defaultDisplayOptions, displayOptionsAmount);
 
-		for (let i = 0; i < displayOptions.length; i++)
-			setDefaultSelection(displayOptions[i]);
+		Config.setDefaultOptions(overrideOptions);
+		Config.setDefaultDisplayOptions(overrideDisplayOptions);
 
 		//Transcendence.toggleDisplay();
 	}
