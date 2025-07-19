@@ -125,14 +125,20 @@ class Events
 
 		if (target.id === Form.ResetFiltersId)
 		{
+			Loader.show();
+
 			Events.#toggleSelected(target, true)
 			Form.resetFilters();
 			Form.filter();
 
 			window.clearTimeout(Events.#lastResetTimeoutId);
 			Events.#lastResetTimeoutId = window.setTimeout(Events.#toggleSelected, 300, target, false);
+
+			Loader.hide();
 			return;
 		}
+
+		Loader.show();
 		
 		const isSelected = Events.#toggleSelected(target);
 
@@ -179,6 +185,8 @@ class Events
 
 			Transcendence.toggleDisplay();
 		}
+
+		Loader.hide();
 	}
 
 	/**
@@ -192,6 +200,8 @@ class Events
 
 		if (Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 
 		const isSelected = Events.#toggleSelected(target);
 
@@ -228,6 +238,8 @@ class Events
 
 		Config.setDefaultDisplayOptionAt(index, isSelected);
 		Renderer.toggleColumnDisplay(index + 1, isSelected);
+
+		Loader.hide();
 	}
 
 	/**
@@ -242,12 +254,16 @@ class Events
 		if (Prompt.isPrompt(target))
 			return;
 
+		Loader.show();
+
 		if (target.nodeName === "CANVAS")
 			target = target.parentElement;
 
 		Events.#toggleSelected(target);
 
 		Form.filter();
+
+		Loader.hide();
 	}
 
 	/**
@@ -313,6 +329,8 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const heroName = Renderer.getEmblemName(emblemElement);
@@ -320,6 +338,8 @@ class Events
 		Form.resetFilters();
 		Form.setSearchBoxValueSilent(heroName);
 		Form.filterByHeroName(heroName);
+
+		Loader.hide();
 	}
 
 	/**
@@ -333,12 +353,16 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const heroName = Renderer.getEmblemName(emblemElement);
 
 		Form.resetFilters();
 		Form.filterByTargetHero(heroName);
+
+		Loader.hide();
 	}
 
 	/**
@@ -352,12 +376,16 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const summonSkillName = Renderer.getEmblemName(emblemElement);
 
 		Form.resetFilters();
 		Form.filterBySummonSkill(summonSkillName);
+
+		Loader.hide();
 	}
 
 	/**
@@ -372,6 +400,8 @@ class Events
 		if (!Prompt.isPrompt(target))
 			return;
 
+		Loader.show();
+
 		const container = Events.#getClosestPromptEmblemContainer(target);
 		/** @type {HTMLDivElement} */
 		const skillBuff = container.querySelector("div." + Renderer.SummonSkillBuffClassName);
@@ -381,6 +411,8 @@ class Events
 
 		Form.resetFilters();
 		Form.filterBySummonSkillBuff(buff, value);
+
+		Loader.hide();
 	}
 
 	/**
@@ -394,9 +426,13 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		Form.resetFilters();
 		Form.filterByTargetPlayer();
+
+		Loader.hide();
 	}
 
 	/**
@@ -410,6 +446,8 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
@@ -420,6 +458,8 @@ class Events
 			Form.filter();
 		else
 			Form.toggleFilterByKey(emblemName);
+
+		Loader.hide();
 	}
 
 	/**
@@ -433,12 +473,16 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
-		
+
+		Loader.show();
+
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
 		
 		Form.resetFilters();
 		Form.filterByTargetEmblem(emblemName);
+
+		Loader.hide();
 	}
 
 	/**
@@ -452,11 +496,15 @@ class Events
 
 		if (!Prompt.isPrompt(target))
 			return;
+
+		Loader.show();
 		
 		const emblemElement = Events.#getClosestPromptEmblem(target);
 		const emblemName = Renderer.getEmblemName(emblemElement);
 		
 		Form.resetFilters();
 		Form.filterBySummonSkillElement(emblemName);
+
+		Loader.hide();
 	}
 }

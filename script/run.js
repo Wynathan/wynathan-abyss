@@ -2,6 +2,7 @@
 function runOnLoad()
 {
 	Loader.show();
+	Loader.lockState();
 
 	Config.initialise();
 	Data.initialise();
@@ -15,6 +16,7 @@ function runOnLoad()
 	Form.resetOptions();
 	Form.resetFilters();
 
+	Loader.unlockState();
 	Loader.hide();
 };
 

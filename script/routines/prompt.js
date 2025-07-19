@@ -101,6 +101,8 @@ class Prompt
 		const whoIsEmblem = whoIs.querySelector("#" + Prompt.WhoIsEmblemId);
 		const whoBuffsEmblem = whoBuffs.querySelector("#" + Prompt.WhoBuffsEmblemId);
 
+		Loader.lockState();
+
 		if (Renderer.getIsHero(target))
 		{
 			const heroName = Renderer.getEmblemName(target);
@@ -182,6 +184,8 @@ class Prompt
 				whoIsElement.addEventListener("click", Events.whoseSkillIsElementOnClick);
 			}
 		}
+
+		Loader.unlockState();
 
 		// Move Prompt to the target
 		prompt.classList.remove(hiddenClassName);
