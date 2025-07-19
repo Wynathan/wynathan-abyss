@@ -1,0 +1,34 @@
+#loader /* Overlay */
+{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	background-color: #808080A0;
+}
+
+#loader #spinner-container
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 200;
+}
+
+#loader #spinner-container #spinner
+{
+	animation: spin 5s linear infinite;
+}
+
+@keyframes spin
+{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loader.loader-hidden
+{
+	display: none;
+}

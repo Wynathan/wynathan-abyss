@@ -781,6 +781,8 @@ class Renderer
 
 		const context = canvas.getContext("2d");
 
+		Loader.show();
+
 		var image = new Image();
 		image.src = iconPath;
 		image.onload = function()
@@ -796,6 +798,8 @@ class Renderer
 				width * scale,
 				height * scale
 			);
+
+			Loader.hide();
 		};
 
 		return canvas;

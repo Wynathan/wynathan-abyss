@@ -1,6 +1,8 @@
 
 function runOnLoad()
 {
+	Loader.show();
+
 	Config.initialise();
 	Data.initialise();
 	
@@ -12,6 +14,8 @@ function runOnLoad()
 	
 	Form.resetOptions();
 	Form.resetFilters();
+
+	Loader.hide();
 };
 
 window.document.addEventListener('DOMContentLoaded', runOnLoad, false);
