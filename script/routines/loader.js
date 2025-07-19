@@ -21,7 +21,6 @@ class Loader
 		}
 
 		Loader.#queue += 1;
-		console.log(Loader.#queue);
 	}
 
 	static hide()
@@ -33,7 +32,6 @@ class Loader
 			const loader = Loader.#getLoader();
 			loader.classList.add(Loader.#hiddenClassName);
 		}
-		console.log(Loader.#queue);
 	}
 
 	static lockState()
