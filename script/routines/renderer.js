@@ -576,14 +576,14 @@ class Renderer
 		div.classList.add(Renderer.EmblemClassName);
 		div.dataset[Renderer.EmblemNameDataKey] = emblemName;
 
-		if (Icons.MapEmblemToBase64[emblemName])
+		if (Icons.MapEmblemToFilePath[emblemName])
 		{
 			div.classList.add(Renderer.EmblemIconClassName);
 
 			scale = scale ?? Icons.EmblemIconScale;
 			
-			const iconBase64 = Icons.MapEmblemToBase64[emblemName];
-			const canvas = Renderer.#createCanvasWithIcon(iconBase64, scale);
+			const iconPath = Icons.MapEmblemToFilePath[emblemName];
+			const canvas = Renderer.#createCanvasWithIcon(iconPath, scale);
 			canvas.classList.add(Renderer.EmblemCanvasClassName);
 			
 			div.appendChild(canvas);
@@ -763,13 +763,13 @@ class Renderer
 
 	/**
 	 * 
-	 * @param {string} iconBase64 
+	 * @param {string} iconPath 
 	 * @param {number} scale 
 	 * @param {number=} widthOverrie 
 	 * @param {number=} heightOverride 
 	 * @returns {HTMLCanvasElement}
 	 */
-	static #createCanvasWithIcon(iconBase64, scale, widthOverrie, heightOverride)
+	static #createCanvasWithIcon(iconPath, scale, widthOverrie, heightOverride)
 	{
 		const canvas = window.document.createElement("canvas");
 		
@@ -782,7 +782,7 @@ class Renderer
 		const context = canvas.getContext("2d");
 
 		var image = new Image();
-		image.src = "data:image/png;base64," + iconBase64;
+		image.src = iconPath;
 		image.onload = function()
 		{ 
 			context.drawImage(
@@ -828,8 +828,8 @@ class Renderer
 
 		const createIcon = function(value)
 		{
-			const iconBase64 = Icons.MapT12ValueToBase64[value];
-			const icon = Renderer.#createCanvasWithIcon(iconBase64, scale);
+			const iconPath = Icons.MapT12ValueToFilePath[value];
+			const icon = Renderer.#createCanvasWithIcon(iconPath, scale);
 			Transcendence.setTranscendenceData(icon, value);
 			iconsWrapper.appendChild(icon);
 		}
@@ -875,8 +875,8 @@ class Renderer
 
 		const width = Icons.SummonSkillBuffWidth;
 		const height = Icons.SummonSkillBuffHeight;
-		const iconBase64 = Icons.MapSummonSkillBuffValueToBase64[buff][value];
-		const icon = Renderer.#createCanvasWithIcon(iconBase64, scale, width, height);
+		const iconPath = Icons.MapSummonSkillBuffValueToFilePath[buff][value];
+		const icon = Renderer.#createCanvasWithIcon(iconPath, scale, width, height);
 
 		wrapper.appendChild(icon);
 		return wrapper;
