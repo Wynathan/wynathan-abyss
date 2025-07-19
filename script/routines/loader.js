@@ -4,7 +4,7 @@ class Loader
 	static #hiddenClassName = "loader-hidden";
 
 	static #queue = 0;
-	static #stateLocked = false;
+	static #lock = 0;
 
 	static #getLoader()
 	{
@@ -14,7 +14,7 @@ class Loader
 
 	static show()
 	{
-		if (!Loader.#stateLocked && Loader.#queue === 0)
+		if (Loader.#lock === 0 && Loader.#queue === 0)
 		{
 			const loader = Loader.#getLoader();
 			loader.classList.remove(Loader.#hiddenClassName);
@@ -27,7 +27,7 @@ class Loader
 	{
 		Loader.#queue -= 1;
 
-		if (!Loader.#stateLocked && Loader.#queue === 0)
+		if (Loader.#lock === 0 && Loader.#queue === 0)
 		{
 			const loader = Loader.#getLoader();
 			loader.classList.add(Loader.#hiddenClassName);
@@ -36,11 +36,11 @@ class Loader
 
 	static lockState()
 	{
-		Loader.#stateLocked = true;
+		Loader.#lock += 1;
 	}
 
 	static unlockState()
 	{
-		Loader.#stateLocked = false;
+		Loader.#lock -= 1;
 	}
 }
