@@ -178,6 +178,20 @@ class Data
 	
 	static #heroes = 
 	[
+		// Order:
+		// 		Ruling Clan (e.g., Cao) from main branch to others (e.g., Cao Cao's branch, then Cao Ren)
+		//			From eldest to youngest (e.g., Masayuki as father, Nobuyuki, Yukimura)
+		//				Main spouse where applicable (e.g., Zhen Ji)
+		// 				Concubines by significance (e.g., Chacha then Kai if applicable)
+		// 		Notable clans (e.g. Xiahou, Guan, Zhang, Honda, Ii)
+		// 		Advisors (e.g., Xun Yu, Guo Jia)
+		//		Bodyguards and Shinobi where applicable (e.g., Dian Wei, Xu Chu; or Kunoichi, Sasuke)
+		//		Famous general groups (e.g., Five Elite Generals of Cao Wei, Five Tiger Generals of Shu-Han)
+		//		Generals
+		//		Notable ladies (e.g., Kai in Hojo)
+		//		Others
+
+
 		// #region Cao Wei
 
 		// #region Cao Cao
@@ -4220,57 +4234,6 @@ class Data
 			)
 		),
 		// #endregion
-		// #region Mori Ranmaru
-		new Hero(
-			"Mori Ranmaru", // Name
-			"Ranmaru Mori", // Name In-Game
-			[], // Additional Search Tokens
-			Hero.SexMale, // Sex
-			["Ice"], // Stat Emblems
-			["Ice", "Slay"], // Stat Emblems Transcended
-			["Oda", "King's Shield"], // Personal Emblems
-			[], // Personal Emblems Transcended
-			[ // Trait 1
-				"Increases Attack and Defence by 50% for 10 seconds when you summon [Oda Nobunaga].", 
-			],
-			[ // Trait 1 Transcended
-				"Increases Attack and Defence by 50% for 15 seconds when you summon [Oda Nobunaga].", 
-				"Replenishes 3% of your Health when you destroy enemy projectiles.",
-			],
-			[ // Trait 2
-				"Increases Defence by 200% when Health is below 50%.", 
-				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
-			],
-			[ // Trait 2 Transcended
-				"Increases Defence by 300% when Health is below 50%.", 
-				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
-			],
-			new SummonSkill( // Summon Skill
-				"Earth Shatter", // Summon Skill Name
-				"Ice", // Summon Skill Element (string, string[], or null)
-				[ // Summon Skill Activation Condition
-					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
-					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
-				],
-				true,  // Is Improved by Amount
-				false, // Is Improved by Range
-				true   // Is Improved by Duration
-			),
-			null, // Summon Skill Transcended
-			new Tactic( // Tactic
-				"Ran's Your Man!", // Tactic Name
-				"Summons this hero when other heroes who have the [Oda] Emblem have been summoned.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 4),
-					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 2),
-				]
-			),
-			null
-		),
-		// #endregion
 		// #region Akechi Mitsuhide
 		new Hero(
 			"Akechi Mitsuhide", // Name
@@ -4506,6 +4469,57 @@ class Data
 			)
 		),
 		// #endregion
+		// #region Mori Ranmaru
+		new Hero(
+			"Mori Ranmaru", // Name
+			"Ranmaru Mori", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Ice"], // Stat Emblems
+			["Ice", "Slay"], // Stat Emblems Transcended
+			["Oda", "King's Shield"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack and Defence by 50% for 10 seconds when you summon [Oda Nobunaga].", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack and Defence by 50% for 15 seconds when you summon [Oda Nobunaga].", 
+				"Replenishes 3% of your Health when you destroy enemy projectiles.",
+			],
+			[ // Trait 2
+				"Increases Defence by 200% when Health is below 50%.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Defence by 300% when Health is below 50%.", 
+				"Bestows you with invulnerability for 3 seconds after you are hit by an enemy.",
+			],
+			new SummonSkill( // Summon Skill
+				"Earth Shatter", // Summon Skill Name
+				"Ice", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Oda Nobunaga", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Akechi Mitsuhide", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Ran's Your Man!", // Tactic Name
+				"Summons this hero when other heroes who have the [Oda] Emblem have been summoned.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			null
+		),
+		// #endregion
 		// #region Shibata Katsuie
 		new Hero(
 			"Shibata Katsuie", // Name
@@ -4681,6 +4695,68 @@ class Data
 				]
 			),
 			null
+		),
+		// #endregion
+		// #region Chacha
+		new Hero(
+			"Chacha", // Name
+			null, // Name In-Game
+			["Lady Chacha"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Skill", "Charm"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Toyotomi", "Azai", "Grace", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 7% for every [Toyotomi] Emblem.", 
+				"Increases Defence by 15% for every [Azai] Emblem.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 8% for every [Toyotomi] Emblem.", 
+				"Increases Defence by 20% for every [Azai] Emblem.",
+			],
+			[ // Trait 2
+				"Makes it more likely for heroes with [Toyotomi] Emblems to appear at Crystal Saplings.", 
+				"Slightly charges Assemble Gauge when you inflict [Flame] Burn on enemies.",
+			],
+			[ // Trait 2 Transcended
+				"Makes it more likely for heroes with [Toyotomi] Emblems to appear at Crystal Saplings.", 
+				"Moderately charges Assemble Gauge when you attack enemies with [Flame] Burn.",
+			],
+			new SummonSkill( // Summon Skill
+				"Rapid-Fire Cannon", // Summon Skill Name
+				"Flame", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Azai Nagamasa", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Proud Princess", // Tactic Name
+				"Increases player hero's Defence by 70% if they have [Toyotomi] or [Azai] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Proud Princess", // Tactic Name
+				"Increases player hero's Defence by 85% if they have [Toyotomi] or [Azai] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
+				]
+			)
 		),
 		// #endregion
 		// #region Takenaka Hanbei
@@ -5052,68 +5128,6 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Toyotomi", SummonActivationCondition.TypePersonalEmblem, 2),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
-				]
-			)
-		),
-		// #endregion
-		// #region Chacha
-		new Hero(
-			"Chacha", // Name
-			null, // Name In-Game
-			["Lady Chacha"], // Additional Search Tokens
-			Hero.SexFemale, // Sex
-			["Skill", "Charm"], // Stat Emblems
-			[], // Stat Emblems Transcended
-			["Toyotomi", "Azai", "Grace", "Torchbearer"], // Personal Emblems
-			[], // Personal Emblems Transcended
-			[ // Trait 1
-				"Increases Attack by 7% for every [Toyotomi] Emblem.", 
-				"Increases Defence by 15% for every [Azai] Emblem.",
-			],
-			[ // Trait 1 Transcended
-				"Increases Attack by 8% for every [Toyotomi] Emblem.", 
-				"Increases Defence by 20% for every [Azai] Emblem.",
-			],
-			[ // Trait 2
-				"Makes it more likely for heroes with [Toyotomi] Emblems to appear at Crystal Saplings.", 
-				"Slightly charges Assemble Gauge when you inflict [Flame] Burn on enemies.",
-			],
-			[ // Trait 2 Transcended
-				"Makes it more likely for heroes with [Toyotomi] Emblems to appear at Crystal Saplings.", 
-				"Moderately charges Assemble Gauge when you attack enemies with [Flame] Burn.",
-			],
-			new SummonSkill( // Summon Skill
-				"Rapid-Fire Cannon", // Summon Skill Name
-				"Flame", // Summon Skill Element (string, string[], or null)
-				[ // Summon Skill Activation Condition
-					new SummonActivationCondition("Azai Nagamasa", SummonActivationCondition.TypeHero),
-					new SummonActivationCondition("Oichi", SummonActivationCondition.TypeHero),
-				],
-				false, // Is Improved by Amount
-				false, // Is Improved by Range
-				true   // Is Improved by Duration
-			),
-			null, // Summon Skill Transcended
-			new Tactic( // Tactic
-				"Proud Princess", // Tactic Name
-				"Increases player hero's Defence by 70% if they have [Toyotomi] or [Azai] Emblems.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypePlayer),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
-				]
-			),
-			new Tactic( // Tactic Transcended
-				"Proud Princess", // Tactic Name
-				"Increases player hero's Defence by 85% if they have [Toyotomi] or [Azai] Emblems.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypePlayer),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Charm", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
 				]
 			)
 		),
@@ -5494,66 +5508,6 @@ class Data
 			)
 		),
 		// #endregion
-		// #region Todo Takatora
-		new Hero(
-			"Todo Takatora", // Name
-			"Takatora Todo", // Name In-Game
-			[], // Additional Search Tokens
-			Hero.SexMale, // Sex
-			["Strength", "Ice"], // Stat Emblems
-			[], // Stat Emblems Transcended
-			["Tokugawa", "Toyotomi", "Azai", "Talent", "Master Gunner"], // Personal Emblems
-			[], // Personal Emblems Transcended
-			[ // Trait 1
-				"Increases the number of heroes at Crystal Saplings by 1.", 
-			],
-			[ // Trait 1 Transcended
-				"Increases the number of heroes at Crystal Saplings by 1.", 
-				"Increases selectable portals by 1 when you clear a phase without taking damage from enemies.",
-			],
-			[ // Trait 2
-				"Bestows Normal Attacks with the [Ice] attribute while Health is above 80%.", 
-				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
-			],
-			[ // Trait 2 Transcended
-				"Bestows Normal Attacks with the [Ice] attribute while Health is above 80%.", 
-				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
-			],
-			new SummonSkill( // Summon Skill
-				"Meteor Strike", // Summon Skill Name
-				"Ice", // Summon Skill Element (string, string[], or null)
-				[ // Summon Skill Activation Condition
-					new SummonActivationCondition("Otani Yoshitsugu", SummonActivationCondition.TypeHero),
-				],
-				false, // Is Improved by Amount
-				false, // Is Improved by Range
-				false  // Is Improved by Duration
-			),
-			null, // Summon Skill Transcended
-			new Tactic( // Tactic
-				"Merciless Ice Blade", // Tactic Name
-				"Increases Attack for Summoning Skill [Meteor Strike] by 100%.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeSummoningSkill, "Meteor Strike"),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 2),
-				]
-			),
-			new Tactic( // Tactic Transcended
-				"Merciless Ice Blade", // Tactic Name
-				"Increases Attack for Summoning Skill [Meteor Strike] by 120%.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeSummoningSkill, "Meteor Strike"),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 2),
-				]
-			)
-		),
-		// #endregion
 		// #region Hattori Hanzo
 		new Hero(
 			"Hattori Hanzo", // Name
@@ -5613,6 +5567,66 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 8),
 					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Todo Takatora
+		new Hero(
+			"Todo Takatora", // Name
+			"Takatora Todo", // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Strength", "Ice"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Tokugawa", "Toyotomi", "Azai", "Talent", "Master Gunner"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases the number of heroes at Crystal Saplings by 1.", 
+				"Increases selectable portals by 1 when you clear a phase without taking damage from enemies.",
+			],
+			[ // Trait 2
+				"Bestows Normal Attacks with the [Ice] attribute while Health is above 80%.", 
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+			],
+			[ // Trait 2 Transcended
+				"Bestows Normal Attacks with the [Ice] attribute while Health is above 80%.", 
+				"Increases Attack by 50% towards enemies with [Ice] Freeze.",
+			],
+			new SummonSkill( // Summon Skill
+				"Meteor Strike", // Summon Skill Name
+				"Ice", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Otani Yoshitsugu", SummonActivationCondition.TypeHero),
+				],
+				false, // Is Improved by Amount
+				false, // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Merciless Ice Blade", // Tactic Name
+				"Increases Attack for Summoning Skill [Meteor Strike] by 100%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Meteor Strike"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Merciless Ice Blade", // Tactic Name
+				"Increases Attack for Summoning Skill [Meteor Strike] by 120%.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeSummoningSkill, "Meteor Strike"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 2),
 				]
 			)
 		),
@@ -5681,68 +5695,6 @@ class Data
 			)
 		),
 		// #endregion
-		// #region Kai
-		new Hero(
-			"Kai", // Name
-			null, // Name In-Game
-			["Lady Kai", "Kaihime", "Kai hime"], // Additional Search Tokens
-			Hero.SexFemale, // Sex
-			["Vigour", "Bolt"], // Stat Emblems
-			[], // Stat Emblems Transcended
-			["Toyotomi", "Hojo", "Flower of War", "Might"], // Personal Emblems
-			["Toyotomi", "Hojo", "Brave General", "Flower of War", "Might"], // Personal Emblems Transcended
-			[ // Trait 1
-				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.", 
-			],
-			[ // Trait 1 Transcended
-				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.", 
-				"Increases your total [Vigour] Emblems by 50%.",
-			],
-			[ // Trait 2
-				"Increases Attack by 5% for every [Flower of War] Emblem.", 
-				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 50%.",
-			],
-			[ // Trait 2 Transcended
-				"Increases Attack by 7% for every [Flower of War] Emblem.", 
-				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 90%.",
-			],
-			new SummonSkill( // Summon Skill
-				"Tornado Blade", // Summon Skill Name
-				"Bolt", // Summon Skill Element (string, string[], or null)
-				[ // Summon Skill Activation Condition
-					new SummonActivationCondition("Hojo Ujiyasu", SummonActivationCondition.TypeHero),
-					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
-				],
-				true,  // Is Improved by Amount
-				false, // Is Improved by Range
-				true   // Is Improved by Duration
-			),
-			null, // Summon Skill Transcended
-			new Tactic( // Tactic
-				"War Rose of the Floating Castle", // Tactic Name
-				"Increases Attack by 30% for heroes with [Flower of War] Emblem.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
-				]
-			),
-			new Tactic( // Tactic Transcended
-				"War Rose of the Floating Castle", // Tactic Name
-				"Increases Attack by 40% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
-				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
-				],
-				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
-				]
-			)
-		),
-		// #endregion
 		// #region Fuma Kotaro
 		new Hero(
 			"Fuma Kotaro", // Name
@@ -5801,6 +5753,68 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Speed", SummonActivationCondition.TypeStatEmblem, 10),
 					new SummonActivationCondition("Shinobi", SummonActivationCondition.TypePersonalEmblem, 4),
+				]
+			)
+		),
+		// #endregion
+		// #region Kai
+		new Hero(
+			"Kai", // Name
+			null, // Name In-Game
+			["Lady Kai", "Kaihime", "Kai hime"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Vigour", "Bolt"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Toyotomi", "Hojo", "Flower of War", "Might"], // Personal Emblems
+			["Toyotomi", "Hojo", "Brave General", "Flower of War", "Might"], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.", 
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 30% for 15 seconds after every 1000 consecutive hits.", 
+				"Increases your total [Vigour] Emblems by 50%.",
+			],
+			[ // Trait 2
+				"Increases Attack by 5% for every [Flower of War] Emblem.", 
+				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 50%.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack by 7% for every [Flower of War] Emblem.", 
+				"Bestows Normal Attacks with the [Bolt] attribute while Health is below 90%.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tornado Blade", // Summon Skill Name
+				"Bolt", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Hojo Ujiyasu", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Bolt", SummonActivationCondition.TypeStatEmblem, 10),
+				],
+				true,  // Is Improved by Amount
+				false, // Is Improved by Range
+				true   // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"War Rose of the Floating Castle", // Tactic Name
+				"Increases Attack by 30% for heroes with [Flower of War] Emblem.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"War Rose of the Floating Castle", // Tactic Name
+				"Increases Attack by 40% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 5),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
 				]
 			)
 		),
