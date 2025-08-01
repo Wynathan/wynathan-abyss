@@ -367,7 +367,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Captivating Performance", // Tactic Name
-				"Increases Attack by 50% during Assemble.", // Tactic Description
+				"Increases Attack by 60% during Assemble.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypePlayer),
 				],
@@ -493,6 +493,7 @@ class Data
 				"Increases Attack by 120% for heroes with [Wei] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Commander"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 3),
@@ -1306,6 +1307,7 @@ class Data
 				"Increases Attack by 120% for heroes with [Wu] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ruler"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
@@ -1366,9 +1368,11 @@ class Data
 				"Increases Attack by 120% for [Sun Ce].", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeHero, "Sun Ce"),
+					new TacticTarget(TacticTarget.TypeHero, "Xiao Qiao"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Xiao Qiao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
 				]
 			)
 		),
@@ -1601,9 +1605,11 @@ class Data
 				"Increases Attack by 120% for [Zhou Yu].", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeHero, "Zhou Yu"),
+					new TacticTarget(TacticTarget.TypeHero, "Da Qiao"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Da Qiao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Grace", SummonActivationCondition.TypePersonalEmblem, 3),
 				]
 			)
 		),
@@ -1784,6 +1790,7 @@ class Data
 				"Sets Status Infliction to 100% for heroes with [Wu] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Commander"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 8),
@@ -2524,7 +2531,8 @@ class Data
 				"Warfare of the Sleeping Dragon", // Tactic Name
 				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.", // Tactic Description
 				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+					new TacticTarget(TacticTarget.TypeAllSummons),
+					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Huang Yueying", SummonActivationCondition.TypeHero),
@@ -2647,10 +2655,11 @@ class Data
 				"Increases Attack by 120% for heroes with [Shu] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 5),
-					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 4),
 				]
 			)
 		),
@@ -2705,7 +2714,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Visionary Strategist", // Tactic Name
-				"Increases Attack by 40% for heroes with [Shu], [Brave General], or [Strategist] Emblems.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Shu], [Brave General], or [Strategist] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
@@ -3287,7 +3296,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Calm Commander", // Tactic Name
-				"Increases Attack by 40% for heroes with [Jin] or [Torchbearer] Emblems.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Jin] or [Torchbearer] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
@@ -3895,7 +3904,7 @@ class Data
 				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 3),
-					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 8),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 6),
 				],
 				false, // Is Improved by Amount
 				false, // Is Improved by Range
@@ -4810,7 +4819,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Straight Arrow or Loose Cannon?", // Tactic Name
-				"Increases Attack by 40% for heroes with [Toyotomi] and [Oda] Emblems.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Toyotomi] and [Oda] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Toyotomi"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
@@ -5252,7 +5261,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Soul of Mikawa", // Tactic Name
-				"Increases Attack and Defence by 50% for heroes with [Tokugawa] Emblem.", // Tactic Description
+				"Increases Attack and Defence by 60% for heroes with [Tokugawa] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Tokugawa"),
 				],
@@ -5437,7 +5446,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Always Fight Head On", // Tactic Name
-				"Shortens summoning cooldown by 30% and increases attack towards enemy barriers by 30% for heroes with [Flower of War] Emblem.", // Tactic Description
+				"Shortens summoning cooldown by 30% and increases attack towards enemy barriers by 50% for heroes with [Flower of War] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
 				],
@@ -5807,7 +5816,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"War Rose of the Floating Castle", // Tactic Name
-				"Increases Attack by 40% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
@@ -6102,7 +6111,7 @@ class Data
 			],
 			[ // Trait 2 Transcended
 				"Slightly charges Musou Gauge when you inflict [Bolt] Shock on enemies.", 
-				"Replenishes 1% of your Health when you destroy enemy projectiles.",
+				"Replenishes 2% of your Health when you destroy enemy projectiles.",
 			],
 			new SummonSkill( // Summon Skill
 				"Penetrating Blade", // Summon Skill Name
@@ -6317,7 +6326,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Gale of Darkness", // Tactic Name
-				"Increases Attack by 40% for heroes with [Sanada] or [Shinobi] Emblems.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Sanada] or [Shinobi] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Sanada"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Shinobi"),
@@ -7037,7 +7046,6 @@ class Data
 				null, // Summon Skill Element (string, string[], or null)
 				[ // Summon Skill Activation Condition
 					new SummonActivationCondition("Maeda Keiji", SummonActivationCondition.TypeHero),
-					new SummonActivationCondition("Might", SummonActivationCondition.TypePersonalEmblem, 3),
 				],
 				false, // Is Improved by Amount
 				false, // Is Improved by Range
