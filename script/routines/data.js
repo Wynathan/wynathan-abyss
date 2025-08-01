@@ -490,7 +490,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"One-Eyed Legend", // Tactic Name
-				"Increases Attack by 120% for heroes with [Wei] Emblem when attacking enemy barriers.", // Tactic Description
+				"Increases Attack by 120% for heroes with [Wei] or [Commander] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Commander"),
@@ -1304,7 +1304,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Young Conqueror of Jiangdong", // Tactic Name
-				"Increases Attack by 120% for heroes with [Wu] Emblem when attacking enemy barriers.", // Tactic Description
+				"Increases Attack by 120% for heroes with [Wu] or [Ruler] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Ruler"),
@@ -1365,7 +1365,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Large Flower of the Two Qiaos", // Tactic Name
-				"Increases Attack by 120% for [Sun Ce].", // Tactic Description
+				"Increases Attack by 120% for [Sun Ce] and [Xiao Qiao].", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeHero, "Sun Ce"),
 					new TacticTarget(TacticTarget.TypeHero, "Xiao Qiao"),
@@ -1602,7 +1602,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Little Flower of the Two Qiaos", // Tactic Name
-				"Increases Attack by 120% for [Zhou Yu].", // Tactic Description
+				"Increases Attack by 120% for [Zhou Yu] and [Da Qiao].", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeHero, "Zhou Yu"),
 					new TacticTarget(TacticTarget.TypeHero, "Da Qiao"),
@@ -1787,7 +1787,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Flames of Wisdom and Courage", // Tactic Name
-				"Sets Status Infliction to 100% for heroes with [Wu] Emblem.", // Tactic Description
+				"Sets Status Infliction to 100% for heroes with [Wu] or [Commander] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Wu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Commander"),
@@ -2529,10 +2529,9 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Warfare of the Sleeping Dragon", // Tactic Name
-				"Sets Status Infliction to 100% and raises attribute Attack by 50% for heroes with [Shu] Emblem.", // Tactic Description
+				"Sets Status Infliction to 100% and raises attribute Attack by 50%.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeAllSummons),
-					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Huang Yueying", SummonActivationCondition.TypeHero),
@@ -2652,7 +2651,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Young Strategist's Scheme", // Tactic Name
-				"Increases Attack by 120% for heroes with [Shu] Emblem when attacking enemy barriers.", // Tactic Description
+				"Increases Attack by 120% for heroes with [Shu] or [Talent] Emblem when attacking enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Talent"),
