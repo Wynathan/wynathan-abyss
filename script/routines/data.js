@@ -2531,7 +2531,12 @@ class Data
 				"Warfare of the Sleeping Dragon", // Tactic Name
 				"Sets Status Infliction to 100% and raises attribute Attack by 50%.", // Tactic Description
 				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeAllSummons),
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Huang Yueying", SummonActivationCondition.TypeHero),
@@ -6010,7 +6015,12 @@ class Data
 				"Wind, Forest, Fire, Mountain", // Tactic Name
 				"Increases Attack for all attributes by 60%.", // Tactic Description
 				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeAllSummons),
+					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+					new TacticTarget(TacticTarget.TypePlayer),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Takeda", SummonActivationCondition.TypePersonalEmblem, 3),
