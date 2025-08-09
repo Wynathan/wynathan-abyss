@@ -6010,12 +6010,7 @@ class Data
 				"Wind, Forest, Fire, Mountain", // Tactic Name
 				"Increases Attack for all attributes by 60%.", // Tactic Description
 				[ // Tactic Targets
-					new TacticTarget(TacticTarget.TypeEmblem, "Flame"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Ice"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Wind"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
-					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
-					new TacticTarget(TacticTarget.TypePlayer),
+					new TacticTarget(TacticTarget.TypeAllSummons),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Takeda", SummonActivationCondition.TypePersonalEmblem, 3),
