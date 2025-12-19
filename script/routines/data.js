@@ -935,6 +935,70 @@ class Data
 			)
 		),
 		// #endregion
+		// #region Yu Jin
+		new Hero(
+			"Yu Jin", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Skill", "Strength"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wei", "Brave General", "Five Wei Elite"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack against enemy barriers by 3% for every [Strength] Emblem.", 
+				"Cuts 1 seconod from the summoning cooldown timer when you inflict [Freeze] on enemies.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack against enemy barriers by 5% for every [Strength] Emblem.", 
+				"Cuts 2 seconods from the summoning cooldown timer when you inflict [Freeze] on enemies.",
+			],
+			[ // Trait 2
+				"Increases Attack Range for the [Player] and Summoning Skills.", 
+				"Increases Attack and Defence by 10% for every [Five Wei Elite] Emblem.",
+			],
+			[ // Trait 2 Transcended
+				"Increases Attack Range for the [Player] and Summoning Skills.", 
+				"Increases Attack and Defence by 12% for every [Five Wei Elite] Emblem.",
+			],
+			new SummonSkill( // Summon Skill
+				"Penetrating Blade", // Summon Skill Name
+				"Ice", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Emperor's Permit", // Tactic Name
+				"Increases Attack Range for the [Player] and Summoning Skills.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeAllSummons),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Emperor's Permit", // Tactic Name
+				"Increases Attack Range for the [Player] and Summoning Skills.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeAllSummons),
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 6),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 4),
+				]
+			)
+		),
+		// #endregion
 		// #region Xu Huang
 		new Hero(
 			"Xu Huang", // Name
@@ -1433,6 +1497,70 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 7),
 					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Bu Lianshi
+		new Hero(
+			"Bu Lianshi", // Name
+			"Lianshi", // Name In-Game
+			["Lady Bu Lianshi"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm", "Flame"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Wu", "Flower of War", "Grace", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack and Defence by 3% for every [Wu] Emblem.", 
+				"Moderately charges Assemble Gauge when you attack enemies with [Flame] Burn.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack and Defence by 4% for every [Wu] Emblem.", 
+				"Moderately charges Assemble Gauge when you attack enemies with [Flame] Burn.",
+			],
+			[ // Trait 2
+				"Shortens summoning cooldown for [Sun Quan] by 20% and increases Attack by 20%.", 
+				"When you inflict [Flame] Burn, causes an explosion that inflicts enemies with [Flame] Burn.",
+			],
+			[ // Trait 2 Transcended
+				"Shortens summoning cooldown for [Sun Quan] by 30% and increases Attack by 30%.", 
+				"When you inflict [Flame] Burn, causes an explosion that inflicts enemies with [Flame] Burn.",
+			],
+			new SummonSkill( // Summon Skill
+				"Explosive Bullet", // Summon Skill Name
+				"Flame", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 3),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"The Young Tigress", // Tactic Name
+				"Increases Attack by 30% for heroes with [Torchbearer] or [Grace] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Grace"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 5),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"The Young Tigress", // Tactic Name
+				"Shortens summoning cooldown by 20% and increases Attack by 30% for heroes with [Torchbearer] or [Grace] Emblems.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Grace"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Sun Quan", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Torchbearer", SummonActivationCondition.TypePersonalEmblem, 4),
 				]
 			)
 		),
@@ -3935,6 +4063,68 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
 					new SummonActivationCondition("Ruler", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Zuo Ci
+		new Hero(
+			"Zuo Ci", // Name
+			null, // Name In-Game
+			[], // Additional Search Tokens
+			Hero.SexMale, // Sex
+			["Wind", "Bolt", "Slay"], // Stat Emblems
+			[], // Stat Emblems Transcended
+			["Independent", "Grace", "Talent"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Revives you when your Health reaches 0, up to 1 time.", 
+				"Increases your total number of all Attribute Emblems by 20%.",
+			],
+			[ // Trait 1 Transcended
+				"Revives you when your Health reaches 0, up to 2 times.", 
+				"Increases your total number of all Attribute Emblems by 30%.",
+			],
+			[ // Trait 2
+				"Deals extra [Slay] Wound damage to all enemies, including Level Bosses, and upgrades [Slay] Wound damage.", 
+				"Increases your total number of all Attribute Emblems by 30% if you have the \"Book of the Art of Concealment\" Treasure.",
+			],
+			[ // Trait 2 Transcended
+				"Deals extra [Slay] Wound damage to all enemies, including Level Bosses, and upgrades [Slay] Wound damage.", 
+				"Increases your total number of all Attribute Emblems by 50% if you have the \"Book of the Art of Concealment\" Treasure.",
+			],
+			new SummonSkill( // Summon Skill
+				"Tactical Absorption", // Summon Skill Name
+				null, // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Liu Bei", SummonActivationCondition.TypeHero),
+					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 5),
+				],
+				false, // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"The Path to Immortality", // Tactic Name
+				"Deals extra [Slay] Wound damage to all enemies, including Level Bosses, and upgrades [Slay] Wound damage.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 7),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"The Path to Immortality", // Tactic Name
+				"Deals extra [Slay] Wound damage to all enemies, including Level Bosses, and upgrades [Slay] Wound damage.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Slay"),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Slay", SummonActivationCondition.TypeStatEmblem, 10),
+					new SummonActivationCondition("Independent", SummonActivationCondition.TypePersonalEmblem, 6),
 				]
 			)
 		),
