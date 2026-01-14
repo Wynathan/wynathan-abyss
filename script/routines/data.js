@@ -59,6 +59,7 @@ class Data
 		"Cao Pi",
 		"Zhen Ji",
 		"Wang Yi",
+		"Yu Jin",
 
 		"Zhou Yu",
 		"Sun Jian",
@@ -75,6 +76,7 @@ class Data
 		"Gan Ning",
 		"Zhou Tai",
 		"Ling Tong",
+		"Bu Lianshi",
 
 		"Zhao Yun",
 		"Liu Bei",
@@ -109,6 +111,7 @@ class Data
 		"Chen Gong",
 		"Meng Huo",
 		"Zhurong",
+		"Zuo Ci",
 
 
 		"Oda Nobunaga",
