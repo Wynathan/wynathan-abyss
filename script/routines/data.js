@@ -252,7 +252,7 @@ class Data
 					new TacticTarget(TacticTarget.TypeEmblem, "Wei"),
 				],
 				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 10),
+					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 9),
 					new SummonActivationCondition("Talent", SummonActivationCondition.TypePersonalEmblem, 3),
 				]
 			)
@@ -370,7 +370,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Captivating Performance", // Tactic Name
-				"Increases Attack by 60% during Assemble.", // Tactic Description
+				"Increases Attack and Defence by 60% during Assemble.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypePlayer),
 				],
@@ -1116,9 +1116,10 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Liao has arrived!", // Tactic Name
-				"Increases Attack by 60% for heroes with [Brave General] Emblem.", // Tactic Description
+				"Increases Attack by 70% for heroes with [Brave General] or [Bolt] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Bolt"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 4),
@@ -2108,7 +2109,7 @@ class Data
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Wu", SummonActivationCondition.TypePersonalEmblem, 5),
-					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 4),
+					new SummonActivationCondition("King's Shield", SummonActivationCondition.TypePersonalEmblem, 3),
 				]
 			)
 		),
@@ -2849,7 +2850,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Visionary Strategist", // Tactic Name
-				"Increases Attack by 50% for heroes with [Shu], [Brave General], or [Strategist] Emblems.", // Tactic Description
+				"Increases Attack by 60% for heroes with [Shu], [Brave General], or [Strategist] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Shu"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
@@ -3317,7 +3318,7 @@ class Data
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Cao Cao", SummonActivationCondition.TypeHero),
-					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 8),
+					new SummonActivationCondition("Ice", SummonActivationCondition.TypeStatEmblem, 5),
 				]
 			)
 		),
@@ -3431,7 +3432,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Calm Commander", // Tactic Name
-				"Increases Attack by 50% for heroes with [Jin] or [Torchbearer] Emblems.", // Tactic Description
+				"Increases Attack by 70% for heroes with [Jin] or [Torchbearer] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Jin"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Torchbearer"),
@@ -3766,7 +3767,7 @@ class Data
 			["Speed", "Slay"], // Stat Emblems
 			[], // Stat Emblems Transcended
 			["Lü Bu Army", "Dong Zhuo Army", "Flower of War"], // Personal Emblems
-			[], // Personal Emblems Transcended
+			["Lü Bu Army", "Dong Zhuo Army", "Flower of War", "Torchbearer"], // Personal Emblems Transcended
 			[ // Trait 1
 				"Increases Attack Speed by 5% for 10 seconds after evading.", 
 			],
@@ -4309,13 +4310,13 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Take the World by Force", // Tactic Name
-				"Increases Attack by 70% for heroes with [Oda] Emblem and for attacks towards enemy barriers..", // Tactic Description
+				"Increases Attack by 70% for heroes with [Oda] Emblem and for attacks towards enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
 				],
 				[ // Tactic Activation Conditions
-					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 7),
-					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 3),
+					new SummonActivationCondition("Oda", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Master Gunner", SummonActivationCondition.TypePersonalEmblem, 2),
 				]
 			)
 		),
@@ -4776,8 +4777,9 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Stampeding Shibata", // Tactic Name
-				"Shortens summoning cooldown by 30% and increases Attack towards enemy barriers by 50% for heroes with [Brave General] Emblem.", // Tactic Description
+				"Shortens summoning cooldown by 30% and increases Attack towards enemy barriers by 50% for heroes with [Oda] or [Brave General] Emblems.", // Tactic Description
 				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Brave General"),
 				],
 				[ // Tactic Activation Conditions
@@ -5016,7 +5018,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Straight Arrow or Loose Cannon?", // Tactic Name
-				"Increases Attack by 50% for heroes with [Toyotomi] and [Oda] Emblems.", // Tactic Description
+				"Increases Attack and Defence by 50% for heroes with [Toyotomi] and [Oda] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Toyotomi"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Oda"),
@@ -5390,7 +5392,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Japan's Greatest Warrior", // Tactic Name
-				"Increases Attack by 100% for heroes with [Sanada], [Skill], or [Wisdom] Emblems.", // Tactic Description
+				"Increases Attack by 120% for heroes with [Sanada], [Skill], or [Wisdom] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Sanada"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Skill"),
@@ -5643,8 +5645,9 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Always Fight Head On", // Tactic Name
-				"Shortens summoning cooldown by 30% and increases attack towards enemy barriers by 50% for heroes with [Flower of War] Emblem.", // Tactic Description
+				"Shortens summoning cooldown by 30% and increases attack towards enemy barriers by 50% for heroes with [Tokugawa] or [Flower of War] Emblems.", // Tactic Description
 				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypeEmblem, "Tokugawa"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
 				],
 				[ // Tactic Activation Conditions
@@ -6013,7 +6016,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"War Rose of the Floating Castle", // Tactic Name
-				"Increases Attack by 50% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
+				"Increases Attack by 60% for heroes with [Flower of War] or [Might] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Might"),
@@ -6523,7 +6526,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Gale of Darkness", // Tactic Name
-				"Increases Attack by 50% for heroes with [Sanada] or [Shinobi] Emblems.", // Tactic Description
+				"Shortens summoning cooldown by 20% and increases Attack by 50% for heroes with [Sanada] or [Shinobi] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Sanada"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Shinobi"),
@@ -7013,9 +7016,10 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Bravest Warrior of Chinzei", // Tactic Name
-				"Increases Attack by 60% for heroes with [Western Region] or [Strength] Emblems.", // Tactic Description
+				"Increases Attack by 70% for heroes with [Western Region], [Flower of War], or [Strength] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Western Region"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Flower of War"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Strength"),
 				],
 				[ // Tactic Activation Conditions
@@ -7201,7 +7205,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Three-Legged Crow", // Tactic Name
-				"Increases Attack by 50% for heroes with [Master Gunner] or [Independent] Emblems.", // Tactic Description
+				"Increases Attack and Defence by 50% for heroes with [Master Gunner] or [Independent] Emblems.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
 					new TacticTarget(TacticTarget.TypeEmblem, "Independent"),
@@ -7503,9 +7507,10 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Requiem Trigger", // Tactic Name
-				"Increases Attack by 50% for heroes with [Independent] Emblem and for attacks towards enemy barriers.", // Tactic Description
+				"Increases Attack by 50% for heroes with [Independent] or [Master Gunner] Emblems and for attacks towards enemy barriers.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Independent"),
+					new TacticTarget(TacticTarget.TypeEmblem, "Master Gunner"),
 				],
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Wind", SummonActivationCondition.TypeStatEmblem, 6),
@@ -7627,7 +7632,7 @@ class Data
 			),
 			new Tactic( // Tactic Transcended
 				"Mugen Tenshin Style", // Tactic Name
-				"Increases Attack by 50% for heroes with the [Speed] Emblem.", // Tactic Description
+				"Increases Attack by 60% for heroes with the [Speed] Emblem.", // Tactic Description
 				[ // Tactic Targets
 					new TacticTarget(TacticTarget.TypeEmblem, "Speed"),
 				],
@@ -7652,7 +7657,7 @@ class Data
 				"Increases Attack by 10% for every [Might] Emblem.", 
 			],
 			[ // Trait 1 Transcended
-				"Increases Attack by 10% for every [Might] Emblem.", 
+				"Increases Attack by 15% for every [Might] Emblem.", 
 				"Makes defeated enemies explode, dealing damage to nearby enemies.",
 			],
 			[ // Trait 2

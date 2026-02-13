@@ -3,8 +3,9 @@
  An interactive spreadsheet helping you plan your builds in **Warriors: Abyss** -- a game developed by **Omega Force** and published by **Koei Tecmo**.
 
  ### Related Versions:
-  - Spreadsheet version: **v0.12.1-beta**, 2025-12-19.
-  - Game Version: **Update 4** (**v1.5.0**, 2025-12-19) — Yu Jin, Bu Lianshi, Zuo Ci. 
+  - Spreadsheet version: **v0.13.0-beta**, 2026-02-13.
+  - Game Version: **Update 6** (**v1.6.0**, 2026-02-13) — Sealing Ceremony & Customisation. 
+  - DLC: **TBA**.
  
  ### Main features of the spreadsheet:
    - list of all **Heroes**;
