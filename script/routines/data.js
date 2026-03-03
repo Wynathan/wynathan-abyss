@@ -112,6 +112,7 @@ class Data
 		"Meng Huo",
 		"Zhurong",
 		"Zuo Ci",
+		"Dong Bai",
 
 
 		"Oda Nobunaga",
@@ -3943,6 +3944,67 @@ class Data
 				[ // Tactic Activation Conditions
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 5),
 					new SummonActivationCondition("Brave General", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			)
+		),
+		// #endregion
+		// #region Dong Bai
+		new Hero(
+			"Dong Bai", // Name
+			null, // Name In-Game
+			["Lady Dong Bai"], // Additional Search Tokens
+			Hero.SexFemale, // Sex
+			["Charm"], // Stat Emblems
+			["Charm", "Slay"], // Stat Emblems Transcended
+			["Dong Zhuo Army", "Flower of War", "Xiliang", "Torchbearer"], // Personal Emblems
+			[], // Personal Emblems Transcended
+			[ // Trait 1
+				"Increases Attack by 4% for every 2000 Tears of Blood consumed (max 200%).", 
+				"Increases rerolls at King's Cauldrons by 3.",
+			],
+			[ // Trait 1 Transcended
+				"Increases Attack by 5% for every 2000 Tears of Blood consumed (max 200%).", 
+				"Increases rerolls at King's Cauldrons by 5.",
+			],
+			[ // Trait 2
+				"When you acquire Tears of Blood, increases the Attack of Charge Attacks by 30% for 10 seconds.", 
+				"Increases Attack by 3% each time you clear a Danger Zone (max 60%).",
+			],
+			[ // Trait 2 Transcended
+				"When you acquire Tears of Blood, increases the Attack of Charge Attacks by 50% for 10 seconds.", 
+				"Increases Attack by 4% each time you clear a Danger Zone (max 80%).",
+			],
+			new SummonSkill( // Summon Skill
+				"Explosive Bullet", // Summon Skill Name
+				"Slay", // Summon Skill Element (string, string[], or null)
+				[ // Summon Skill Activation Condition
+					new SummonActivationCondition("Dong Zhuo", SummonActivationCondition.TypeHero),
+				],
+				true,  // Is Improved by Amount
+				true,  // Is Improved by Range
+				false  // Is Improved by Duration
+			),
+			null, // Summon Skill Transcended
+			new Tactic( // Tactic
+				"Thorned Rose", // Tactic Name
+				"When you acquire Tears of Blood, increases the Attack of Charge Attacks by 50% for 10 seconds.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
+				]
+			),
+			new Tactic( // Tactic Transcended
+				"Thorned Rose", // Tactic Name
+				"When you acquire Tears of Blood, increases the Attack of Charge Attacks by 80% for 10 seconds.", // Tactic Description
+				[ // Tactic Targets
+					new TacticTarget(TacticTarget.TypePlayer),
+				],
+				[ // Tactic Activation Conditions
+					new SummonActivationCondition("Flower of War", SummonActivationCondition.TypePersonalEmblem, 5),
+					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 2),
 				]
 			)
 		),
