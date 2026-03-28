@@ -3,8 +3,8 @@
  An interactive spreadsheet helping you plan your builds in **Warriors: Abyss** -- a game developed by **Omega Force** and published by **Koei Tecmo**.
 
  ### Related Versions:
-  - Spreadsheet version: **v0.14.0-beta**, 2026-03-03.
-  - Game Version: **Update 7** (**v1.7.0**, 2026-02-27) — Dong Bai. 
+  - Spreadsheet version: **v0.15.0-beta**, 2026-03-28.
+  - Game Version: **Update 8** (**v1.8.0**, 2026-03-19) — Hotfix. 
   - DLC: **TBA**.
  
  ### Main features of the spreadsheet:

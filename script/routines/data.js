@@ -723,7 +723,7 @@ class Data
 					new SummonActivationCondition("Wei", SummonActivationCondition.TypePersonalEmblem, 5),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -1163,7 +1163,7 @@ class Data
 					new SummonActivationCondition("Xiahou Yuan", SummonActivationCondition.TypeHero),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -2087,7 +2087,7 @@ class Data
 					new SummonActivationCondition("Skill", SummonActivationCondition.TypeStatEmblem, 5),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -2644,7 +2644,7 @@ class Data
 					new SummonActivationCondition("Strategist", SummonActivationCondition.TypePersonalEmblem, 5),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -3083,7 +3083,7 @@ class Data
 					new SummonActivationCondition("Shu", SummonActivationCondition.TypePersonalEmblem, 5),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -3479,7 +3479,7 @@ class Data
 					new SummonActivationCondition("Wang Yuanji", SummonActivationCondition.TypeHero),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -3918,7 +3918,7 @@ class Data
 					new SummonActivationCondition("Xiliang", SummonActivationCondition.TypePersonalEmblem, 3),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -4822,7 +4822,7 @@ class Data
 					new SummonActivationCondition("Vigour", SummonActivationCondition.TypeStatEmblem, 10),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -5374,7 +5374,7 @@ class Data
 					new SummonActivationCondition("Flame", SummonActivationCondition.TypeStatEmblem, 10),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
@@ -5874,7 +5874,7 @@ class Data
 					new SummonActivationCondition("Otani Yoshitsugu", SummonActivationCondition.TypeHero),
 				],
 				false, // Is Improved by Amount
-				false, // Is Improved by Range
+				true,  // Is Improved by Range
 				false  // Is Improved by Duration
 			),
 			null, // Summon Skill Transcended
